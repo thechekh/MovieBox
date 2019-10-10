@@ -1,0 +1,21 @@
+.header{
+    background: #EE8686;
+    height: 160px;
+
+}
+.flexible {
+    display: flex;
+    justify-content:space-between;
+align-items: center;
+    height: 100%;
+}
+h1{
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 60px;
+    line-height: 75px;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+}
