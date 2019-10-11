@@ -12,14 +12,15 @@ class App extends React.Component  {
         isLoggedIn: false,
         films:null
     };
-// getFilms=()=> {
-// this.state.api.getFilms().then
-// }
+
     componentDidMount() {
-        this.setState({
-            films:this.state.api.getFilms()
+      this.state.api.getFilms()
+        .then((newFilms) => {
+            this.setState({
+               films:newFilms
+            });
         });
-    }
+}
 
     render() {
       return (
