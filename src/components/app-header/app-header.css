@@ -1,6 +1,6 @@
 .header{
     background: #EE8686;
-    height: 160px;
+    height: 100px;
 
 }
 .flexible {
@@ -9,13 +9,28 @@
 align-items: center;
     height: 100%;
 }
-h1{
+.header__text{
     font-family: Source Sans Pro;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 60px;
+    font-size: 40px;
     line-height: 75px;
     text-transform: uppercase;
 
     color: #FFFFFF;
+}
+.header__box{
+    font-weight: bold;
+}
+.favorites button{
+    background: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+.favorites__text{
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+
+    color: #EE8686;
 }
