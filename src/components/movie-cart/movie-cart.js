@@ -2,10 +2,6 @@
 import React from 'react';
 import movieImage from './mov1.png';
 import './movie-cart.css';
-import ApiService from "../../services/movie-api";
-
-const serv=new ApiService();
-console.log(serv.getFilms());
 
 class  MovieCart extends React.Component  {
 

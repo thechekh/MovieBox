@@ -1,7 +1,7 @@
 import MovieCart from '../movie-cart';
 import React from 'react';
 import './movie-grid.css'
-import ApiService from "../../services/movie-api";
+
 class MovieGrid extends React.Component {
     componentDidMount()
     {
