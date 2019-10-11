@@ -1,3 +1,3 @@
-import MovieGrid from './app-app-header';
+import MovieGrid from './movie-grid';
 
 export default MovieGrid;

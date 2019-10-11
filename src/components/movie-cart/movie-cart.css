@@ -1,0 +1,47 @@
+
+.movie__img{
+    overflow: hidden;
+    background: url('mov1.png') no-repeat center;
+    -webkit-background-size: cover;
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+}
+.movie__year{
+    color: white;
+    position: absolute;
+    bottom: 90px;
+    left: 30px;
+
+}
+.movie__desc{
+    width: 300px;
+    height: 80px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 35px rgba(0, 0, 0, 0.1);
+}
+.movie__name{
+    position: absolute;
+    font-family: Source Sans Pro;
+    font-size: 20px;
+    bottom: 35px;
+    left: 30px;
+    color: #494C62;
+}
+.movie__about{
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+}
+.movie__rate{
+    position: absolute;
+    right: 10px;
+    bottom: 20px;
+    border: 2px solid #FF0079;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 28px;
+    line-height: 35px;
+
+    color: #FF0079;
+}
