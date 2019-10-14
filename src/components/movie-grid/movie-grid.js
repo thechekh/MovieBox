@@ -16,16 +16,27 @@ class MovieGrid extends React.Component {
     };
     render() {
 
-
-
         return (<div className='movie__grid'>
             <div className='container'>
                <div className="row justify-content-around">
-                   <MovieCart/>
-                   <MovieCart/>
-                   <MovieCart/>
+                <MovieCart/>
+                <MovieCart/>
+                <MovieCart/>
+                <MovieCart/>
+            </div>
+            <div className="row justify-content-around">
+                <MovieCart/>
+                <MovieCart/>
+                <MovieCart/>
+                <MovieCart/>
+            </div>
+            <div className="row justify-content-around">
+                <MovieCart/>
+                <MovieCart/>
+                <MovieCart/>
+                <MovieCart/>
+            </div>
 
-               </div>
             </div>
         </div>
     )

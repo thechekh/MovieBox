@@ -11,14 +11,15 @@ componentDidMount() {
 
     render() {
        return(
-        <div className='col-md-3'>
+        <div className='col'>
             <div className="movie__img">
                 <span className='movie__year'>2017</span>
             </div>
             <div className="movie__desc">
                 <h2 className="movie__name">Logan</h2>
-                <span className="movie__about">Action, Adventure, Fantasy</span>
                 <span className="movie__rate">4.0</span>
+                <span className="movie__about">Action, Adventure, Fantasy</span>
+
             </div>
         </div>
        )
