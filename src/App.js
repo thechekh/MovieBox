@@ -9,7 +9,6 @@ class App extends React.Component  {
 
     state = {
       api: new ApiService(),
-        isLoggedIn: false,
         films:null
     };
 
@@ -26,7 +25,7 @@ class App extends React.Component  {
       return (
           <div className="App">
               <AppHeader/>
-              <MovieGrid/>
+              <MovieGrid films={this.state.films}/>
           </div>
       );
   }
