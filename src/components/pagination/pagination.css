@@ -1,0 +1,12 @@
+.grid__pagination {
+    margin-top: 60px;
+    color: #FF0079;
+}
+
+.grid__pagination a {
+    color: #FF0079;
+}
+.grid__pagination a:hover {
+    background-color: #FF0079;;
+color:white;
+}
