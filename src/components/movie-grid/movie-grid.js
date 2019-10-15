@@ -56,8 +56,8 @@ class MovieGrid extends React.Component {
 
                         {films&&
                             films.map((movie) => {
-                            const {title, vote_average} = movie;
-                           return  <MovieCart title={title} rate={vote_average}/>
+                            const {title, vote_average,poster_path} = movie;
+                           return  <MovieCart title={title} rate={vote_average} poster={poster_path}/>
                         })
                         }
 
