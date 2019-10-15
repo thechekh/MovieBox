@@ -7,8 +7,6 @@ class Pagination extends React.Component {
 
         return (
             <div className="row justify-content-center grid__pagination">
-
-
                 <nav aria-label="Page navigation example">
                     <ul className="pagination">
                         <li className="page-item">

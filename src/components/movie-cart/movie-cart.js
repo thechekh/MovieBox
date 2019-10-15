@@ -22,10 +22,10 @@ class MovieCart extends React.Component {
 
                     <span className='movie__year'>2017</span>
                 </div>
-                <div className="movie__desc d-flex align-items-center">
+                <div className="movie__desc d-flex align-items-center justify-content-between">
                     <div className="movie__about">
                         <h2 className="movie__name">{this.props.title}</h2>
-                        <span className="movie__type"></span>
+                        <span className="movie__type">Genre GET /movie/movie_id</span>
                     </div>
                     <div className="movie__rate">{this.props.rate}</div>
 
