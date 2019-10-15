@@ -22,10 +22,10 @@ class MovieCart extends React.Component {
                 </div>
                 <div className="movie__desc d-flex align-items-center">
                     <div className="movie__about">
-                        <h2 className="movie__name">Logan</h2>
+                        <h2 className="movie__name">{this.props.title}</h2>
                         <span className="movie__type">Action, Adventure, Fantasy</span>
                     </div>
-                    <div className="movie__rate">4.0</div>
+                    <div className="movie__rate">{this.props.rate}</div>
 
                 </div>
             </div>

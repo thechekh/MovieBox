@@ -5,6 +5,7 @@ import ApiService from "../../services/movie-api";
 
 
 class MovieGrid extends React.Component {
+
     constructor(props) {
         super(props)
 
@@ -13,7 +14,7 @@ class MovieGrid extends React.Component {
             films: null,
             mov: '15'
         };
-        console.log('constructor state',this.state)
+        console.log('constructor state', this.state)
         this.updateFilms()
     }
 
@@ -40,42 +41,26 @@ class MovieGrid extends React.Component {
                 this.setState({
                     films: newFilms.results
                 });
-            }).then(()=> console.log('state updated',this.state))
+            }).then(() => console.log('state updated', this.state))
 
     }
 
-
     render() {
-      /*  const {films} = this.state;
-        {
 
-            films.map((movie)=>{
-                const {title, vote_average} = movie;
-                return <MovieCart title={title} rate={vote_average}/>
-            })
-        }*/
+        const {films} = this.state;
+
         return (
             <div className='movie__grid'>
                 <div className='container'>
                     <div className="row justify-content-between">
 
+                        {films&&
+                            films.map((movie) => {
+                            const {title, vote_average} = movie;
+                           return  <MovieCart title={title} rate={vote_average}/>
+                        })
+                        }
 
-
-
-                        <MovieCart/>
-                        <MovieCart/>
-                        <MovieCart/>
-                        <MovieCart/>
-
-                        <MovieCart/>
-                        <MovieCart/>
-                        <MovieCart/>
-                        <MovieCart/>
-
-                        <MovieCart/>
-                        <MovieCart/>
-                        <MovieCart/>
-                        <MovieCart/>
                     </div>
                     <div className="row justify-content-center">
 
