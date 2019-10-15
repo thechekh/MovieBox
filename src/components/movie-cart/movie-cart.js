@@ -4,8 +4,14 @@ import './movie-cart.css';
 
 class MovieCart extends React.Component {
 
-    componentDidMount() {
+    constructor(props) {
+        super(props)
 
+        this.state = {
+            name:null,
+            rate:null,
+            year:null,
+        }
     }
 
     render() {

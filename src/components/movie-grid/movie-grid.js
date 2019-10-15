@@ -1,25 +1,67 @@
 import MovieCart from '../movie-cart';
 import React from 'react';
 import './movie-grid.css'
+import ApiService from "../../services/movie-api";
+
 
 class MovieGrid extends React.Component {
-    componentDidMount() {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            api: new ApiService(),
+            films: null,
+            mov: '15'
+        };
+        console.log('constructor state',this.state)
+        this.updateFilms()
+    }
+
+    /* componentDidMount() {
+         this.state.api.getFilms()
+             .then((newFilms) => {
+                 this.setState({
+                     films: newFilms
+                 });
+             })
+             .then(() => console.log("state films", this.state.films.results))
+             .then(() => {
+                 const elements = this.state.films.results.map((movie) => {
+                     const {title, vote_average} = movie;
+                     console.log("TITLE", title, 'vote', vote_average)
+                     return <MovieCart title={title} rate={vote_average}/>
+                 });
+                 console.log(elements)
+             })
+     }*/
+    updateFilms() {
+        this.state.api.getFilms()
+            .then((newFilms) => {
+                this.setState({
+                    films: newFilms.results
+                });
+            }).then(()=> console.log('state updated',this.state))
 
     }
 
-    onPlanetsLoaded = (planet) => {
-        this.setState({
-            planet,
-            loading: false,
-            error: false
-        });
-    };
 
     render() {
+      /*  const {films} = this.state;
+        {
 
-        return (<div className='movie__grid'>
+            films.map((movie)=>{
+                const {title, vote_average} = movie;
+                return <MovieCart title={title} rate={vote_average}/>
+            })
+        }*/
+        return (
+            <div className='movie__grid'>
                 <div className='container'>
                     <div className="row justify-content-between">
+
+
+
+
                         <MovieCart/>
                         <MovieCart/>
                         <MovieCart/>
