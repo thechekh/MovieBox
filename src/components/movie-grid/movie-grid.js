@@ -3,6 +3,7 @@ import React from 'react';
 import './movie-grid.css'
 import ApiService from "../../services/movie-api";
 import Pagination from "../pagination"
+import  {Link} from "react-router-dom";
 
 class MovieGrid extends React.Component {
 
@@ -37,9 +38,9 @@ class MovieGrid extends React.Component {
 
                         {films &&
                         films.map((movie) => {
-                            const {title, vote_average, poster_path} = movie;
-                            return <MovieCart title={title} rate={vote_average} poster={poster_path}/>
-                        })
+                            const {title, vote_average, poster_path,id} = movie;
+                            return <Link to="/movie/:id" ><MovieCart title={title} rate={vote_average} poster={poster_path} id={id}/></Link>
+                                    })
                         }
 
                     </div>
