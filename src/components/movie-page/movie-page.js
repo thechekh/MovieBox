@@ -1,8 +1,6 @@
 import React from 'react';
 import './movie-page.css'
-import AppHeader from "../app-header";
-import MovieGrid from "../movie-grid";
-import movieImage from '../movie-cart/mov1.png';
+
 import ApiService from "../../services/movie-api";
 
 class MoviePage extends React.Component {
@@ -28,24 +26,26 @@ class MoviePage extends React.Component {
     }
 
     render() {
+        const {film} = this.state;
+        console.log(film)
         return (
             <div>
                 <div className="container">
-                    <div className="row">
+                    <div className="row movie__overview">
+                        {film &&
+                        <>
+                            <div className="col-3">
 
-                        <div className="col-3">
-
-                            <img src={movieImage} width={250} height={250} alt=""/>
-
-                        </div>
-                        <div className="col-9">
-                            <h1>Overview</h1>
-                            <div className="movie__about">
-
+                                <img src={`http://image.tmdb.org/t/p/w342${film.poster_path}`} width={250} height={250}
+                                     alt=""/>
                             </div>
+                            < div className="col-9">
+                                <h1>Overview</h1>
+                                <span>{film.overview}</span>
+                            </div>
+                        </>
+                        }
 
-
-                        </div>
 
                     </div>
                 </div>
