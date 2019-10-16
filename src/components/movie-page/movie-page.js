@@ -34,6 +34,7 @@ class MoviePage extends React.Component {
                     <div className="row movie__overview">
                         {film &&
                         <>
+                        {/*    <img src={`http://image.tmdb.org/t/p/w342${film.backdrop_path}`} alt=""/>*/}
                             <div className="col-3">
 
                                 <img src={`http://image.tmdb.org/t/p/w342${film.poster_path}`} width={250} height={250}

@@ -1,7 +1,7 @@
 import React from 'react';
 import movieImage from './mov1.png';
 import './movie-cart.css';
-
+import {Link} from "react-router-dom";
 class MovieCart extends React.Component {
 
     constructor(props) {
@@ -18,7 +18,8 @@ class MovieCart extends React.Component {
         return (
             <div className='col-3 d-flex flex-column align-items-center'>
                 <div className="movie__img ">
-                    <img src={`http://image.tmdb.org/t/p/w342${this.props.poster}`} width={195} height={250} alt={'rtrt'}/>
+
+          <Link to={`/movie/${this.props.id}`}>    <img src={`http://image.tmdb.org/t/p/w342${this.props.poster}`} width={195} height={250} alt={'rtrt'}/></Link>
 
                     <span className='movie__year'>2017</span>
                 </div>
