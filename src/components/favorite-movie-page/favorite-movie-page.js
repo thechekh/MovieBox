@@ -24,7 +24,9 @@ class FavoriteMoviePage extends React.Component {
 
         return (
             <>
-                <h2>Fav page</h2>
+                <div className="d-flex justify-content-center align-items-center">
+                    <h2>favorite page</h2>
+                </div>
                 {this.props.favorites.length!=0 ? (
                     <MovieGrid favoriteFilms={this.props.favorites}/>) :
                     (<h2>nothing found favorite</h2>)
