@@ -2,8 +2,9 @@ import React from 'react';
 import './movie-page.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons'
-
+import {addFavorites} from "./movie-page-actions";
 import ApiService from "../../services/movie-api";
+import { connect } from 'react-redux'
 
 class MoviePage extends React.Component {
     constructor(props) {
@@ -28,20 +29,18 @@ class MoviePage extends React.Component {
 
     }
 
-    log=()=> {
+    log = () => {
         console.log('added to favorites', this.state.film.id)
-/*        favvo
-        favorites.push(this.state.film.id);
-        localStorage.setItem('favorites', JSON.stringify(favorites));*/
+        /*        favvo
+                favorites.push(this.state.film.id);
+                localStorage.setItem('favorites', JSON.stringify(favorites));*/
     }
-    handleClickk=()=> {
-        this.props.changeFunc(this.state.film.id);
+    handleClickk = () => {
+        this.props.addFavorites(this.state.film.id);
     }
-
 
     render() {
         const {film} = this.state;
-        console.log(film)
         return (
             <div>
                 <div className="container">
@@ -81,12 +80,15 @@ class MoviePage extends React.Component {
 
                     </div>
                 </div>
+            </div>
+        );
+    }
+}
+/*let mapStateToProps = state => {
 
+    return {
+        _id: state.authentication.user._id
+    }
+}*/
+export default connect(null, {addFavorites})(MoviePage);
 
-                < /div>
-                    );
-                    }
-                    }
-
-
-                    export default MoviePage

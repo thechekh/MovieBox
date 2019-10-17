@@ -3,9 +3,7 @@ import AppHeader from "./components/app-header";
 import MovieGrid from "./components/movie-grid";
 import './App.css';
 import MoviePage from "./components/movie-page";
-import Link from "react-router-dom";
-import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
-import ApiService from "./services/movie-api";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 class App extends React.Component {
 

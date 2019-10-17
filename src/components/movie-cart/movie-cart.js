@@ -1,5 +1,4 @@
 import React from 'react';
-import movieImage from './mov1.png';
 import './movie-cart.css';
 import {Link} from "react-router-dom";
 class MovieCart extends React.Component {

@@ -1,6 +1,6 @@
 import React from "react";
 import './pagination.css'
-import MovieGrid from "../movie-grid";
+
 
 class Pagination extends React.Component {
     render() {
