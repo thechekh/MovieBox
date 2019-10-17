@@ -13,7 +13,7 @@ class MoviePage extends React.Component {
         this.state = {
             api: new ApiService(),
             film: null,
-            favorite: false,
+            favorite:false,
         };
 
         this.updateFilm()
@@ -25,7 +25,7 @@ class MoviePage extends React.Component {
                 this.setState({
                     film: film
                 });
-            }).then(() => console.log('state updated', this.state))
+            })
 
     }
 

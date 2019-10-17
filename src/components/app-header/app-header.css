@@ -1,15 +1,17 @@
-.header{
+.header {
     background: #EE8686;
     height: 100px;
 
 }
+
 .flexible {
     display: flex;
-    justify-content:space-between;
-align-items: center;
+    justify-content: space-between;
+    align-items: center;
     height: 100%;
 }
-.header__text{
+
+.header__text {
     font-family: Source Sans Pro;
     font-size: 40px;
     line-height: 75px;
@@ -17,20 +19,36 @@ align-items: center;
 
     color: #FFFFFF;
 }
-.header__box{
+
+.header__box {
     font-weight: bold;
 }
-.favorites button{
-    background: #FFFFFF;
-    border: 2px solid #FFFFFF;
-    box-sizing: border-box;
-    border-radius: 8px;
-}
-.favorites__text{
+
+
+
+.favorites__text {
     font-family: Source Sans Pro;
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
-
     color: #EE8686;
+}
+.header__button {
+    background: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 8px;
+    transition: all .2s ease-in-out;
+}
+
+.header__button :hover {
+    cursor: pointer;
+    transform: scale(1.8);
+
+}
+
+
+
+.header__button:focus {
+    outline: 0;
 }

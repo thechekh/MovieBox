@@ -3,6 +3,7 @@ import AppHeader from "./components/app-header";
 import MovieGrid from "./components/movie-grid";
 import './App.css';
 import MoviePage from "./components/movie-page";
+import FavoriteMoviePage from "./components/favorite-movie-page"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 class App extends React.Component {
@@ -10,18 +11,10 @@ class App extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            favorites: []
-        };
 
     }
 
-    changeFavorite = (id) => {
-        const favorites = this.state.favorites.concat(id);
-        this.setState({
-            favorites
-        });
-    }
+
 
 
     render() {
@@ -35,6 +28,10 @@ class App extends React.Component {
                         <Route path="/movie/:id" render={({match}) => {
                             const {id} = match.params
                             return < MoviePage changeFunc={this.changeFavorite} id={id}/>
+                        }}/>
+                        <Route path="/favorites/" render={({match}) => {
+                            const {id} = match.params
+                            return < FavoriteMoviePage/>
                         }}/>
                         <Route render={() => {
                             return <h2 class="error_page">page not found</h2>
