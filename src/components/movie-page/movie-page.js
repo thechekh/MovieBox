@@ -35,9 +35,17 @@ class MoviePage extends React.Component {
                 favorites.push(this.state.film.id);
                 localStorage.setItem('favorites', JSON.stringify(favorites));*/
     }
-    handleClickk = () => {
+    addFavoriteHandler = () => {
+    this.setState(
+        this.setState({
+            favorite: true
+        })
+    )
         this.props.addFavorites(this.state.film.id);
+
     }
+
+
 
     render() {
         const {film} = this.state;
@@ -63,7 +71,7 @@ class MoviePage extends React.Component {
 
                                         ) :
                                         (<button
-                                                onClick={this.handleClickk}
+                                                onClick={this.addFavoriteHandler}
                                                 className=" favorite add__favorite">Add to favorites <FontAwesomeIcon
                                                 icon={faStar}/>
                                             </button>

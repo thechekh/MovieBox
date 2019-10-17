@@ -9,10 +9,10 @@ export default (state = [], action) => {
             return newState
 
         case "ADD_FAVORITE":
-
+            console.log("ID FILMA ",payload)
             const newFavorites = state.concat({
 
-                id: payload.id,
+                id: payload,
 
             })
             return newFavorites
