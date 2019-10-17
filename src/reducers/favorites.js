@@ -5,13 +5,13 @@ export default (state = [], action) => {
             return payload;
 
         case "DELETE_FAVORITE":
-            const newState = state.filter(task => task._id !== payload.taskid)
+            console.log("film for deleting",payload)
+            const newState = state.filter(items=> items.id !== items.id)
             return newState
 
         case "ADD_FAVORITE":
             console.log("ID FILMA ",payload)
             const newFavorites = state.concat({
-
                 id: payload,
 
             })

@@ -2,7 +2,7 @@ import React from 'react';
 import './movie-page.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons'
-import {addFavorites} from "./movie-page-actions";
+import {addFavorites,removeFavorites} from "./movie-page-actions";
 import ApiService from "../../services/movie-api";
 import { connect } from 'react-redux'
 
@@ -44,6 +44,15 @@ class MoviePage extends React.Component {
         this.props.addFavorites(this.state.film.id);
 
     }
+    removeFavoriteHandler = () => {
+        this.setState(
+            this.setState({
+                favorite: false
+            })
+        )
+        this.props.removeFavorites(this.state.film.id);
+
+    }
 
 
 
@@ -63,7 +72,7 @@ class MoviePage extends React.Component {
 
                                 {
                                     this.state.favorite ?
-                                        (<button
+                                        (<button  onClick={this.removeFavoriteHandler}
                                                 className="favorite remove__favorite">removes from
                                                 favorites <FontAwesomeIcon
                                                     icon={faStar}/>
@@ -98,5 +107,5 @@ class MoviePage extends React.Component {
         _id: state.authentication.user._id
     }
 }*/
-export default connect(null, {addFavorites})(MoviePage);
+export default connect(null, {addFavorites,removeFavorites})(MoviePage);
 
