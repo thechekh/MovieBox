@@ -29,12 +29,7 @@ class MoviePage extends React.Component {
 
     }
 
-    log = () => {
-        console.log('added to favorites', this.state.film)
-        /*        favvo
-                favorites.push(this.state.film.id);
-                localStorage.setItem('favorites', JSON.stringify(favorites));*/
-    }
+
     addFavoriteHandler = () => {
     this.setState(
         this.setState({

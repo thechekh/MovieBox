@@ -9,29 +9,26 @@ class FavoriteMoviePage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-        loading: true,
+            loading: true,
 
         };
     }
-    componentDidMount() {
-      console.log("res GetFilms",this.GetFilms())
-    }
-    GetFilms(){
-        const favFilms = this.props.favorites
 
-        console.log("favorites from component", favFilms)
-        const favFilmsId = favFilms.map((film) => film.id)
-        const api = new ApiService()
-       return favFilmsId.map((item) =>
-            api.getFilm(item)
-            )
+    componentDidMount() {
+        const favFilms = this.props.favorites;
+        console.log("FILMSS", favFilms)
     }
+
 
     render() {
+
         return (
             <>
                 <h2>Fav page</h2>
-                <MovieGrid/>
+                {this.props.favorites.length!=0 ? (
+                    <MovieGrid favoriteFilms={this.props.favorites}/>) :
+                    (<h2>nothing found favorite</h2>)
+                }
             </>
         )
     }
