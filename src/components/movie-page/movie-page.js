@@ -30,7 +30,7 @@ class MoviePage extends React.Component {
     }
 
     log = () => {
-        console.log('added to favorites', this.state.film.id)
+        console.log('added to favorites', this.state.film)
         /*        favvo
                 favorites.push(this.state.film.id);
                 localStorage.setItem('favorites', JSON.stringify(favorites));*/
@@ -41,7 +41,7 @@ class MoviePage extends React.Component {
             favorite: true
         })
     )
-        this.props.addFavorites(this.state.film.id);
+        this.props.addFavorites(this.state.film);
 
     }
     removeFavoriteHandler = () => {
@@ -53,8 +53,6 @@ class MoviePage extends React.Component {
         this.props.removeFavorites(this.state.film.id);
 
     }
-
-
 
     render() {
         const {film} = this.state;

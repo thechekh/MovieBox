@@ -1,19 +1,19 @@
-export const addFavorites = (id) => {
+export const addFavorites = (film) => {
     return (dispatch) => {
         dispatch(
             {
                 type: "ADD_FAVORITE",
-               payload: id
+               payload: film
             })
     }
 }
 
-export const removeFavorites = (id) => {
+export const removeFavorites = (film) => {
     return (dispatch) => {
         dispatch(
             {
                 type: "DELETE_FAVORITE",
-                payload: id
+                payload: film
             })
     }
 }
