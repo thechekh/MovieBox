@@ -5,7 +5,7 @@ export default (state = [], action) => {
             console.log("genres reducer playload",payload)
             return payload;
         case "l":
-            console.log("l",payload)
+            console.log("reducer l",payload)
             return payload;
 
         default:

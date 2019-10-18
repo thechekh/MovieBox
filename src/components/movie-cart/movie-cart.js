@@ -27,22 +27,22 @@ class MovieCart extends React.Component {
                         ) : (<img src={defautl_img} width={195} height={250} alt={'rtrt'}/>)
                         }
 
-                            </Link>
+                    </Link>
 
-                            <span className='movie__year'>2017</span>
-                            </div>
-                            <div className="movie__desc d-flex align-items-center justify-content-between">
-                            <div className="movie__about">
-                            <h2 className="movie__name">{this.props.title}</h2>
-                            <span className="movie__type">{this.props.genre}</span>
-                            </div>
-                            <div className="movie__rate">{this.props.rate}</div>
+                    <span className='movie__year'>2017</span>
+                </div>
+                <div className="movie__desc d-flex align-items-center justify-content-between">
+                    <div className="movie__about">
+                        <h2 className="movie__name">{this.props.title}</h2>
+                        <span className="movie__type">{this.props.genre}</span>
+                    </div>
+                    <div className="movie__rate">{this.props.rate}</div>
 
-                            </div>
-                            </div>
-                            )
-                        }
+                </div>
+            </div>
+        )
+    }
 
-                        };
+};
 
-                        export default MovieCart;
+export default MovieCart;

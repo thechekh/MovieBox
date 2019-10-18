@@ -3,6 +3,7 @@ import './movie-page.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons'
 import {addFavorites, removeFavorites} from "./movie-page-actions";
+import {l} from '../movie-grid/movie-grid-actions'
 import ApiService from "../../services/movie-api";
 import {connect} from 'react-redux'
 import favorites from "../../reducers/favorites-reducer";
@@ -71,7 +72,10 @@ class MoviePage extends React.Component {
             this.props.removeFavorites(this.state.film.id);
 
         }
-
+    GetGenres = () => {
+        this.state.api.getGenres()
+            .then((res) => l(res))
+    }
         render()
         {
             const {film} = this.state;
@@ -110,6 +114,7 @@ class MoviePage extends React.Component {
                                 < div className="col-9">
                                     <h1>Overview</h1>
                                     <span>{film.overview}</span>
+                                    <button onClick={this.GetGenres}> b</button>
                                 </div>
                             </>
                             }
