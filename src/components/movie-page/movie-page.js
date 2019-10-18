@@ -125,13 +125,5 @@ class MoviePage extends React.Component {
             favorites: state.favorites,
         }
     }
-    export
-    default
-
-    connect(mapStateToProps, {addFavorites, removeFavorites})
-
-(
-    MoviePage
-)
-    ;
+    export default connect(mapStateToProps, {addFavorites, removeFavorites})(MoviePage);
 

@@ -27,7 +27,7 @@ class App extends React.Component {
                         <Route exact path="/" component={MovieGrid}/>
                         <Route path="/movie/:id" render={({match}) => {
                             const {id} = match.params
-                            return < MoviePage changeFunc={this.changeFavorite} id={id}/>
+                            return < MoviePage id={id}/>
                         }}/>
                         <Route path="/favorites/" render={({match}) => {
                             const {id} = match.params
