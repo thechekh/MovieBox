@@ -20,8 +20,11 @@ class MovieGrid extends React.Component {
             page_size: 20,
             current_page: 5,
         };
-        this.updateFilms()
+
     }
+componentDidMount() {
+    this.updateFilms()
+}
 
     updateFilms() {
         this.state.api.getFilms(3)

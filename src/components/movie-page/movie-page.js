@@ -6,6 +6,9 @@ import {addFavorites, removeFavorites} from "./movie-page-actions";
 import ApiService from "../../services/movie-api";
 import {connect} from 'react-redux'
 import favorites from "../../reducers/favorites";
+import defautl_img from "../movie-cart/default_img.jpeg";
+import {Link} from "react-router-dom";
+import default_img from "../movie-cart/default_img.jpeg"
 
 class MoviePage extends React.Component {
     constructor(props) {
@@ -80,10 +83,11 @@ class MoviePage extends React.Component {
                             <>
                                 {/*    <img src={`http://image.tmdb.org/t/p/w342${film.backdrop_path}`} alt=""/>*/}
                                 <div className="col-3">
-
-                                    <img src={`http://image.tmdb.org/t/p/w342${film.poster_path}`} width={250}
-                                         height={250}
-                                         alt="movie_image"/>
+                                    {film.poster_path ? (
+                                        <img src={`http://image.tmdb.org/t/p/w342${film.poster_path}`} width={195} height={250}
+                                             alt={'rtrt'}/>
+                                    ) : (<img src={defautl_img} width={195} height={250} alt={'rtrt'}/>)
+                                    }
 
                                     {
                                         this.state.favorite ?
