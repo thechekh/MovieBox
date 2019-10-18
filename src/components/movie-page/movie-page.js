@@ -5,7 +5,7 @@ import {faStar} from '@fortawesome/free-solid-svg-icons'
 import {addFavorites, removeFavorites} from "./movie-page-actions";
 import ApiService from "../../services/movie-api";
 import {connect} from 'react-redux'
-import favorites from "../../reducers/favorites";
+import favorites from "../../reducers/favorites-reducer";
 import defautl_img from "../movie-cart/default_img.jpeg";
 import {Link} from "react-router-dom";
 import default_img from "../movie-cart/default_img.jpeg"

@@ -6,16 +6,14 @@ export default (state = [], action) => {
 
         case "DELETE_FAVORITE":
             console.log("film for deleting",payload)
-            const newState = state.filter(items=> items.id !==payload)
-            return newState
+            return state.filter(items => items.id !== payload)
 
         case "ADD_FAVORITE":
 
-            const newFavorites = state.concat({
-               ...payload,
+            return state.concat({
+                ...payload,
 
             })
-            return newFavorites
 
         default:
             return state

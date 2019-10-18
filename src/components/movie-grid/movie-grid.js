@@ -3,12 +3,12 @@ import React from 'react';
 import './movie-grid.css'
 import ApiService from "../../services/movie-api";
 /*import Pagination from "../pagination"*/
+import {setGenres} from "./movie-grid-actions";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {addFavorites, removeFavorites} from "../movie-page/movie-page-actions";
 
 class MovieGrid extends React.Component {
-    total_pages;
 
     constructor(props) {
         super(props)
@@ -20,13 +20,13 @@ class MovieGrid extends React.Component {
             page_size: 20,
             current_page: 1,
         };
-        this.GetGenres()
+
 
     }
 
-
     componentDidMount() {
         this.updateFilms()
+
     }
 
 
@@ -42,16 +42,12 @@ class MovieGrid extends React.Component {
             })
 
     }
-    GetGenres() {
+
+    GetGenres = () => {
         this.state.api.getGenres()
-            .then((genres) => {
-                this.setState({
-                  genres:genres
-
-                });
-            })
-
+            .then((res) => setGenres(res))
     }
+
 
     setCurrentPage(p) {
         this.setState({
@@ -159,7 +155,7 @@ class MovieGrid extends React.Component {
             <div className='movie__grid'>
                 <div className='container'>
                     <div className="row justify-content-flex-start">
-
+                        <button onClick={this.GetGenres}></button>
 
                         {favoriteFilms ?
                             (favoriteFilms.map((movie) => {
@@ -172,7 +168,7 @@ class MovieGrid extends React.Component {
                             (films &&
                                 films.map((movie) => {
                                     const {title, vote_average, poster_path, id} = movie;
-                                    const {genre_ids}=movie
+                                    const {genre_ids} = movie
                                     return <MovieCart title={title} rate={vote_average} poster={poster_path}
                                                       id={id} genre={genre_ids}
                                                       key={id}/>
@@ -185,10 +181,10 @@ class MovieGrid extends React.Component {
                             onClick={() => {
                                 this.onPageChanged(p)
                             }}
-                            className={this.state.current_page === p && "selected"}>{p} </span>
+                            className={this.state.current_page === p && "selected"} key={p}>{p} </span>
                     })}
                     <div id="pagination"></div>
-                 {/*   {this.state.total_pages ? (
+                    {/*   {this.state.total_pages ? (
                         createPagination(pagesCount, currentPage)
                     ) : null
 
@@ -204,9 +200,11 @@ class MovieGrid extends React.Component {
 /*let mapStateToProps = state => {
 
     return {
-        current_page: state.current_page,
+       genres: state.genres,
     }
 }*/
 
-export default MovieGrid;
+export default connect(null, {setGenres})(MovieGrid);
+
+
 
