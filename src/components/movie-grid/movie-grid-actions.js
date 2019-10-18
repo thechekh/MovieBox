@@ -1,5 +1,5 @@
 export const setGenres = (genres) => {
-    console.log("act",genres)
+
     return (dispatch) => {
         dispatch(
             {
@@ -8,5 +8,16 @@ export const setGenres = (genres) => {
             })
     }
 }
+export const l = (genres) => {
+    console.log("act",genres)
+    return (dispatch) => {
+        dispatch(
+            {
+                type: "l",
+                payload: genres
+            })
+    }
+}
+
 
 

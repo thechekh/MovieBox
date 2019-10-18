@@ -1,6 +1,6 @@
 export const addFavorites = (film) => {
-    return (dispatch) => {
-        dispatch(
+    return (d) => {
+        d(
             {
                 type: "ADD_FAVORITE",
                payload: film

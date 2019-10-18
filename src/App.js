@@ -8,15 +8,6 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 class App extends React.Component {
 
-    constructor(props) {
-        super(props)
-
-
-    }
-
-
-
-
     render() {
         return (
             <Router>
@@ -30,7 +21,7 @@ class App extends React.Component {
                             return < MoviePage id={id}/>
                         }}/>
                         <Route path="/favorites/" render={({match}) => {
-                            const {id} = match.params
+
                             return < FavoriteMoviePage/>
                         }}/>
                         <Route render={() => {

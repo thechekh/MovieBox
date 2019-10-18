@@ -1,9 +1,7 @@
 import React from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faStar} from '@fortawesome/free-solid-svg-icons'
 import MovieGrid from "../movie-grid";
 import {connect} from 'react-redux'
-import ApiService from '../../services/movie-api'
+
 
 class FavoriteMoviePage extends React.Component {
     constructor(props) {
