@@ -22,6 +22,7 @@ class MovieGrid extends React.Component {
 
     componentDidMount() {
         this.updateFilms()
+
     }
 
     updateFilms() {
@@ -62,18 +63,14 @@ class MovieGrid extends React.Component {
 
         const {films} = this.state;
         const {favoriteFilms} = this.props;
-        const pagesCount = this.state.total_pages;
-        let pages = [];
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i)
-        }
+
 
         return (
             <div className='movie__grid'>
                 <div className='container'>
-                    <div className="row justify-content-flex-start">
+                    <div className="row justify-content-start">
 
-                        {favoriteFilms ?
+                        {this.props.genres && favoriteFilms ?
                             (favoriteFilms.map((movie) => {
                                     const {title, vote_average, poster_path, id, genre_ids} = movie;
                                     return <MovieCart title={title} rate={vote_average} poster={poster_path} id={id}
@@ -82,7 +79,7 @@ class MovieGrid extends React.Component {
                                 }
                             ))
                             :
-                            (films &&
+                            (this.props.genres && films &&
                                 films.map((movie) => {
                                     const {title, vote_average, poster_path, id, genre_ids} = movie;
 
@@ -90,16 +87,11 @@ class MovieGrid extends React.Component {
                                                       id={id} genre={genre_ids}
                                                       key={id}/>
                                 }))
+
                         }
+                        { this.props.genres && console.log("fdf",this.props.genres[0])}
                     </div>
 
-                    {pages.map(p => {
-                        return <span
-                            onClick={() => {
-                                this.onPageChanged(p)
-                            }}
-                            className={this.state.current_page === p && "selected"} key={p}>{p} </span>
-                    })}
                     <div className="pagination d-flex justify-content-center">
                         {this.state.total_pages ?
                             (
