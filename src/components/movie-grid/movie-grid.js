@@ -64,20 +64,20 @@ class MovieGrid extends React.Component {
         const {films} = this.state;
         const {favoriteFilms} = this.props;
 
-
         return (
             <div className='movie__grid'>
                 <div className='container'>
-                    <div className="row justify-content-start">
-
+                    <div className="row justify-content-start movie_margin">
                         {this.props.genres && favoriteFilms ?
-                            (favoriteFilms.map((movie) => {
-                                    const {title, vote_average, poster_path, id, genre_ids} = movie;
-                                    return <MovieCart title={title} rate={vote_average} poster={poster_path} id={id}
-                                                      genre={genre_ids}
-                                                      key={id}/>
-                                }
-                            ))
+                            (
+                                favoriteFilms.map((movie) => {
+                                        const {title, vote_average, poster_path, id, genres} = movie;
+                                        const genre_ids = genres.map((item) => item.id)
+                                        return <MovieCart title={title} rate={vote_average} poster={poster_path} id={id}
+                                                          genre={genre_ids}
+                                                          key={id}/>
+                                    }
+                                ))
                             :
                             (this.props.genres && films &&
                                 films.map((movie) => {
@@ -89,7 +89,7 @@ class MovieGrid extends React.Component {
                                 }))
 
                         }
-                        { this.props.genres && console.log("fdf",this.props.genres[0])}
+                        {this.props.genres && console.log("fdf", this.props.genres[0])}
                     </div>
 
                     <div className="pagination d-flex justify-content-center">

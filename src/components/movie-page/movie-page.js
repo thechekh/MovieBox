@@ -112,7 +112,6 @@ class MoviePage extends React.Component {
                             < div className="col-9">
                                 <h1>Overview</h1>
                                 <span>{film.overview}</span>
-                                <button onClick={this.GetGenres}> b</button>
                             </div>
                         </>
                         }

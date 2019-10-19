@@ -20,9 +20,9 @@ class MovieCart extends React.Component {
                 <div className="movie__img d-flex flex-column align-items-center">
                     <Link to={`/movie/${this.props.id}`}>
                         {this.props.poster ? (
-                            <img src={`http://image.tmdb.org/t/p/w342${this.props.poster}`} width={195} height={250}
+                            <img src={`http://image.tmdb.org/t/p/w342${this.props.poster}`}
                                  alt={'movie_img'}/>
-                        ) : (<img src={defautl_img} width={195} height={250} alt={'rtrt'}/>)
+                        ) : (<img src={defautl_img}  alt={'rtrt'}/>)
                         }
                     </Link>
                     <span className='movie__year'>2017</span>
@@ -30,8 +30,10 @@ class MovieCart extends React.Component {
                 <div className="movie__desc d-flex align-items-center justify-content-between">
                     <div className="movie__about">
                         <h2 className="movie__name">{this.props.title}</h2>
-                        <span className="movie__type">{
-                           type_name_array}</span>
+                        <span className="movie__type">
+                            {type_name_array.map((item) =>`${item} `)}
+
+                        </span>
                     </div>
                     <div className="movie__rate">{this.props.rate}</div>
 
