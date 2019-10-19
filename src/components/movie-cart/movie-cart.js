@@ -4,17 +4,6 @@ import {Link} from "react-router-dom";
 import defautl_img from "./default_img.jpeg"
 
 class MovieCart extends React.Component {
-
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            name: null,
-            rate: null,
-            year: null,
-        }
-    }
-
     render() {
         return (
             <div className='col-3 d-flex flex-column align-items-center'>

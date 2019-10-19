@@ -1,37 +1,27 @@
-.movie__grid{
-    margin-top: 100px;
-}
-.selected{
-    font-weight: bold;
+.movie__grid {
+  margin-top: 100px;
 }
 
-
-
+.selected {
+  font-weight: bold;
+}
 
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
 }
+
 ul li {
-    margin-right: 5px;
-
+  margin-right: 5px;
 }
-
-
 
 ul li a {
-    padding: 5px 10px;
-    border: 1px solid #FF0079;
-    font-family: Source Sans Pro,serif;
-    font-size: 1.25rem;
-    line-height: 35px;
-    color: #FF0079;
-    }
-
-
-
-
-
-
+  padding: 5px 10px;
+  border: 1px solid #ff0079;
+  font-family: Source Sans Pro, serif;
+  font-size: 1.25rem;
+  line-height: 35px;
+  color: #ff0079;
+}
