@@ -1,51 +1,40 @@
-
 .movie__block {
-    display: flex;
-}
-
-.movie__img {
-    background: url('mov1.png') no-repeat center;
-    -webkit-background-size: cover;
-    width: 195px;
-    height: 250px;
-    background-size: cover;
+  display: flex;
 }
 
 .movie__year {
-    color: white;
-    position: relative;
-    top: 220px;
-    right: 70px;
-
+  color: white;
+  position: relative;
+  top: 220px;
+  right: 70px;
 }
 
 .movie__desc {
-    width: 195px;
-    height: 80px;
-    background: #FFFFFF;
-    box-shadow: 0px 2px 35px rgba(0, 0, 0, 0.1);
+  width: 195px;
+  height: 80px;
+  background: #ffffff;
+  box-shadow: 0px 2px 35px rgba(0, 0, 0, 0.1);
 }
 
 .movie__name {
-    font-family: Source Sans Pro, serif;
-    font-size: 20px;
-    color: #494C62;
+  font-family: Source Sans Pro, serif;
+  font-size: 20px;
+  color: #494c62;
 }
 
 .movie__type {
-    font-family: Source Sans Pro, serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 0.75rem;
+  font-family: Source Sans Pro, serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.75rem;
 
-
-    color: #BABBC3;
+  color: #babbc3;
 }
 
 .movie__rate {
-    border: 2px solid #FF0079;
-    padding: 4px 8px;
-    border-radius: 5px;
-    font-size: 0.75rem;
-    color: #FF0079;
+  border: 2px solid #ff0079;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  color: #ff0079;
 }

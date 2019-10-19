@@ -14,7 +14,7 @@ export const l = (genres) => {
       dispatch(
             {
                 type: "l",
-                payload: genres
+                payload:genres
             })
     }
 }

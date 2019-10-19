@@ -1,15 +1,10 @@
 export default (state = [], action) => {
     const {type, payload} = action
     switch (type) {
-        case "S":
-            console.log("genres reducer playload",payload)
-            return payload;
         case "l":
-            console.log("reducer l",payload)
-            return payload;
+            return payload.genres;
 
         default:
-            console.log("DEFAULT")
             return state
     }
 }
