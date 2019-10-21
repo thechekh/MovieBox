@@ -6,7 +6,7 @@ import {addFavorites, removeFavorites} from "./movie-page-actions";
 import {l} from '../movie-grid/movie-grid-actions'
 import ApiService from "../../services/movie-api";
 import {connect} from 'react-redux'
-import defautl_img from "../movie-cart/default_img.jpeg";
+import defautl_img from "../movie-cart/default_img.png";
 
 class MoviePage extends React.Component {
     constructor(props) {

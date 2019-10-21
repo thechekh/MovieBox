@@ -1,5 +1,6 @@
 import React from 'react';
 import AppHeader from "./components/app-header";
+import AppFooter from "./components/app-footer";
 import MovieGrid from "./components/movie-grid";
 import './App.css';
 import MoviePage from "./components/movie-page";
@@ -19,6 +20,7 @@ class App extends React.Component {
 
 
     }
+
     componentDidMount() {
         this.GetGenres();
     }
@@ -49,11 +51,13 @@ class App extends React.Component {
                         }}/>
 
                     </Switch>
+                    <AppFooter/>
                 </div>
             </Router>
         );
     }
 }
+
 let mapStateToProps = state => {
 
     return {

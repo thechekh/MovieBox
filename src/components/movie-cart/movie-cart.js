@@ -1,7 +1,7 @@
 import React from 'react';
 import './movie-cart.css';
 import {Link} from "react-router-dom";
-import default_img from "./default_img.jpeg"
+import default_img from "./default_img.png"
 import {connect} from "react-redux";
 
 class MovieCart extends React.Component {
@@ -15,7 +15,7 @@ class MovieCart extends React.Component {
                 type_name_array.push(item.name)
             }
         })
-        type_name_array.length=3;
+        type_name_array.length = 3;
 
         return (
             <div className=' col-6 col-lg-3 d-flex flex-column justify-content-center align-items-center'>
@@ -29,7 +29,7 @@ class MovieCart extends React.Component {
                                 )
                                 :
                                 (
-                                    <img src={default_img} alt='default'/>
+                                    <img src={default_img} width={300}  alt='default'/>
                                 )
                         }
                     </Link>
