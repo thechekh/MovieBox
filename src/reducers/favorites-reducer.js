@@ -5,7 +5,6 @@ export default (state = [], action) => {
             return payload;
 
         case "DELETE_FAVORITE":
-            console.log("film for deleting",payload)
             return state.filter(items => items.id !== payload)
 
         case "ADD_FAVORITE":

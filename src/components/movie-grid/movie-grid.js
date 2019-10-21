@@ -4,17 +4,22 @@ import './movie-grid.css'
 import ApiService from "../../services/movie-api";
 import {connect} from "react-redux";
 import ReactPaginate from 'react-paginate';
+import history from '../../history';
 
 class MovieGrid extends React.Component {
 
     constructor(props) {
+
         super(props)
+        const page = this.props.page || 1;
+        console.log('moviegrid page', page)
         this.state = {
             api: new ApiService(),
             films: null,
             total_pages: null,
             page_size: 20,
-            current_page: 1,
+            current_page: page,
+
         };
 
 
@@ -45,8 +50,11 @@ class MovieGrid extends React.Component {
 
     }
 
-
     onPageChanged = (pageNumber) => {
+        /* window.location.href=`http://localhost:3000/page/${pageNumber}`*/
+        /*      this.props.history.push(`page/${pageNumber}`)*/
+        /* browserHistory.push(`page/${pageNumber}`);*/
+        history.push(`/page/${pageNumber}`);
         this.setCurrentPage(pageNumber);
         console.log("PG", pageNumber);
         this.state.api.getFilms(pageNumber).then((newFilms) => {
@@ -56,6 +64,8 @@ class MovieGrid extends React.Component {
 
             });
         })
+        console.log('redirect page', `page/${pageNumber}`)
+
     }
 
 
@@ -63,7 +73,8 @@ class MovieGrid extends React.Component {
 
         const {films} = this.state;
         const {favoriteFilms} = this.props;
-
+        const {total_pages} = this.state;
+        favoriteFilms && console.log("count favfilms=", favoriteFilms.length)
         return (
             <div className='movie__grid'>
                 <div className='container'>
@@ -80,6 +91,7 @@ class MovieGrid extends React.Component {
                                             id={id}
                                             type={genre_ids}
                                             year={release_date}
+
                                             key={id}/>
                                     }
                                 ))
@@ -103,8 +115,23 @@ class MovieGrid extends React.Component {
                     </div>
 
                     <div className="pagination d-flex justify-content-center">
-                        {this.state.total_pages ?
+                        {favoriteFilms ?
                             (
+                                <ReactPaginate
+                                    previousLabel={'<'}
+                                    nextLabel={'>'}
+                                    pageCount={Math.ceil(favoriteFilms.length / 20)}
+                                    marginPagesDisplayed={1}
+                                    pageRangeDisplayed={2}
+                                    onPageChange={e => {
+                                        console.log(e.selected + 1, "sl");
+                                        this.onPageChanged(e.selected + 1)
+                                    }
+                                    }
+                                />
+
+                            ) :
+                            (total_pages &&
                                 <ReactPaginate
                                     previousLabel={'<'}
                                     nextLabel={'>'}
@@ -118,8 +145,10 @@ class MovieGrid extends React.Component {
                                     }
                                 />
 
-                            ) : null
+                            )
+
                         }
+
                     </div>
 
 

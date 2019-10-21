@@ -1,32 +1,43 @@
 .movie__grid {
-  margin-top: 100px;
+    margin-top: 100px;
 }
 
 .selected {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
 }
 
 ul li {
-  margin-right: 5px;
+    margin-right: 5px;
+}
+
+.pagination li :hover {
+    cursor: pointer;
+}
+
+.pagination li :focus {
+    outline: none ;
 }
 
 ul li a {
-  padding: 5px 10px;
-  border: 1px solid #ff0079;
-  font-family: Source Sans Pro, serif;
-  font-size: 1.25rem;
-  line-height: 35px;
-  color: #ff0079;
+    padding: 5px 10px;
+    border: 1px solid #ff0079;
+    font-family: Source Sans Pro, serif;
+    font-size: 1.25rem;
+    line-height: 35px;
+    color: #ff0079;
 }
-.pagination{
-  margin-top: 50px;
+
+.pagination {
+    margin-top: 50px;
 }
-.movie_margin>div {
-  margin-bottom: 20px;}
+
+.movie_margin > div {
+    margin-bottom: 20px;
+}

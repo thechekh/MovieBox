@@ -5,11 +5,11 @@ import MovieGrid from "./components/movie-grid";
 import './App.css';
 import MoviePage from "./components/movie-page";
 import FavoriteMoviePage from "./components/favorite-movie-page"
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {Router, Route, Switch} from "react-router-dom";
 import {setGenres, l} from "./components/movie-grid/movie-grid-actions";
 import {connect} from "react-redux";
 import ApiService from "./services/movie-api";
-
+import history from './history';
 class App extends React.Component {
 
     constructor(props) {
@@ -33,15 +33,21 @@ class App extends React.Component {
 
     render() {
         return (
-            <Router>
+            <Router history={history}>
                 <div className="App">
                     <AppHeader/>
                     <Switch>
                         <Route exact path="/" component={MovieGrid}/>
+                        <Route path="/page/:page" render={({match}) => {
+                            const {page} = match.params
+                            console.log('paged',page)
+                            return < MovieGrid page={page}/>
+                        }}/>
                         <Route path="/movie/:id" render={({match}) => {
                             const {id} = match.params
                             return < MoviePage id={id}/>
                         }}/>
+
                         <Route path="/favorites/" render={({match}) => {
 
                             return < FavoriteMoviePage/>

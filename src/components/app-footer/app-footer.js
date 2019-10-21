@@ -1,10 +1,7 @@
 import React from 'react';
 import './app-footer.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faStar} from '@fortawesome/free-solid-svg-icons'
 import {faFacebookF, faPinterestP, faTwitter, faLinkedinIn} from '@fortawesome/free-brands-svg-icons'
-import {Link} from "react-router-dom";
-
 
 const AppFooter = () => {
     return (
@@ -19,7 +16,6 @@ const AppFooter = () => {
                             <li>Contact</li>
                         </ul>
                 </div>
-
 
                 <div className="row justify-content-between footer__icons">
                     <h4>Designed by Milan Houter. All rights reserved.</h4>

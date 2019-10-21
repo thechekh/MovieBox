@@ -9,7 +9,6 @@ export const setGenres = (genres) => {
     }
 }
 export const l = (genres) => {
-    console.log("actttt",genres)
     return (dispatch) => {
       dispatch(
             {
