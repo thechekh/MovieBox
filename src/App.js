@@ -10,6 +10,7 @@ import {setGenres, l} from "./components/movie-grid/movie-grid-actions";
 import {connect} from "react-redux";
 import ApiService from "./services/movie-api";
 import history from './history';
+
 class App extends React.Component {
 
     constructor(props) {
@@ -34,13 +35,14 @@ class App extends React.Component {
     render() {
         return (
             <Router history={history}>
-                <div className="App">
+                <div className="app">
+
                     <AppHeader/>
                     <Switch>
                         <Route exact path="/" component={MovieGrid}/>
                         <Route path="/page/:page" render={({match}) => {
                             const {page} = match.params
-                            console.log('paged',page)
+                            console.log('paged', page)
                             return < MovieGrid page={page}/>
                         }}/>
                         <Route path="/movie/:id" render={({match}) => {
@@ -57,8 +59,10 @@ class App extends React.Component {
                         }}/>
 
                     </Switch>
-                    <AppFooter/>
                 </div>
+                <AppFooter/>
+
+
             </Router>
         );
     }

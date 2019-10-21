@@ -1,6 +1,29 @@
-.error_page{
+.error_page {
     margin-left: 200px;
 }
-.App{
-    background-color:#F2F2F2;
+
+.app {
+    background-color: #F2F2F2;
+    padding-bottom: 50px;
+    flex: 1 0 auto;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.container__footer {
+    flex: 0 0 auto;
 }
