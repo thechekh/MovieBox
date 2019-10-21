@@ -71,21 +71,31 @@ class MovieGrid extends React.Component {
                         {this.props.genres && favoriteFilms ?
                             (
                                 favoriteFilms.map((movie) => {
-                                        const {title, vote_average, poster_path, id, genres} = movie;
+                                        const {title, vote_average, poster_path, id, genres, release_date} = movie;
                                         const genre_ids = genres.map((item) => item.id)
-                                        return <MovieCart title={title} rate={vote_average} poster={poster_path} id={id}
-                                                          genre={genre_ids}
-                                                          key={id}/>
+                                        return <MovieCart
+                                            title={title}
+                                            rate={vote_average}
+                                            poster={poster_path}
+                                            id={id}
+                                            type={genre_ids}
+                                            year={release_date}
+                                            key={id}/>
                                     }
                                 ))
                             :
                             (this.props.genres && films &&
                                 films.map((movie) => {
-                                    const {title, vote_average, poster_path, id, genre_ids} = movie;
+                                    const {title, vote_average, poster_path, id, genre_ids, release_date} = movie;
 
-                                    return <MovieCart title={title} rate={vote_average} poster={poster_path}
-                                                      id={id} genre={genre_ids}
-                                                      key={id}/>
+                                    return <MovieCart
+                                        title={title}
+                                        rate={vote_average}
+                                        poster={poster_path}
+                                        id={id}
+                                        type={genre_ids}
+                                        year={release_date}
+                                        key={id}/>
                                 }))
 
                         }

@@ -3,10 +3,10 @@
 }
 
 .movie__year {
-  color: white;
+    color: #BABBC3;
   position: absolute;
-  top: 220px;
-  left: 55px;
+    top: 350px;
+    left: 25px;
 }
 .movie__desc {
     width: 195px;
@@ -17,6 +17,9 @@
 .movie__img img{
   width: 100%;
 }
+.movie__about{
+    max-width: 70%;
+}
 .movie__desc{
   width: 100%;
 }
@@ -24,6 +27,9 @@
     font-family: Source Sans Pro, serif;
     font-size: 20px;
     color: #494c62;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .movie__type {

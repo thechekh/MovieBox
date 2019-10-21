@@ -7,8 +7,8 @@ import {Link} from "react-router-dom";
 const AppHeader = () => {
     return (
         <div className='header'>
-            <div className='container flexible'>
-                <Link to='/'><h1 className='header__text'>THEMOVIE <span className='header__box'>BOX</span></h1></Link>
+            <div className='container header__container'>
+                <Link to='/'><h1 className='header__text'>themovie<span className='header__box'>BOX</span></h1></Link>
                 <div className='favorites'>
                     <Link to="/favorites">
                         <button className="header__button">

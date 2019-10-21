@@ -1,22 +1,23 @@
 .header {
     background: #EE8686;
     height: 100px;
-
 }
 
-.flexible {
+.header__container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100%;
 }
 
+.header__container a:hover {
+    text-decoration: none;
+}
+
 .header__text {
     font-family: Source Sans Pro;
     font-size: 40px;
-    line-height: 75px;
     text-transform: uppercase;
-
     color: #FFFFFF;
 }
 
@@ -24,30 +25,36 @@
     font-weight: bold;
 }
 
+.header__text, .favorites {
+    -webkit-transition: transform 0.1s ease-in-out;
+}
 
+
+.header__text:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
 
 .favorites__text {
-    font-family: Source Sans Pro;
+    font-family: Source Sans Pro, serif;
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
     color: #EE8686;
 }
+
 .header__button {
     background: #FFFFFF;
     border: 2px solid #FFFFFF;
     box-sizing: border-box;
     border-radius: 8px;
-    transition: all .2s ease-in-out;
+
 }
 
-.header__button :hover {
+.favorites :hover {
     cursor: pointer;
-    transform: scale(1.8);
-
+    transform: scale(1.1);
 }
-
-
 
 .header__button:focus {
     outline: 0;
