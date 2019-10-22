@@ -10,6 +10,13 @@
     height: 100%;
 }
 
+@media (max-width: 575px) {
+    .header__container {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+}
+
 .header__container a:hover {
     text-decoration: none;
 }
@@ -48,7 +55,8 @@
     border-radius: 8px;
 
 }
-.header__button__toggled{
+
+.header__button__toggled {
     font-family: Source Sans Pro, serif;
     font-style: normal;
     font-weight: normal;
@@ -60,6 +68,7 @@
     border-radius: 8px;
 
 }
+
 .favorites :hover {
     cursor: pointer;
     transform: scale(1.1);

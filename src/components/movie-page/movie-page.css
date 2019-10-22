@@ -1,23 +1,30 @@
-.movie__overview{
+.movie__overview {
     margin-top: 100px;
 }
-.favorite{
-    width: 250px;
+
+.favorite {
+
     height: 50px;
     margin-top: 50px;
     cursor: pointer;
 }
-.add__favorite{
+
+.add__favorite {
     color: #FF0079;
     background-color: white;
     border-color: #FF0079;;
 }
-.remove__favorite{
+
+.remove__favorite {
     color: white;
-    background-color:#FF0079;
+    background-color: #FF0079;
 }
 
-add_favorite:hover{
+add_favorite:hover {
     background-color: #FF0079;;
-    color:white;
+    color: white;
+}
+
+.movie__overview img {
+    width: 100%;
 }
