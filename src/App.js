@@ -50,9 +50,13 @@ class App extends React.Component {
                             return < MoviePage id={id}/>
                         }}/>
 
-                        <Route path="/favorites/" render={({match}) => {
+                        <Route path="/favorites/" exact render={({match}) => {
 
                             return < FavoriteMoviePage/>
+                        }}/>
+                        <Route path="/favorites/:page" render={({match}) => {
+                            const {page} = match.params
+                            return < FavoriteMoviePage page={page}/>
                         }}/>
                         <Route render={() => {
                             return <h2 class="error_page">page not found</h2>

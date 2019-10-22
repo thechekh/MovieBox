@@ -4,6 +4,8 @@ import './favorite-movie-page.css';
 import {connect} from 'react-redux'
 
 const FavoriteMoviePage = (props) => {
+
+    const page = props.page || 1;
     return (
         <div className="container">
             <div className="d-flex justify-content-center align-items-center">
@@ -11,7 +13,7 @@ const FavoriteMoviePage = (props) => {
             </div>
             {props.favorites.length !== 0 ?
                 (
-                    <MovieGrid favoriteFilms={props.favorites}/>
+                    <MovieGrid favoriteFilms={props.favorites} page={page}/>
                 )
                 :
                 (
