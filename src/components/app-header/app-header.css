@@ -35,22 +35,31 @@
     transform: scale(1.1);
 }
 
-.favorites__text {
+
+.header__button {
     font-family: Source Sans Pro, serif;
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
     color: #EE8686;
-}
-
-.header__button {
     background: #FFFFFF;
     border: 2px solid #FFFFFF;
     box-sizing: border-box;
     border-radius: 8px;
 
 }
+.header__button__toggled{
+    font-family: Source Sans Pro, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    color: white;
+    background: transparent;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 8px;
 
+}
 .favorites :hover {
     cursor: pointer;
     transform: scale(1.1);

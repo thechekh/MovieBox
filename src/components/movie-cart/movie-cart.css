@@ -2,27 +2,55 @@
     display: flex;
 }
 
+
 .movie__year {
     color: #BABBC3;
-  position: absolute;
+    position: absolute;
     top: 350px;
     left: 25px;
 }
+
+@media (max-width: 1199px) {
+    .movie__year {
+        top: 285px;
+
+    }
+}
+
+@media (max-width: 991px) {
+    .movie__year {
+        top: 455px;
+        left: 45px
+    }
+}
+
+@media (max-width: 767px) {
+    .movie__year {
+        top: 330px;
+        left: 25px
+    }
+}
+
+
 .movie__desc {
     width: 195px;
     height: 80px;
     background: #ffffff;
     box-shadow: 0px 2px 35px rgba(0, 0, 0, 0.1);
 }
-.movie__img img{
-  width: 100%;
+
+.movie__img img {
+    width: 100%;
 }
-.movie__about{
+
+.movie__about {
     max-width: 70%;
 }
-.movie__desc{
-  width: 100%;
+
+.movie__desc {
+    width: 100%;
 }
+
 .movie__name {
     font-family: Source Sans Pro, serif;
     font-size: 20px;

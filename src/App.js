@@ -10,6 +10,7 @@ import {setGenres, l} from "./components/movie-grid/movie-grid-actions";
 import {connect} from "react-redux";
 import ApiService from "./services/movie-api";
 import history from './history';
+import {withRouter} from 'react-router-dom';
 
 class App extends React.Component {
 
@@ -33,11 +34,12 @@ class App extends React.Component {
     }
 
     render() {
+
         return (
             <Router history={history}>
                 <div className="app">
 
-                    <AppHeader/>
+                    <AppHeader isFavoritePage={this.state.isFavoritePage}/>
                     <Switch>
                         <Route exact path="/" component={MovieGrid}/>
                         <Route path="/page/:page" render={({match}) => {
@@ -49,15 +51,15 @@ class App extends React.Component {
                             const {id} = match.params
                             return < MoviePage id={id}/>
                         }}/>
-
-                        <Route path="/favorites/" exact render={({match}) => {
-
-                            return < FavoriteMoviePage/>
-                        }}/>
                         <Route path="/favorites/:page" render={({match}) => {
                             const {page} = match.params
                             return < FavoriteMoviePage page={page}/>
                         }}/>
+                        <Route path="/favorites/" exact render={({match}) => {
+
+                            return < FavoriteMoviePage/>
+                        }}/>
+
                         <Route render={() => {
                             return <h2 class="error_page">page not found</h2>
                         }}/>

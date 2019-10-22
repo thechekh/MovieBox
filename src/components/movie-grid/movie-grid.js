@@ -18,19 +18,23 @@ class MovieGrid extends React.Component {
             total_pages: null,
             page_size: 20,
             current_page: this.props.page,
+            newFav: null,
 
         };
 
-
+        console.log('cmd')
+        if (this.props.favoriteFilms) {
+            this.updateFavorites()
+        }
     }
 
     componentDidMount() {
+
         if (this.props.favoriteFilms) {
             this.updateFavorites()
         } else {
             this.updateFilms()
         }
-
 
     }
 
@@ -41,7 +45,6 @@ class MovieGrid extends React.Component {
                     films: newFilms.results,
                     total_pages: newFilms.total_pages,
 
-
                 });
             })
 
@@ -50,19 +53,22 @@ class MovieGrid extends React.Component {
     updateFavorites() {
         const {favoriteFilms} = this.props;
         const page = this.state.current_page;
+        console.log('page=', this.state.current_page)
 
-        console.log('page=', page * 20 - 20)
         const pageCount = page * 20 - 20;
+        console.log('pageCount', pageCount)
         const newFav = []
 
         for (let i = pageCount; i < pageCount + 20; i++) {
-            newFav.push(favoriteFilms[i])
+            if (favoriteFilms[i])
+                newFav.push(favoriteFilms[i])
         }
+        console.log(newFav)
+     /*   this.setState({
+           newFav:newFav,
 
-        this.setState({
-            newFav: newFav
-
-        });
+        });*/
+     this.state.newFav=newFav
 
     }
 
@@ -93,10 +99,11 @@ class MovieGrid extends React.Component {
 
     }
     onPageChangedFavorite = (pageNumber) => {
-
         history.push(`/favorites/${pageNumber}`);
         this.setCurrentPage(pageNumber);
-        console.log("PG", pageNumber);
+        this.updateFavorites()
+        console.log("pagechangedfavorite", pageNumber);
+        this.setCurrentPage(pageNumber)
 
     }
 
@@ -105,17 +112,18 @@ class MovieGrid extends React.Component {
 
         const {films} = this.state;
         const {favoriteFilms} = this.props;
+        const newFav = this.state.newFav
         const {total_pages} = this.state;
 
 
-        favoriteFilms && console.log("count favfilms=", favoriteFilms.length)
-
+        /*favoriteFilms && console.log("count favfilms=", favoriteFilms.length)
+*/
 
         return (
             <div className='movie__grid'>
                 <div className='container'>
                     <div className="row justify-content-start movie_margin">
-                        {
+                        {/*   {
                             this.props.genres && favoriteFilms && this.state.current_page === 1 ?
                                 (
                                     this.props.favoriteFilms.map((movie) => {
@@ -133,10 +141,11 @@ class MovieGrid extends React.Component {
                                     )
                                 )
                                 : null
-                        }
+                        }*/}
                         {
-                            this.props.genres && favoriteFilms && this.state.current_page !== 1 ?
+                            this.props.genres && newFav ?
                                 (
+
                                     this.state.newFav.map((movie) => {
                                             const {title, vote_average, poster_path, id, genres, release_date} = movie;
                                             const genre_ids = genres.map((item) => item.id)
@@ -176,7 +185,7 @@ class MovieGrid extends React.Component {
                                 <ReactPaginate
                                     previousLabel={'<'}
                                     nextLabel={'>'}
-                                    pageCount={Math.ceil(this.props.favoriteFilms.length)}
+                                    pageCount={Math.ceil(this.props.favoriteFilms.length / 20)}
                                     marginPagesDisplayed={1}
                                     pageRangeDisplayed={2}
                                     onPageChange={e => {

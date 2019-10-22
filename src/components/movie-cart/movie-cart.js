@@ -24,12 +24,12 @@ class MovieCart extends React.Component {
                         {
                             this.props.poster ?
                                 (
-                                    <img src={`http://image.tmdb.org/t/p/w300${poster}`}
+                                    <img src={`http://image.tmdb.org/t/p/w500${poster}`}
                                          alt={'movie_img'}/>
                                 )
                                 :
                                 (
-                                    <img src={default_img} width={300}  alt='default'/>
+                                    <img src={default_img} width={300} alt='default'/>
                                 )
                         }
                     </Link>
