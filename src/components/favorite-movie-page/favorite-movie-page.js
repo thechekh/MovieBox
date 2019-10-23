@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 const FavoriteMoviePage = (props) => {
 
-    const page = props.page;
+    const {page} = props;
     return (
         <div className="container">
             <div className="d-flex justify-content-center align-items-center">
@@ -24,18 +24,19 @@ const FavoriteMoviePage = (props) => {
         </div>
     )
 }
-
-let mapStateToProps = state => {
+FavoriteMoviePage.defaultProps = {
+    page: 1,
+    favorites: [],
+}
+FavoriteMoviePage.propTypes = {
+    page: PropTypes.number,
+    favorites: PropTypes.array,
+};
+const mapStateToProps = state => {
     return {
         favorites: state.favorites
     }
 }
-FavoriteMoviePage.defaultProps = {
-    page: 1,
-}
-FavoriteMoviePage.propTypes = {
-    page: PropTypes.number
-};
 export default connect(mapStateToProps)(FavoriteMoviePage);
 
 
