@@ -4,91 +4,68 @@ import './movie-grid.css'
 import ApiService from "../../services/movie-api";
 import {connect} from "react-redux";
 import ReactPaginate from 'react-paginate';
-import history from '../../history';
+import {withRouter} from 'react-router-dom'
+import PropTypes from "prop-types";
 
 class MovieGrid extends React.Component {
 
     constructor(props) {
-
         super(props)
-
         this.state = {
             api: new ApiService(),
             films: null,
             total_pages: null,
             page_size: 20,
             current_page: this.props.page,
-            newFav: null,
-
+            favoriteFilms: null,
         };
-
         if (this.props.favoriteFilms) {
-            const {favoriteFilms} = this.props;
-            const page = this.state.current_page;
-            console.log('page=', this.state.current_page)
-
-            const pageCount = page * 20 - 20;
-            console.log('pageCount', pageCount)
-            const newFav = []
-
-            for (let i = pageCount; i < pageCount + 20; i++) {
-                if (favoriteFilms[i])
-                    newFav.push(favoriteFilms[i])
-            }
-            this.state.newFav = newFav
+            this.state.favoriteFilms = this.getFavorites(this.state.current_page)
         }
     }
 
     componentDidMount() {
-
-        if (this.props.favoriteFilms) {
-
-
-        } else {
-            this.updateFilms()
+        if (!this.props.favoriteFilms) {
+            this.setFilms()
         }
-
     }
 
-    updateFilms() {
+    setFilms() {
         this.state.api.getFilms(this.state.current_page)
             .then((newFilms) => {
                 this.setState({
                     films: newFilms.results,
                     total_pages: newFilms.total_pages,
-
                 });
             })
+    }
 
+    getFavorites(pageNumber) {
+        const {favoriteFilms} = this.props;
+        const filmCount = pageNumber * 20 - 20;
+        const newFavoriteFilms = [];
+        for (let i = filmCount; i < filmCount + 20; i++) {
+            if (favoriteFilms[i]) {
+                newFavoriteFilms.push(favoriteFilms[i])
+            }
+        }
+        return newFavoriteFilms
     }
 
     updateFavorites(pageNumber) {
-        const {favoriteFilms} = this.props;
-        const page = this.state.current_page;
-
-        const pageCount = pageNumber * 20 - 20;
-        const newFavoriteFilms = []
-        for (let i = pageCount; i < pageCount + 20; i++) {
-            if (favoriteFilms[i])
-                newFavoriteFilms.push(favoriteFilms[i])
-        }
         this.setState({
-            newFav: newFavoriteFilms
+            favoriteFilms: this.getFavorites(pageNumber)
         })
-
     }
 
-    setCurrentPage(p) {
+    setCurrentPage(page) {
         this.setState({
-            current_page: p,
+            current_page: page,
         })
-
     }
 
     onPageChanged = (pageNumber) => {
-
-
-        history.push(`/page/${pageNumber}`);
+        this.props.history.push(`/page/${pageNumber}`);
         this.setCurrentPage(pageNumber);
         this.state.api.getFilms(pageNumber).then((newFilms) => {
             this.setState({
@@ -97,68 +74,45 @@ class MovieGrid extends React.Component {
             });
         })
 
-    }
+    };
     onPageChangedFavorite = (pageNumber) => {
-
-        history.push(`/favorites/${pageNumber}`);
+        this.props.history.push(`/favorites/${pageNumber}`);
         this.setCurrentPage(pageNumber);
         this.updateFavorites(pageNumber)
 
+    };
+
+    displayFilms(films) {
+        return films.map((movie) => {
+            const {title, vote_average, poster_path, id, genres, genre_ids=null ,release_date} = movie;
+            if (genres_ids) {
+
+                const genre_ids = genres.map((item) => item.id);
+            }
+            return <MovieCart
+                title={title}
+                rate={vote_average}
+                poster={poster_path}
+                id={id}
+                type={genre_ids}
+                year={release_date}
+                key={id}/>
+        })
 
     }
 
-
     render() {
-
-        const {films} = this.state;
-        const {favoriteFilms} = this.props;
-        const newFav = this.state.newFav
-        const {total_pages} = this.state;
-
-
-        /*favoriteFilms && console.log("count favfilms=", favoriteFilms.length)
-*/
+        const {films, total_pages, favoriteFilms} = this.state;
 
         return (
             <div className='movie__grid'>
                 <div className='container'>
                     <div className="row justify-content-start movie_margin">
-                        {/*   {
-                            this.props.genres && favoriteFilms && this.state.current_page === 1 ?
-                                (
-                                    this.props.favoriteFilms.map((movie) => {
-                                            const {title, vote_average, poster_path, id, genres, release_date} = movie;
-                                            const genre_ids = genres.map((item) => item.id)
-                                            return <MovieCart
-                                                title={title}
-                                                rate={vote_average}
-                                                poster={poster_path}
-                                                id={id}
-                                                type={genre_ids}
-                                                year={release_date}
-                                                key={id}/>
-                                        }
-                                    )
-                                )
-                                : null
-                        }*/}
                         {
-                            this.props.genres && newFav ?
+                            this.props.genres && favoriteFilms ?
                                 (
-
-                                    this.state.newFav.map((movie) => {
-                                            const {title, vote_average, poster_path, id, genres, release_date} = movie;
-                                            const genre_ids = genres.map((item) => item.id)
-                                            return <MovieCart
-                                                title={title}
-                                                rate={vote_average}
-                                                poster={poster_path}
-                                                id={id}
-                                                type={genre_ids}
-                                                year={release_date}
-                                                key={id}/>
-                                        }
-                                    )) : null
+                                    this.displayFilms(favoriteFilms)
+                                ) : null
                         }
 
                         {
@@ -180,11 +134,12 @@ class MovieGrid extends React.Component {
                     </div>
 
                     <div className="pagination d-flex justify-content-center">
-                        {favoriteFilms ?
+                        {this.state.favoriteFilms ?
                             (
                                 <ReactPaginate
                                     previousLabel={'<'}
                                     nextLabel={'>'}
+                                    initialPage={this.props.page - 1}
                                     pageCount={Math.ceil(this.props.favoriteFilms.length / 20)}
                                     marginPagesDisplayed={1}
                                     pageRangeDisplayed={2}
@@ -199,6 +154,7 @@ class MovieGrid extends React.Component {
                                 <ReactPaginate
                                     previousLabel={'<'}
                                     nextLabel={'>'}
+                                    initialPage={this.props.page - 1}
                                     pageCount={this.state.total_pages}
                                     marginPagesDisplayed={1}
                                     pageRangeDisplayed={2}
@@ -221,8 +177,14 @@ class MovieGrid extends React.Component {
         )
     }
 
+}
+;
+MovieGrid.defaultProps = {
+    page: 1,
+}
+MovieGrid.propTypes = {
+    page: PropTypes.number,
 };
-
 let
     mapStateToProps = state => {
 
@@ -230,12 +192,7 @@ let
             genres: state.genres,
         }
     }
-export default connect(mapStateToProps)
-
-(
-    MovieGrid
-)
-;
+export default withRouter(connect(mapStateToProps)(MovieGrid));
 
 
 

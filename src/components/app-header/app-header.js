@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
 import {withRouter} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 
 const AppHeader = ({location}) => {
     let header_class = location.pathname.indexOf('favorites');
@@ -14,6 +15,7 @@ const AppHeader = ({location}) => {
     return (
         <div className='header'>
             <div className='container header__container'>
+
                 <Link to='/'><h1 className='header__text'>themovie<span className='header__box'>box</span></h1>
                 </Link>
                 <div className='favorites'>

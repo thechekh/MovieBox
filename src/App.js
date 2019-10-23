@@ -60,7 +60,7 @@ class App extends React.Component {
                         }}/>
 
                         <Route render={() => {
-                            return <h2 class="error_page">page not found</h2>
+                            return <h2 className="error_page">page not found</h2>
                         }}/>
 
                     </Switch>

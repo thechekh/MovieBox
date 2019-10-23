@@ -1,5 +1,5 @@
 export default (state =
-                    /*   [
+                       [
                            {
                                adult: false,
                                backdrop_path: '/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg',
@@ -1577,7 +1577,7 @@ export default (state =
                                vote_average: 6.5,
                                vote_count: 85
                            }
-                       ]*/[]
+                       ]
     , action) => {
     const {type, payload} = action
     switch (type) {
