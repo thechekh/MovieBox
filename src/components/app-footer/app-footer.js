@@ -8,13 +8,13 @@ const AppFooter = () => {
         <div className="container-fluid footer__container ">
             <div className="container">
                 <div className="row justify-content-between footer__menu">
-                    <h2 className="footer__text">themovie<span className='footer__box'>BOX</span></h2>
-                        <ul>
-                            <li>About</li>
-                            <li>Movies</li>
-                            <li>Ratings</li>
-                            <li>Contact</li>
-                        </ul>
+                    <h2 className="footer__text">themovie<span className='footer__box'>box</span></h2>
+                    <ul>
+                        <li>About</li>
+                        <li>Movies</li>
+                        <li>Ratings</li>
+                        <li>Contact</li>
+                    </ul>
                 </div>
 
                 <div className="row justify-content-between footer__icons">
@@ -28,6 +28,7 @@ const AppFooter = () => {
                 </div>
             </div>
         </div>
-)
-}
+    )
+
+};
 export default AppFooter;

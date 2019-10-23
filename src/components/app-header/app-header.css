@@ -22,10 +22,10 @@
 }
 
 .header__text {
-    font-family: Source Sans Pro;
-    font-size: 40px;
+    font-family: Source Sans Pro, sans-serif;
+    font-size: 2.25rem;
     text-transform: uppercase;
-    color: #FFFFFF;
+    color: #FFFF;
 }
 
 .header__box {
@@ -36,37 +36,22 @@
     -webkit-transition: transform 0.1s ease-in-out;
 }
 
-
 .header__text:hover {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
 }
 
-
-.header__button {
-    font-family: Source Sans Pro, serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    color: #EE8686;
-    background: #FFFFFF;
-    border: 2px solid #FFFFFF;
-    box-sizing: border-box;
+.header__button, .header__button__toggled {
+    font-family: Source Sans Pro, sans-serif;
+    font-size: 1.25rem;
     border-radius: 8px;
-
+    border: 2px solid #FFF;
+    padding: 3px 10px;
 }
 
-.header__button__toggled {
-    font-family: Source Sans Pro, serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    color: white;
-    background: transparent;
-    border: 2px solid #FFFFFF;
-    box-sizing: border-box;
-    border-radius: 8px;
-
+.header__button, .header__button__toggled:focus,
+.header__button, .header__button__toggled:active {
+    outline: none;
 }
 
 .favorites :hover {
@@ -74,6 +59,15 @@
     transform: scale(1.1);
 }
 
-.header__button:focus {
-    outline: 0;
+.header__button {
+    color: #EE8686;
+    background: #FFF;
 }
+
+.header__button__toggled {
+    color: #fff;
+    background: transparent;
+}
+
+
+

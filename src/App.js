@@ -39,12 +39,11 @@ class App extends React.Component {
             <Router history={history}>
                 <div className="app">
 
-                    <AppHeader isFavoritePage={this.state.isFavoritePage}/>
+                    <AppHeader/>
                     <Switch>
                         <Route exact path="/" component={MovieGrid}/>
                         <Route path="/page/:page" render={({match}) => {
                             const {page} = match.params
-                            console.log('paged', page)
                             return < MovieGrid page={page}/>
                         }}/>
                         <Route path="/movie/:id" render={({match}) => {
@@ -53,7 +52,7 @@ class App extends React.Component {
                         }}/>
                         <Route path="/favorites/:page" render={({match}) => {
                             const {page} = match.params
-                            return < FavoriteMoviePage page={page}/>
+                            return < FavoriteMoviePage page={Number(page)}/>
                         }}/>
                         <Route path="/favorites/" exact render={({match}) => {
 

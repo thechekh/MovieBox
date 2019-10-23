@@ -22,16 +22,28 @@ class MovieGrid extends React.Component {
 
         };
 
-        console.log('cmd')
         if (this.props.favoriteFilms) {
-            this.updateFavorites()
+            const {favoriteFilms} = this.props;
+            const page = this.state.current_page;
+            console.log('page=', this.state.current_page)
+
+            const pageCount = page * 20 - 20;
+            console.log('pageCount', pageCount)
+            const newFav = []
+
+            for (let i = pageCount; i < pageCount + 20; i++) {
+                if (favoriteFilms[i])
+                    newFav.push(favoriteFilms[i])
+            }
+            this.state.newFav = newFav
         }
     }
 
     componentDidMount() {
 
         if (this.props.favoriteFilms) {
-            this.updateFavorites()
+
+
         } else {
             this.updateFilms()
         }
@@ -50,25 +62,19 @@ class MovieGrid extends React.Component {
 
     }
 
-    updateFavorites() {
+    updateFavorites(pageNumber) {
         const {favoriteFilms} = this.props;
         const page = this.state.current_page;
-        console.log('page=', this.state.current_page)
 
-        const pageCount = page * 20 - 20;
-        console.log('pageCount', pageCount)
-        const newFav = []
-
+        const pageCount = pageNumber * 20 - 20;
+        const newFavoriteFilms = []
         for (let i = pageCount; i < pageCount + 20; i++) {
             if (favoriteFilms[i])
-                newFav.push(favoriteFilms[i])
+                newFavoriteFilms.push(favoriteFilms[i])
         }
-        console.log(newFav)
-     /*   this.setState({
-           newFav:newFav,
-
-        });*/
-     this.state.newFav=newFav
+        this.setState({
+            newFav: newFavoriteFilms
+        })
 
     }
 
@@ -80,30 +86,24 @@ class MovieGrid extends React.Component {
     }
 
     onPageChanged = (pageNumber) => {
-        /* window.location.href=`http://localhost:3000/page/${pageNumber}`*/
 
-        /*      this.props.history.push(`page/${pageNumber}`)*/
-        /* browserHistory.push(`page/${pageNumber}`);*/
-        console.log(' this.props.params ', this.props.params)
+
         history.push(`/page/${pageNumber}`);
         this.setCurrentPage(pageNumber);
-        console.log("PG", pageNumber);
         this.state.api.getFilms(pageNumber).then((newFilms) => {
             this.setState({
                 films: newFilms.results,
 
-
             });
         })
-        console.log('redirect page', `page/${pageNumber}`)
 
     }
     onPageChangedFavorite = (pageNumber) => {
+
         history.push(`/favorites/${pageNumber}`);
         this.setCurrentPage(pageNumber);
-        this.updateFavorites()
-        console.log("pagechangedfavorite", pageNumber);
-        this.setCurrentPage(pageNumber)
+        this.updateFavorites(pageNumber)
+
 
     }
 

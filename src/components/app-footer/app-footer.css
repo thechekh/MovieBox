@@ -4,11 +4,7 @@
     margin-top: 50px;
 }
 
-.footer__menu {
-    padding: 25px 0;
-}
-
-.footer__icons {
+.footer__menu, .footer_icons {
     padding: 25px 0;
 }
 
@@ -41,12 +37,8 @@
 }
 
 .footer__icons h4 {
-    font-family: Source Sans Pro;
-    font-style: normal;
-    font-weight: normal;
     font-size: 1rem;
     color: #80818A;
-    mix-blend-mode: normal;
     opacity: 0.5;
 }
 

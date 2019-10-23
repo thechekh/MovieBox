@@ -2,10 +2,11 @@ import React from 'react';
 import MovieGrid from "../movie-grid";
 import './favorite-movie-page.css';
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types';
 
 const FavoriteMoviePage = (props) => {
 
-    const page = props.page || 1;
+    const page = props.page;
     return (
         <div className="container">
             <div className="d-flex justify-content-center align-items-center">
@@ -29,7 +30,12 @@ let mapStateToProps = state => {
         favorites: state.favorites
     }
 }
-
+FavoriteMoviePage.defaultProps = {
+    page: 1,
+}
+FavoriteMoviePage.propTypes = {
+    page: PropTypes.number
+};
 export default connect(mapStateToProps)(FavoriteMoviePage);
 
 
