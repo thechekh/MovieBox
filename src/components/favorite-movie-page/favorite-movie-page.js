@@ -18,7 +18,9 @@ const FavoriteMoviePage = (props) => {
                 )
                 :
                 (
-                    <h2>Favorite movie not found</h2>
+                    <div className="d-flex justify-content-center">
+                        <h2>Favorite movie not found</h2>
+                    </div>
                 )
             }
         </>

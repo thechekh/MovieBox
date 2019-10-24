@@ -3,17 +3,18 @@ import AppHeader from "./components/app-header";
 import AppFooter from "./components/app-footer";
 import MovieGrid from "./components/movie-grid";
 import './App.css';
-import MoviePage from "./components/movie-page";
+import MovieDetails from "./components/movie-details";
 import FavoriteMoviePage from "./components/favorite-movie-page"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {setGenries} from "./components/movie-grid/movie-grid-actions";
 import {connect} from "react-redux";
 import {getGenres} from "./services/movie-api";
+
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            getGenres:getGenres,
+            getGenres: getGenres,
         };
     }
 
@@ -26,6 +27,7 @@ class App extends React.Component {
             .then((res) => this.props.setGenries(res))
 
     };
+
     render() {
         return (
             <Router>
@@ -40,7 +42,7 @@ class App extends React.Component {
                         }}/>
                         <Route path="/movie/:id" render={({match}) => {
                             const {id} = match.params
-                            return < MoviePage id={id}/>
+                            return < MovieDetails id={Number(id)}/>
                         }}/>
                         <Route path="/favorites/:page" render={({match}) => {
                             const {page} = match.params

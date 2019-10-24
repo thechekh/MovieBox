@@ -122,7 +122,8 @@ class MovieGrid extends React.Component {
                     </div>
 
                     <div className="pagination d-flex justify-content-center">
-                        {favoriteFilms ?
+                        {
+                            favoriteFilms>20 ?
                             (
                                 <ReactPaginate
                                     {...defaultPaginateSettings}
@@ -132,7 +133,6 @@ class MovieGrid extends React.Component {
                                     }
                                     }
                                 />
-
                             ) :
                             (films &&
                                 <ReactPaginate

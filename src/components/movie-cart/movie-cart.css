@@ -12,6 +12,10 @@
     width: 70%;
 }
 
+.movie__details__year {
+    margin-right: 10px;
+}
+
 .movie__name {
     font-family: Source Sans Pro, sans-serif;
     font-size: 1.25rem;
@@ -44,17 +48,28 @@
     left: 25px;
 }
 
+.movie__img img {
+    max-height: 382px;
+}
+
 @media (max-width: 1199px) {
     .movie__year {
-        top: 285px;
+        top: 270px;
+    }
 
+    .movie__img img {
+        max-height: 300px;
     }
 }
 
 @media (max-width: 991px) {
     .movie__year {
-        top: 455px;
+        top: 400px;
         left: 45px
+    }
+
+    .movie__img img {
+        max-height: 445px;
     }
 }
 

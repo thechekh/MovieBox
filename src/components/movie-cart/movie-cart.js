@@ -60,5 +60,5 @@ let mapStateToProps = state => {
     return {
         genres: state.genres,
     }
-}
+};
 export default connect(mapStateToProps)(MovieCart);
