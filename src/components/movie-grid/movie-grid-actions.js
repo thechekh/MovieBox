@@ -1,22 +1,13 @@
-export const setGenres = (genres) => {
 
-    return (dispatch) => {
-        dispatch(
-            {
-                type: "S",
-                payload: genres
-            })
-    }
-}
-export const l = (genres) => {
+export const setGenries = (genres) => {
     return (dispatch) => {
       dispatch(
             {
-                type: "l",
+                type: "SET_GENRIES",
                 payload:genres
             })
     }
-}
+};
 
 
 

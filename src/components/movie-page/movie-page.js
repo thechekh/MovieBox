@@ -2,34 +2,29 @@ import React from 'react';
 import './movie-page.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons'
-import {addFavorites, removeFavorites} from "./movie-page-actions";
-import {l} from '../movie-grid/movie-grid-actions'
-import ApiService from "../../services/movie-api";
+import {addFavorites,removeFavorites} from "./movie-page-actions";
+import {setGenries} from '../movie-grid/movie-grid-actions'
+import {getGenres,getFilm} from "../../services/movie-api";
 import {connect} from 'react-redux'
-import defautl_img from "../movie-cart/default_img.png";
+import default_img from "../movie-cart/default_img.png";
 
 class MoviePage extends React.Component {
     constructor(props) {
         super(props)
-
         this.state = {
-            api: new ApiService(),
+            getGenres:getGenres,
+            getFilm:getFilm,
             film: null,
-            favorite: false,
+            favorite:false,
         };
-
         this.updateFilm();
-
-
     }
 
     componentDidMount() {
         this.checkFavorite()
     }
-
-
     updateFilm() {
-        this.state.api.getFilm(this.props.id)
+        this.state.getFilm(this.props.id)
             .then((film) => {
                 this.setState({
                     film: film
@@ -69,8 +64,8 @@ class MoviePage extends React.Component {
 
     }
     GetGenres = () => {
-        this.state.api.getGenres()
-            .then((res) => l(res))
+        this.state.getGenres()
+            .then((res) => setGenries(res))
     }
 
     render() {
@@ -86,7 +81,7 @@ class MoviePage extends React.Component {
                                 {film.poster_path ? (
                                     <img src={`http://image.tmdb.org/t/p/w300${film.poster_path}`}
                                          alt={'rtrt'}/>
-                                ) : (<img src={defautl_img} alt={'rtrt'}/>)
+                                ) : (<img src={default_img} alt={'rtrt'}/>)
                                 }
 
                                 {

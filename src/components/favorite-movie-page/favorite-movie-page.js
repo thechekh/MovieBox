@@ -8,7 +8,7 @@ const FavoriteMoviePage = (props) => {
 
     const {page} = props;
     return (
-        <div className="container">
+        <>
             <div className="d-flex justify-content-center align-items-center">
                 <h2 className="favorite__page__header">favorite page</h2>
             </div>
@@ -21,7 +21,7 @@ const FavoriteMoviePage = (props) => {
                     <h2>Favorite movie not found</h2>
                 )
             }
-        </div>
+        </>
     )
 }
 FavoriteMoviePage.defaultProps = {

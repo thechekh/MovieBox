@@ -4,7 +4,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
 import {withRouter} from 'react-router-dom'
-import {Redirect} from 'react-router-dom'
 
 const AppHeader = ({location}) => {
     let header_class = location.pathname.indexOf('favorites');
