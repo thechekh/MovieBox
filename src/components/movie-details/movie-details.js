@@ -3,27 +3,27 @@ import './movie-details.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons'
 import {addFavorites, removeFavorites} from "./movie-details-actions";
-import {getFilm, getGenres} from "../../services/movie-api";
+import {getFilm} from "../../services/movie-api";
 import {connect} from 'react-redux'
-import default_img from "../movie-cart/default_img.png";
+import default_img from "../movie-card/default_img.png";
 import PropTypes from "prop-types";
 
 class MovieDetails extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            getFilm: getFilm,
             film: null,
             favorite: false,
         };
     }
+
     componentDidMount() {
         this.updateFilm();
         this.checkFavorite();
     }
 
     updateFilm() {
-        this.state.getFilm(this.props.id)
+        getFilm(this.props.id)
             .then((film) => {
                 this.setState({
                     film: film
@@ -31,6 +31,7 @@ class MovieDetails extends React.Component {
             })
 
     };
+
     checkFavorite = () => {
         const isFavorite = this.props.favorites.filter(item => item.id === Number(this.props.id))
         if (isFavorite.length !== 0) {
@@ -48,12 +49,9 @@ class MovieDetails extends React.Component {
         this.props.addFavorites(this.state.film);
     };
     removeFavoriteHandler = () => {
-        this.setState(
-            this.setState({
-                favorite: false
-            })
-        );
-
+        this.setState({
+            favorite: false
+        });
         this.props.removeFavorites(this.state.film.id);
 
     };

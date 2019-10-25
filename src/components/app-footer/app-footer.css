@@ -1,4 +1,5 @@
 .footer__container {
+    font-family: "Source Sans Pro", sans-serif;
     background-color: #fff;
     height: 180px;
     margin-top: 50px;
@@ -8,8 +9,8 @@
     padding: 25px 0;
 }
 
-.footer__menu ul li {
-    padding: 10px;
+.footer__menu a {
+    color: #80818A;
 }
 
 .footer__box {
@@ -18,6 +19,7 @@
 
 .footer__text {
     text-transform: uppercase;
+    color: #494C62;
 }
 
 .footer__icons ul li {

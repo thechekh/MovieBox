@@ -1,4 +1,4 @@
-import MovieCart from '../movie-cart';
+import MovieCart from '../movie-card';
 import React from 'react';
 import './movie-grid.css'
 import {getFilms} from "../../services/movie-api";
@@ -12,26 +12,26 @@ class MovieGrid extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            getFilms: getFilms,
             films: null,
             favoriteFilms: null,
             total_pages: null,
             page_size: 20,
-            current_page: this.props.page,
         };
-        if (this.props.favoriteFilms) {
-            this.state.favoriteFilms = this.getFavorites(this.state.current_page)
-        }
+
     }
 
     componentDidMount() {
-        if (!this.props.favoriteFilms) {
+        if (this.props.favoriteFilms) {
+            this.setState({
+                favoriteFilms: this.getFavorites(this.props.current_page)
+            });
+        } else {
             this.setFilms()
         }
     }
-
+//
     setFilms() {
-        this.state.getFilms(this.state.current_page)
+        getFilms(this.props.current_page)
             .then((newFilms) => {
                 this.setState({
                     films: newFilms.results,
@@ -68,7 +68,7 @@ class MovieGrid extends React.Component {
     onPageChanged = (pageNumber) => {
         this.props.history.push(`/page/${pageNumber}`);
         this.setCurrentPage(pageNumber);
-        this.state.getFilms(pageNumber).then((newFilms) => {
+        getFilms(pageNumber).then((newFilms) => {
             this.setState({
                 films: newFilms.results,
             });
