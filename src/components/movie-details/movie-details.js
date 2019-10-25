@@ -3,7 +3,6 @@ import './movie-details.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons'
 import {addFavorites, removeFavorites} from "./movie-details-actions";
-import {setGenries} from '../movie-grid/movie-grid-actions'
 import {getFilm, getGenres} from "../../services/movie-api";
 import {connect} from 'react-redux'
 import default_img from "../movie-cart/default_img.png";
@@ -13,13 +12,11 @@ class MovieDetails extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            getGenres: getGenres,
             getFilm: getFilm,
             film: null,
             favorite: false,
         };
     }
-
     componentDidMount() {
         this.updateFilm();
         this.checkFavorite();
@@ -33,8 +30,7 @@ class MovieDetails extends React.Component {
                 });
             })
 
-    }
-
+    };
     checkFavorite = () => {
         const isFavorite = this.props.favorites.filter(item => item.id === Number(this.props.id))
         if (isFavorite.length !== 0) {
@@ -42,7 +38,6 @@ class MovieDetails extends React.Component {
                 favorite: true
             })
         }
-
     };
     addFavoriteHandler = () => {
         this.setState(
@@ -57,13 +52,10 @@ class MovieDetails extends React.Component {
             this.setState({
                 favorite: false
             })
-        )
+        );
+
         this.props.removeFavorites(this.state.film.id);
 
-    };
-    GetGenres = () => {
-        this.state.getGenres()
-            .then((res) => setGenries(res))
     };
 
     getCategoryFilmString = (genres) => {

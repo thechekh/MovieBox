@@ -1577,24 +1577,21 @@ export default (state =
                             vote_average: 6.5,
                             vote_count: 85
                         }
-                    ]*/[]
+                    ]*/ []
     , action) => {
     const {type, payload} = action
     switch (type) {
-        case "GET_FAVORITE":
-            return payload;
-
         case "DELETE_FAVORITE":
-            return state.filter(items => items.id !== payload)
+            return state.filter(items => items.id !== payload);
 
         case "ADD_FAVORITE":
             return [
-               payload,
+                payload,
                 ...state
             ];
-           /* return state.concat({
-                  ...payload,
-              }); Add item on end of favorites*/
+        /* return state.concat({
+               ...payload,
+           }); Add item on end of favorites*/
 
         default:
             return state

@@ -1,9 +1,9 @@
 
-export const setGenries = (genres) => {
+export const setGenres = (genres) => {
     return (dispatch) => {
       dispatch(
             {
-                type: "SET_GENRIES",
+                type: "SET_GENRES",
                 payload:genres
             })
     }

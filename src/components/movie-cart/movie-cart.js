@@ -10,11 +10,11 @@ const MovieCart = (props) => {
     const year = props.year.match(/..../);
     const type_id = props.type;
     const type_name_array = [];
-    props.genres.map((item) => {
+   props.genres.map((item) => {
         if (type_id.includes(item.id)) {
             type_name_array.push(item.name)
         }
-    })
+    });
     type_name_array.length = 3;
     return (
         <div className=' col-6 col-lg-3 d-flex flex-column justify-content-end align-items-center'>

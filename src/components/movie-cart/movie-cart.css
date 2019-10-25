@@ -3,19 +3,12 @@
     background: #fff;
     box-shadow: 0 2px 35px rgba(0, 0, 0, 0.1);
 }
-
 .movie__img img, .movie__desc {
     width: 100%;
 }
-
 .movie__about {
     width: 70%;
 }
-
-.movie__details__year {
-    margin-right: 10px;
-}
-
 .movie__name {
     font-family: Source Sans Pro, sans-serif;
     font-size: 1.25rem;
@@ -77,6 +70,11 @@
     .movie__year {
         top: 330px;
         left: 25px
+    }
+}
+@media (max-width: 575px) {
+    .movie__year {
+       display: none;
     }
 }
 

@@ -1,10 +1,8 @@
 export default (state = [], action) => {
     const {type, payload} = action
-    switch (type) {
-        case "SET_GENRIES":
-            return payload.genres;
-
-        default:
-            return state
+    if (type === "SET_GENRES") {
+        return payload.genres;
+    } else {
+        return state
     }
 }

@@ -32,10 +32,6 @@
     font-weight: bold;
 }
 
-.header__text, .favorites {
-    -webkit-transition: transform 0.1s ease-in-out;
-}
-
 .header__text:hover {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
@@ -47,16 +43,12 @@
     border-radius: 8px;
     border: 2px solid #FFF;
     padding: 3px 10px;
-}
-
-.header__button, .header__button__toggled:focus,
-.header__button, .header__button__toggled:active {
-    outline: none;
-}
-
-.favorites :hover {
     cursor: pointer;
-    transform: scale(1.1);
+
+}
+
+.header__button:focus, .header__button__toggled:focus {
+    outline: none;
 }
 
 .header__button {
@@ -66,8 +58,17 @@
 
 .header__button__toggled {
     color: #fff;
+    cursor: default;
     background: transparent;
 }
+
+.header__button:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: all .2s ease;
+}
+
+
 
 
 
