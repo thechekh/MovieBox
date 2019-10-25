@@ -16,6 +16,7 @@ class MovieGrid extends React.Component {
             favoriteFilms: null,
             total_pages: null,
             page_size: 20,
+            current_page: this.props.page,
         };
 
     }
@@ -23,15 +24,15 @@ class MovieGrid extends React.Component {
     componentDidMount() {
         if (this.props.favoriteFilms) {
             this.setState({
-                favoriteFilms: this.getFavorites(this.props.current_page)
+                favoriteFilms: this.getFavorites(this.state.current_page)
             });
         } else {
             this.setFilms()
         }
     }
-//
+
     setFilms() {
-        getFilms(this.props.current_page)
+        getFilms(this.state.current_page)
             .then((newFilms) => {
                 this.setState({
                     films: newFilms.results,
