@@ -34,8 +34,12 @@ const MovieCard = (props) => {
             type_name_array.push(item.name)
         }
     });
-    let filmGenre = type_name_array.join(', ');
-
+    type_name_array.length = 3;
+    let genres = type_name_array.filter(item => {
+        if (item)
+            return item;
+    });
+    genres = genres.join(", ");
 
     return (
         <div className=' col-6 col-lg-3 d-flex flex-column justify-content-end align-items-center'>
@@ -45,7 +49,7 @@ const MovieCard = (props) => {
                     <h2 className="movie__name">{title}</h2>
                     <span className="movie__type">
                             {
-                                filmGenre
+                                genres
                             }
                         </span>
                 </div>

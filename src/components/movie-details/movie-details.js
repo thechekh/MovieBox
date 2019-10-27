@@ -53,7 +53,6 @@ class MovieDetails extends React.Component {
             favorite: false
         });
         this.props.removeFavorites(this.state.film.id);
-
     };
 
     getCategoryFilmString = (genres) => {

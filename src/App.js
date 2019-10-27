@@ -11,6 +11,8 @@ import {setGenres} from "./components/movie-grid/movie-grid-actions";
 import {connect} from "react-redux";
 import {getGenres} from "./services/movie-api";
 
+
+
 class App extends React.Component { //Maybe func Component?
     constructor(props) {
         super(props)
