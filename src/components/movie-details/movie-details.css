@@ -7,7 +7,14 @@
     color: white;
     font-family: "Source Sans Pro", sans-serif;
 }
-
+/*.back__poster::after{
+    background-color: rgba(0, 0, 0, 0.37);
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}*/
 .back__poster h1 {
     font-size: 3rem;
 }

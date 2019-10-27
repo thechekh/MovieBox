@@ -53,6 +53,7 @@ class MovieDetails extends React.Component {
             favorite: false
         });
         this.props.removeFavorites(this.state.film.id);
+
     };
 
     getCategoryFilmString = (genres) => {
@@ -65,7 +66,8 @@ class MovieDetails extends React.Component {
         let back__poster = '';
         film ? back__poster = film.backdrop_path : back__poster = null;
         const bg_poster = {
-            backgroundImage: `url(http://image.tmdb.org/t/p/w500${back__poster}`,
+            background: ` linear-gradient(to bottom, rgba(255, 255, 255,0.1), rgba(0, 0, 0,0.9) 95% )
+            ,url(http://image.tmdb.org/t/p/w500${back__poster}`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
