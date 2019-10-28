@@ -3,8 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {connect} from "react-redux";
 
 import './App.css';
-import {getGenres} from "./services/movie-api";
-import {setGenres} from "./components/movie-grid/movie-grid-actions";
+import {gets1Genres } from "./components/movie-grid/movie-grid-actions";
 import AppHeader from "./components/app-header";
 import AppFooter from "./components/app-footer";
 import MovieGrid from "./components/movie-grid";
@@ -18,14 +17,9 @@ class App extends React.Component { //Maybe func Component?
     }
 
     componentDidMount() {
-        this.GetGenres();
+
+        gets1Genres();
     }
-
-    GetGenres = () => {
-        getGenres()
-            .then((res) => this.props.setGenres(res))
-
-    };
 
     render() {
         return (
@@ -72,6 +66,6 @@ let mapStateToProps = state => {
         genres: state.genres,
     }
 }
-export default connect(mapStateToProps, {getGenres, setGenres})(App);
+export default connect(mapStateToProps, {gets1Genres})(App);
 
 

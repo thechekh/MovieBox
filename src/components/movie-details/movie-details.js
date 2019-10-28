@@ -19,19 +19,16 @@ class MovieDetails extends React.Component {
     }
 
     componentDidMount() {
-        this.updateFilm();
-        this.checkFavorite();
-    }
-
-    updateFilm() {
         getFilm(this.props.id)
             .then((film) => {
                 this.setState({
                     film: film
                 });
-            })
+            });
 
-    };
+        this.checkFavorite();
+    }
+
 
     checkFavorite = () => {
         const isFavorite = this.props.favorites.filter(item => item.id === Number(this.props.id))

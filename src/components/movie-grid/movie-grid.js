@@ -5,7 +5,7 @@ import {withRouter} from 'react-router-dom'
 import PropTypes from "prop-types";
 
 import './movie-grid.css'
-import {getFilms} from "../../services/movie-api";
+import {getFilms} from "./movie-grid-actions";
 import MovieCart from '../movie-card';
 
 class MovieGrid extends React.Component {
@@ -17,16 +17,15 @@ class MovieGrid extends React.Component {
             favoriteFilms: null,
             total_pages: null,
             page_size: 20,
-            current_page: this.props.page,
+
         };
 
     }
 
     componentDidMount() {
         if (this.props.favoriteFilms) {
-            console.log('this.props.page',this.props.page)
             this.setState({
-                favoriteFilms: this.getFavorites(this.state.current_page)
+                favoriteFilms: this.getFavorites(this.props.page)
             });
         } else {
             this.setFilms()
@@ -34,7 +33,7 @@ class MovieGrid extends React.Component {
     }
 
     setFilms() {
-        getFilms(this.state.current_page)
+        getFilms(this.props.page)
             .then((newFilms) => {
                 this.setState({
                     films: newFilms.results,
