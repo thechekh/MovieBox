@@ -67,14 +67,19 @@ class MovieGrid extends React.Component {
         })
     }
 
-    onPageChanged = (pageNumber) => {
-        this.props.history.push(`/page/${pageNumber}`);
-        this.setCurrentPage(pageNumber);
-        getFilms(pageNumber).then((newFilms) => {
-            this.setState({
-                films: newFilms.results,
-            });
-        })
+    changePage = e => {
+        let {selected} = e;
+        selected++;
+        console.log("selected",selected);
+        if (selected) {
+            this.props.history.push(`/page/${selected}`);
+            this.setCurrentPage(selected);
+            getFilms(selected).then((newFilms) => {
+                this.setState({
+                    films: newFilms.results,
+                });
+            })
+        }
 
     };
     onPageChangedFavorite = (pageNumber) => {
@@ -140,10 +145,8 @@ class MovieGrid extends React.Component {
                                     <ReactPaginate
                                         {...defaultPaginateSettings}
                                         pageCount={total_pages}
-                                        onPageChange={e => {
-                                            this.onPageChanged(e.selected + 1)
-                                        }
-                                        }
+
+                                        onPageChange={this.changePage}
                                     />
                                 )
                         }
@@ -155,9 +158,9 @@ class MovieGrid extends React.Component {
 
 }
 ;
-MovieGrid.defaultProps = {
+/*MovieGrid.defaultProps = {
     page: 1,
-}
+}*/
 MovieGrid.propTypes = {
     page: PropTypes.number,
 };
