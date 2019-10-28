@@ -8,15 +8,9 @@ const AppFooter = () => {
     return (
         <div className="container-fluid footer__container ">
             <div className="container">
-                <div className="row justify-content-between align-items-center">
+                <div className="row justify-content-between align-items-center footer__menu">
                     <h2 className="footer__text">themovie<span className='footer__box'>box</span></h2>
-                    {/*    <ul>
-                        <li>About</li>
-                        <li>Movies</li>
-                        <li>Ratings</li>
-                        <li>Contact</li>
-                    </ul>*/}
-                    <div className="footer__menu">
+                    <div>
                         <a href="#About">About</a>
                         <a href="#Movies">Movies</a>
                         <a href="#Ratings">Ratings</a>

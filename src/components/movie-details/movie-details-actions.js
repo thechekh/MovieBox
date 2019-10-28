@@ -7,17 +7,15 @@ export const getFilm = async (id) => {
     let {data} = res;
     return data;
 };
-
 export const addFavorites = (film) => {
-    return (d) => {
-        d(
+    return (dispatch) => {
+        dispatch(
             {
                 type: "ADD_FAVORITE",
                 payload: film
             })
     }
 };
-
 export const removeFavorites = (film) => {
     return (dispatch) => {
         dispatch(
