@@ -24,6 +24,7 @@ class MovieGrid extends React.Component {
 
     componentDidMount() {
         if (this.props.favoriteFilms) {
+            console.log('this.props.page',this.props.page)
             this.setState({
                 favoriteFilms: this.getFavorites(this.state.current_page)
             });

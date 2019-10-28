@@ -8,7 +8,6 @@ export const getFilm = async (id) => {
     return data;
 };
 
-
 export const addFavorites = (film) => {
     return (d) => {
         d(
@@ -17,7 +16,7 @@ export const addFavorites = (film) => {
                 payload: film
             })
     }
-}
+};
 
 export const removeFavorites = (film) => {
     return (dispatch) => {
@@ -27,4 +26,13 @@ export const removeFavorites = (film) => {
                 payload: film
             })
     }
-}
+};
+/*export const checkFavorites = (id) => {
+    return (dispatch) => {
+        dispatch(
+            {
+                type: "CHECK_FAVORITE",
+                payload: id
+            })
+    }
+};*/

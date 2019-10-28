@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 import './App.css';
 import {getGenres} from "./services/movie-api";
-import{setGenres} from "./components/movie-grid/movie-grid-actions";
+import {setGenres} from "./components/movie-grid/movie-grid-actions";
 import AppHeader from "./components/app-header";
 import AppFooter from "./components/app-footer";
 import MovieGrid from "./components/movie-grid";
@@ -16,6 +16,7 @@ class App extends React.Component { //Maybe func Component?
     constructor(props) {
         super(props)
     }
+
     componentDidMount() {
         this.GetGenres();
     }
@@ -34,10 +35,13 @@ class App extends React.Component { //Maybe func Component?
                     <AppHeader/>
                     <Switch>
                         <Route exact path="/" component={MovieGrid}/>
-                        <Route path="/page/:page" render={({match}) => {
-                            const {page} = match.params;
-                            return < MovieGrid page={Number(page)}/>
-                        }}/>
+                        <Route path="/page/:page"
+                               component={({match}) => {
+                                   const {page} = match.params;
+                                   return <MovieGrid page={Number(page)}/>
+                               }}
+
+                        />
                         <Route path="/movie/:id" render={({match}) => {
                             const {id} = match.params;
                             return < MovieDetails id={Number(id)}/>
@@ -68,6 +72,6 @@ let mapStateToProps = state => {
         genres: state.genres,
     }
 }
-export default connect(mapStateToProps, {getGenres,setGenres})(App);
+export default connect(mapStateToProps, {getGenres, setGenres})(App);
 
 
