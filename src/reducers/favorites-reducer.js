@@ -1589,9 +1589,6 @@ export default (state =
                 payload,
                 ...state
             ];
-        /* return state.concat({
-               ...payload,
-           }); Add item on end of favorites*/
 
         default:
             return state

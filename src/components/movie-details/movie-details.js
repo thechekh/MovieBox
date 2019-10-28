@@ -1,12 +1,13 @@
 import React from 'react';
-import './movie-details.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons'
-import {addFavorites, removeFavorites} from "./movie-details-actions";
-import {getFilm} from "../../services/movie-api";
 import {connect} from 'react-redux'
-import default_img from "../movie-card/default_img.png";
 import PropTypes from "prop-types";
+
+import './movie-details.css'
+import {addFavorites, removeFavorites} from "./movie-details-actions";
+import {getFilm} from "./movie-details-actions";
+import default_img from "../movie-card/default_img.png";
 
 class MovieDetails extends React.Component {
     constructor(props) {

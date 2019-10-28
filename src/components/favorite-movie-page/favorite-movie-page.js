@@ -1,8 +1,10 @@
 import React from 'react';
-import MovieGrid from "../movie-grid";
-import './favorite-movie-page.css';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
+
+
+import './favorite-movie-page.css';
+import MovieGrid from "../movie-grid";
 
 const FavoriteMoviePage = (props) => {
     const {page} = props;

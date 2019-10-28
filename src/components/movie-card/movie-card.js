@@ -1,9 +1,10 @@
 import React from 'react';
-import './movie-card.css';
 import {Link} from "react-router-dom";
-import default_img from "./default_img.png"
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+
+import './movie-card.css';
+import default_img from "./default_img.png"
 
 const MovieCardImage = (props) => {
     return (

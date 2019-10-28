@@ -1,11 +1,12 @@
-import MovieCart from '../movie-card';
 import React from 'react';
-import './movie-grid.css'
-import {getFilms} from "../../services/movie-api";
 import {connect} from "react-redux";
 import ReactPaginate from 'react-paginate';
 import {withRouter} from 'react-router-dom'
 import PropTypes from "prop-types";
+
+import './movie-grid.css'
+import {getFilms} from "../../services/movie-api";
+import MovieCart from '../movie-card';
 
 class MovieGrid extends React.Component {
 

@@ -1,9 +1,10 @@
 import React from 'react';
-import './app-header.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {Link} from "react-router-dom";
 import {withRouter} from 'react-router-dom'
 import {faStar} from '@fortawesome/free-regular-svg-icons'
+
+import './app-header.css';
 
 const AppHeader = ({location}) => {
     let header_class = location.pathname.indexOf('favorites');

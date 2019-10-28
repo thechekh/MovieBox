@@ -1,13 +1,16 @@
 
 export const setGenres = (genres) => {
     return (dispatch) => {
-      dispatch(
+        dispatch(
             {
                 type: "SET_GENRES",
-                payload:genres
+                payload: genres
             })
     }
 };
+
+
+
 
 
 

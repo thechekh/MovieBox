@@ -1,23 +1,21 @@
 import React from 'react';
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {connect} from "react-redux";
+
+import './App.css';
+import {getGenres} from "./services/movie-api";
+import{setGenres} from "./components/movie-grid/movie-grid-actions";
 import AppHeader from "./components/app-header";
 import AppFooter from "./components/app-footer";
 import MovieGrid from "./components/movie-grid";
 import MovieDetails from "./components/movie-details";
 import FavoriteMoviePage from "./components/favorite-movie-page"
-import './App.css';
-
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import {setGenres} from "./components/movie-grid/movie-grid-actions";
-import {connect} from "react-redux";
-import {getGenres} from "./services/movie-api";
-
 
 
 class App extends React.Component { //Maybe func Component?
     constructor(props) {
         super(props)
     }
-
     componentDidMount() {
         this.GetGenres();
     }
@@ -70,6 +68,6 @@ let mapStateToProps = state => {
         genres: state.genres,
     }
 }
-export default connect(mapStateToProps, {setGenres})(App);
+export default connect(mapStateToProps, {getGenres,setGenres})(App);
 
 
