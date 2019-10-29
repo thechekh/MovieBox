@@ -43,8 +43,8 @@ class App extends React.Component { //Maybe func Component?
                                }}/>
 
                         <Route component={Page404}/>
-
                     </Switch>
+
                 </div>
                 <AppFooter/>
             </Router>

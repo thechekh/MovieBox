@@ -16,7 +16,7 @@ class MovieDetails extends React.Component {
         this.state = {
             film: null,
             favorite: false,
-            loading: false
+            loading: true
         };
     }
 
@@ -25,7 +25,7 @@ class MovieDetails extends React.Component {
             .then((film) => {
                 this.setState({
                     film: film,
-                  /*  loading: false,*/
+                    loading: false,
                 });
             });
         this.checkFavorite();

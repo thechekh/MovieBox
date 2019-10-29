@@ -7,6 +7,7 @@ import Pagination from "../pagination";
 import './movie-grid.css'
 import {getFilms} from "./movie-grid-actions";
 import MovieCart from '../movie-card';
+import Spinner from "../spinner";
 
 class MovieGrid extends React.Component {
 
@@ -15,6 +16,7 @@ class MovieGrid extends React.Component {
         this.state = {
             page_size: 20,
             favFilms: null,
+            loading: true
         };
 
     }
@@ -25,7 +27,11 @@ class MovieGrid extends React.Component {
                 favFilms: this.getFavorites(this.props.page || 1)
             });
         } else {
-            this.props.getFilms(this.props.page);
+            this.props.getFilms(this.props.page).then(() => this.setState({
+                    loading: false,
+                })
+            )
+
         }
     }
 
@@ -63,8 +69,8 @@ class MovieGrid extends React.Component {
         selected++;
         console.log("cpv", selected);
         if (selected) {
-            /*       this.props.history.push(`/favorites/${selected}`);
-       */
+            this.props.history.push(`/favorites/${selected}`);
+
             this.updateFavorites(selected)
         }
     };
@@ -89,6 +95,10 @@ class MovieGrid extends React.Component {
         const {page_size} = this.state;
         const {favFilms} = this.state;
         const {films} = this.props;
+
+        if (this.state.loading) {
+            return <Spinner/>
+        }
         return (
             <div className='movie__grid'>
                 <div className='container'>
