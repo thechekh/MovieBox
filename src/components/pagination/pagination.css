@@ -1,0 +1,41 @@
+
+.selected {
+    font-weight: bold;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+ul li {
+    margin-right: 5px;
+}
+
+.pagination li :hover {
+    cursor: pointer;
+}
+
+.pagination li a:hover {
+    text-decoration: underline;
+    color: #ff0079;
+}
+
+.pagination li :focus {
+    outline: none;
+}
+
+ul li a {
+    padding: 5px 10px;
+    border: 1px solid #ff0079;
+    font-family: Source Sans Pro, sans-serif;
+    font-size: 1.25rem;
+    line-height: 35px;
+    color: #ff0079;
+}
+
+.pagination {
+    margin-top: 50px;
+}

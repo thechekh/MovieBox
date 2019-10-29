@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from "react-redux";
-import ReactPaginate from 'react-paginate';
 import {withRouter} from 'react-router-dom'
 import PropTypes from "prop-types";
 
+import Pagination from "../pagination";
 import './movie-grid.css'
 import {getFilms} from "./movie-grid-actions";
 import MovieCart from '../movie-card';
@@ -50,7 +50,6 @@ class MovieGrid extends React.Component {
     }
 
     ChangeP = e => {
-        debugger;
         let {selected} = e;
         selected++;
         console.log("selected", selected);
@@ -83,20 +82,12 @@ class MovieGrid extends React.Component {
                 year={release_date}
                 key={id}/>
         })
-
     }
 
     render() {
         const {page_size} = this.state;
         const {favFilms} = this.state;
         const {films} = this.props;
-        const defaultPaginateSettings = {
-            previousLabel: '<',
-            nextLabel: '>',
-            initialPage: this.props.page - 1,
-            marginPagesDisplayed: 1,
-            pageRangeDisplayed: 2,
-        };
         return (
             <div className='movie__grid'>
                 <div className='container'>
@@ -113,18 +104,20 @@ class MovieGrid extends React.Component {
                     <div className="pagination d-flex justify-content-center">
                         {
                             favFilms && this.props.totalFavoriteFilms > 20 &&
-                            <ReactPaginate
-                                {...defaultPaginateSettings}
+                            <Pagination
+                                initialPage={this.props.page}
                                 pageCount={Math.ceil(this.props.totalFavoriteFilms / page_size)}
-                                onPageChange={this.ChangePFavorite}
+                                totalFilms={this.props.totalFavoriteFilms}
+                                changePage={this.ChangePFavorite}
                             />
                         }
                         {
                             films && !favFilms &&
-                            <ReactPaginate
-                                {...defaultPaginateSettings}
+                            <Pagination
+                                initialPage={this.props.page}
                                 pageCount={this.props.total_pages}
-                                onPageChange={this.ChangeP}
+                                totalFilms={this.props.total_pages}
+                                changePage={this.ChangeP}
                             />
                         }
                     </div>
