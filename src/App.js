@@ -17,7 +17,6 @@ class App extends React.Component { //Maybe func Component?
     }
 
     componentDidMount() {
-
         gets1Genres();
     }
 
