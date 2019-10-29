@@ -1,10 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux'
-import PropTypes from 'prop-types';
 
 import './page-404.css';
 
-const Page404 = (props) => {
+const Page404 = () => {
 
     return (
 

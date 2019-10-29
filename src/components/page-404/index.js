@@ -1,3 +1,3 @@
-import FavoriteMoviePage from './page-404';
+import Page404 from './page-404';
 
-export default FavoriteMoviePage;
+export default Page404;

@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const key = process.env.REACT_APP_API_KEY;
+
 export const getFilm = async (id) => {
     const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${key}`;
     let res = await axios.get(url);

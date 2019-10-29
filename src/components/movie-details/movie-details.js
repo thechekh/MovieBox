@@ -8,7 +8,7 @@ import './movie-details.css'
 import {addFavorites, removeFavorites} from "./movie-details-actions";
 import {getFilm} from "./movie-details-actions";
 import default_img from "../movie-card/default_img.png";
-import {getsGenres} from "../movie-grid/movie-grid-actions";
+import Spinner from "../spinner/spinner";
 
 class MovieDetails extends React.Component {
     constructor(props) {
@@ -16,6 +16,7 @@ class MovieDetails extends React.Component {
         this.state = {
             film: null,
             favorite: false,
+            loading: false
         };
     }
 
@@ -23,12 +24,12 @@ class MovieDetails extends React.Component {
         getFilm(this.props.id)
             .then((film) => {
                 this.setState({
-                    film: film
+                    film: film,
+                  /*  loading: false,*/
                 });
             });
         this.checkFavorite();
     }
-
 
     checkFavorite = () => {
         const isFavorite = this.props.favorites.filter(item => item.id === Number(this.props.id))
@@ -70,7 +71,12 @@ class MovieDetails extends React.Component {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
         };
+
+        if (this.state.loading) {
+            return <Spinner/>
+        }
         return (
+
             <div>
                 {
                     film &&

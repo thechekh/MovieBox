@@ -13,22 +13,19 @@ class MovieGrid extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            total_pages: null,
             page_size: 20,
-
+            favFilms: null,
         };
 
     }
 
     componentDidMount() {
         if (this.props.favoriteFilms) {
-            console.log('favorites', this.props.favoriteFilms)
-            /*      this.setState({
-                      favoriteFilms: this.getFavorites(this.props.page)
-                  });*/
+            this.setState({
+                favFilms: this.getFavorites(this.props.page || 1)
+            });
         } else {
-            console.log("DISPLAY ALL FILMS")
-            this.props.getFilms(this.props.page)
+            this.props.getFilms(this.props.page);
         }
     }
 
@@ -36,6 +33,7 @@ class MovieGrid extends React.Component {
         const {favoriteFilms} = this.props;
         const {page_size} = this.state;
         const filmsStartCount = pageNumber * page_size - page_size;
+        console.log('pg', pageNumber);
         const newFavoriteFilms = [];
         for (let i = filmsStartCount; i < filmsStartCount + 20; i++) {
             if (favoriteFilms[i]) {
@@ -47,11 +45,12 @@ class MovieGrid extends React.Component {
 
     updateFavorites(pageNumber) {
         this.setState({
-            favoriteFilms: this.getFavorites(pageNumber)
+            favFilms: this.getFavorites(pageNumber)
         })
     }
 
-    changePage = e => {
+    ChangeP = e => {
+        debugger;
         let {selected} = e;
         selected++;
         console.log("selected", selected);
@@ -60,9 +59,14 @@ class MovieGrid extends React.Component {
             this.props.getFilms(selected)
         }
     };
-    onPageChangedFavorite = (pageNumber) => {
-        this.props.history.push(`/favorites/${pageNumber}`);
-        this.updateFavorites(pageNumber)
+    ChangePFavorite = e => {
+        let {selected} = e;
+        selected++;
+        console.log("selected", selected);
+        if (selected) {
+            this.props.history.push(`/favorites/${selected}`);
+            this.updateFavorites(selected)
+        }
     };
 
     displayFilms(films) {
@@ -83,8 +87,8 @@ class MovieGrid extends React.Component {
     }
 
     render() {
-        const {total_pages, page_size} = this.state;
-        const {favoriteFilms} = this.props;
+        const {page_size} = this.state;
+        const {favFilms} = this.state;
         const {films} = this.props;
         const defaultPaginateSettings = {
             previousLabel: '<',
@@ -98,8 +102,8 @@ class MovieGrid extends React.Component {
                 <div className='container'>
                     <div className="row justify-content-start movie__block">
                         {
-                            favoriteFilms ? (
-                                    this.displayFilms(favoriteFilms)
+                            favFilms ? (
+                                    this.displayFilms(favFilms)
                                 ) :
                                 (films &&
                                     this.displayFilms(films)
@@ -107,23 +111,22 @@ class MovieGrid extends React.Component {
                         }
                     </div>
                     <div className="pagination d-flex justify-content-center">
-                        {/*   {
-                            favoriteFilms && this.props.totalFavoriteFilms > 20 ?
-                                (
-                                    <ReactPaginate
-                                        {...defaultPaginateSettings}
-                                        pageCount={Math.ceil(this.props.favoriteFilms.length / page_size)}
-                                        onPageChange={this.onPageChangedFavorite}
-                                    />
-                                ) :
-                                (films &&
-                                    <ReactPaginate
-                                        {...defaultPaginateSettings}
-                                        pageCount={this.props.total_pages}
-                                        onPageChange={this.changePage}
-                                    />
-                                )
-                        }*/}
+                        {
+                            favFilms && this.props.totalFavoriteFilms > 20 &&
+                            <ReactPaginate
+                                {...defaultPaginateSettings}
+                                pageCount={Math.ceil(this.props.totalFavoriteFilms / page_size)}
+                                onPageChange={this.ChangePFavorite}
+                            />
+                        }
+                        {
+                            films && !favFilms &&
+                            <ReactPaginate
+                                {...defaultPaginateSettings}
+                                pageCount={this.props.total_pages}
+                                onPageChange={this.ChangeP}
+                            />
+                        }
                     </div>
                 </div>
             </div>
@@ -132,6 +135,7 @@ class MovieGrid extends React.Component {
 
 }
 ;
+
 /*MovieGrid.defaultProps = {
     page: 1,
 }*/

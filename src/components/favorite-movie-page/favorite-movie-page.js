@@ -28,7 +28,6 @@ const FavoriteMoviePage = (props) => {
     )
 }
 FavoriteMoviePage.defaultProps = {
-    page: 1,
     favorites: [],
 }
 FavoriteMoviePage.propTypes = {

@@ -13,9 +13,6 @@ import Page404 from "./components/page-404";
 
 
 class App extends React.Component { //Maybe func Component?
-    constructor(props) {
-        super(props)
-    }
 
     componentDidMount() {
         this.props.getsGenres();
@@ -34,16 +31,17 @@ class App extends React.Component { //Maybe func Component?
                                    return <MovieGrid page={Number(page)}/>
                                }}
                         />
-                        <Route path="/movie/:id" render={({match}) => {
+                        <Route path="/movie/:id" component={({match}) => {
                             const {id} = match.params;
                             return < MovieDetails id={Number(id)}/>
                         }}/>
+                        <Route path="/favorites/" exact component={FavoriteMoviePage}/>
                         <Route path="/favorites/:page"
                                component={({match}) => {
                                    const {page} = match.params;
                                    return < FavoriteMoviePage page={Number(page)}/>
                                }}/>
-                        <Route path="/favorites/" exact component={FavoriteMoviePage}/>
+
                         <Route component={Page404}/>
 
                     </Switch>
