@@ -61,9 +61,10 @@ class MovieGrid extends React.Component {
     ChangePFavorite = e => {
         let {selected} = e;
         selected++;
-        console.log("selected", selected);
+        console.log("cpv", selected);
         if (selected) {
-            this.props.history.push(`/favorites/${selected}`);
+            /*       this.props.history.push(`/favorites/${selected}`);
+       */
             this.updateFavorites(selected)
         }
     };
@@ -112,7 +113,7 @@ class MovieGrid extends React.Component {
                             />
                         }
                         {
-                            films && !favFilms &&
+                            !favFilms && films &&
                             <Pagination
                                 initialPage={this.props.page}
                                 pageCount={this.props.total_pages}

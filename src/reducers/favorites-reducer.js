@@ -1590,6 +1590,8 @@ export default (state =
                 ...state
             ];
 
+        case"SELECT_FAVORITE":
+
         default:
             return state
     }
