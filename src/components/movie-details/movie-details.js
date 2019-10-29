@@ -8,6 +8,7 @@ import './movie-details.css'
 import {addFavorites, removeFavorites} from "./movie-details-actions";
 import {getFilm} from "./movie-details-actions";
 import default_img from "../movie-card/default_img.png";
+import {getsGenres} from "../movie-grid/movie-grid-actions";
 
 class MovieDetails extends React.Component {
     constructor(props) {
@@ -25,7 +26,6 @@ class MovieDetails extends React.Component {
                     film: film
                 });
             });
-
         this.checkFavorite();
     }
 
@@ -140,6 +140,7 @@ let mapStateToProps = state => {
     return {
         favorites: state.favorites,
     }
-}
+};
+
 export default connect(mapStateToProps, {addFavorites, removeFavorites})(MovieDetails);
 

@@ -1579,7 +1579,7 @@ export default (state =
                         }
                     ]*/ []
     , action) => {
-    const {type, payload} = action
+    const {type, payload} = action;
     switch (type) {
         case "DELETE_FAVORITE":
             return state.filter(items => items.id !== payload);

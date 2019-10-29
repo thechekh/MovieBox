@@ -3,7 +3,7 @@ export default (state = [], action) => {
     switch (type) {
         case "SET_GENRES":
             console.log('trig');
-            return payload;
+            return payload.genres;
         default:
             return state
     }
