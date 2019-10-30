@@ -27,13 +27,4 @@ export const removeFavorites = (film) => {
             })
     }
 };
-export const checkF = (id) => {
-    console.log("CHECKED",id);
-    return (dispatch) => {
-        dispatch(
-            {
-                type: "CHECK_FAVORITE",
-               payload: id,
-            })
-    }
-};
+

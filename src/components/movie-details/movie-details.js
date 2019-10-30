@@ -6,32 +6,26 @@ import PropTypes from "prop-types";
 import {createSelector} from 'reselect';
 
 import './movie-details.css'
-import {getFilm, addFavorites, removeFavorites, checkF} from "./movie-details-actions";
+import {getFilm, addFavorites, removeFavorites} from "./movie-details-actions";
 import default_img from "../movie-card/default_img.png";
 import Spinner from "../spinner/spinner";
 
-//selector
-const getFavorites = (state) => {
-    console.log('SELECTOR TRIGGERED', state.favorites);
-    return state.favorites;
-};
-// reselect function
-export const getFavoritesState = createSelector(
-    [getFavorites],
-    (films) => films
-)
-const getFavoritesFilm = (state, props) => {
-    state.favorites.find(item => item.id === props.id)
-};
-const getFavoritesFilmSelector = () => createSelector(
-    getFavoritesFilm,
-    (film) => ({film})
+
+const isFavorite = (state, props) =>
+    state.favorites.some(item => item.id === props.id);
+
+export const getFavoritesState = () => createSelector(
+    [isFavorite],
+    (isFav) => isFav
 );
 const makeMapStateToProps = () => {
-    const isFavorite = getFavoritesFilmSelector();
-    return (state, props) => isFavorite(state, props)
+    const isFavorite = getFavoritesState();
+    return (state, props) => {
+        return {
+            isFavorite: isFavorite(state, props)
+        }
+    }
 }
-
 
 class MovieDetails extends React.Component {
     constructor(props) {
@@ -39,8 +33,7 @@ class MovieDetails extends React.Component {
         this.state = {
             film: null,
             loading: true,
-            favorite: false,
-
+            favorite: this.props.isFavorite,
         };
     }
 
@@ -52,17 +45,11 @@ class MovieDetails extends React.Component {
                     loading: false,
                 });
             });
-        this.checkFavorite();
-        /*      console.log("checkFAVO", checkF(this.props.id));*/
     }
 
     checkFavorite = () => {
         const isFavorite = this.props.favorites.filter(item => item.id === Number(this.props.id));
-        if (isFavorite.length !== 0) {
-            this.setState({
-                favorite: true
-            })
-        }
+
     };
     addFavoriteHandler = () => {
         this.setState(
@@ -77,7 +64,6 @@ class MovieDetails extends React.Component {
             favorite: false
         });
         this.props.removeFavorites(this.state.film.id);
-
     };
 
     getCategoryFilmString = (genres) => {
@@ -167,12 +153,7 @@ MovieDetails.propTypes = {
     id: PropTypes.number,
     favorites: PropTypes.array,
 };
-let mapStateToProps = state => {
-    return {
-        favorites: getFavoritesState(state),
 
-    }
-};
 
-export default connect(mapStateToProps, {addFavorites, removeFavorites, checkF})(MovieDetails);
+export default connect(makeMapStateToProps, {addFavorites, removeFavorites})(MovieDetails);
 
