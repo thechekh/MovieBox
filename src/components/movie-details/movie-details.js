@@ -10,15 +10,36 @@ import {getFilm, addFavorites, removeFavorites, checkF} from "./movie-details-ac
 import default_img from "../movie-card/default_img.png";
 import Spinner from "../spinner/spinner";
 
-const getFavorites = (state) => state.favorites;
+//selector
+const getFavorites = (state) => {
+    console.log('SELECTOR TRIGGERED', state.favorites);
+    return state.favorites;
+};
+// reselect function
+export const getFavoritesState = createSelector(
+    [getFavorites],
+    (films) => films
+)
+const getFavoritesFilm = (state, props) => {
+    state.favorites.find(item => item.id === props.id)
+};
+const getFavoritesFilmSelector = () => createSelector(
+    getFavoritesFilm,
+    (film) => ({film})
+);
+const makeMapStateToProps = () => {
+    const isFavorite = getFavoritesFilmSelector();
+    return (state, props) => isFavorite(state, props)
+}
+
 
 class MovieDetails extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             film: null,
-            favorite: false,
             loading: true,
+            favorite: false,
 
         };
     }
@@ -34,7 +55,6 @@ class MovieDetails extends React.Component {
         this.checkFavorite();
         /*      console.log("checkFAVO", checkF(this.props.id));*/
     }
-
 
     checkFavorite = () => {
         const isFavorite = this.props.favorites.filter(item => item.id === Number(this.props.id));
@@ -149,7 +169,8 @@ MovieDetails.propTypes = {
 };
 let mapStateToProps = state => {
     return {
-        favorites: getFavorites(state),
+        favorites: getFavoritesState(state),
+
     }
 };
 
