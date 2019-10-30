@@ -16,15 +16,22 @@ class MovieGrid extends React.Component {
         this.state = {
             page_size: 20,
             favFilms: null,
-            loading: true
+            loading: true,
+            favoriteFilms: this.props.favoriteFilms,
         };
-
     }
-
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (prevState.favoriteFilms !== nextProps.favoriteFilms) {
+            return {
+                favoriteFilms: nextProps.favoriteFilms
+            }
+        }
+        return null;
+    }
     componentDidMount() {
         if (this.props.favoriteFilms) {
             this.setState({
-                favFilms: this.getFavorites(this.props.page || 1)
+                favFilms: this.getFavorites(this.props.page || 1),
             });
         } else {
             this.props.getFilms(this.props.page).then(() => this.setState({
@@ -46,6 +53,10 @@ class MovieGrid extends React.Component {
                 newFavoriteFilms.push(favoriteFilms[i])
             }
         }
+        this.setState({
+            loading: false,
+        });
+
         return newFavoriteFilms
     }
 
@@ -70,7 +81,6 @@ class MovieGrid extends React.Component {
         console.log("cpv", selected);
         if (selected) {
             this.props.history.push(`/favorites/${selected}`);
-
             this.updateFavorites(selected)
         }
     };
@@ -136,9 +146,7 @@ class MovieGrid extends React.Component {
             </div>
         )
     }
-
 }
-;
 
 /*MovieGrid.defaultProps = {
     page: 1,

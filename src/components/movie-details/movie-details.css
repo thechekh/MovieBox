@@ -1,5 +1,6 @@
 .movie__overview {
     margin-top: 100px;
+    margin-bottom: 50px;
 }
 
 .back__poster {
@@ -7,14 +8,6 @@
     color: white;
     font-family: "Source Sans Pro", sans-serif;
 }
-/*.back__poster::after{
-    background-color: rgba(0, 0, 0, 0.37);
-    content: '';
-    display: block;
-    height: 100%;
-    position: absolute;
-    width: 100%;
-}*/
 .back__poster h1 {
     font-size: 3rem;
 }
@@ -66,10 +59,7 @@
     background-color: #FF0079;
 }
 
-add_favorite:hover {
-    background-color: #FF0079;;
-    color: white;
-}
+
 
 .movie__overview img {
     width: 100%;

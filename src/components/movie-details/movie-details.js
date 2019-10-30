@@ -3,12 +3,14 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons'
 import {connect} from 'react-redux'
 import PropTypes from "prop-types";
+import {createSelector} from 'reselect';
 
 import './movie-details.css'
-import {addFavorites, removeFavorites} from "./movie-details-actions";
-import {getFilm} from "./movie-details-actions";
+import {getFilm, addFavorites, removeFavorites, checkF} from "./movie-details-actions";
 import default_img from "../movie-card/default_img.png";
 import Spinner from "../spinner/spinner";
+
+const getFavorites = (state) => state.favorites;
 
 class MovieDetails extends React.Component {
     constructor(props) {
@@ -16,7 +18,8 @@ class MovieDetails extends React.Component {
         this.state = {
             film: null,
             favorite: false,
-            loading: true
+            loading: true,
+
         };
     }
 
@@ -29,10 +32,12 @@ class MovieDetails extends React.Component {
                 });
             });
         this.checkFavorite();
+        /*      console.log("checkFAVO", checkF(this.props.id));*/
     }
 
+
     checkFavorite = () => {
-        const isFavorite = this.props.favorites.filter(item => item.id === Number(this.props.id))
+        const isFavorite = this.props.favorites.filter(item => item.id === Number(this.props.id));
         if (isFavorite.length !== 0) {
             this.setState({
                 favorite: true
@@ -144,9 +149,9 @@ MovieDetails.propTypes = {
 };
 let mapStateToProps = state => {
     return {
-        favorites: state.favorites,
+        favorites: getFavorites(state),
     }
 };
 
-export default connect(mapStateToProps, {addFavorites, removeFavorites})(MovieDetails);
+export default connect(mapStateToProps, {addFavorites, removeFavorites, checkF})(MovieDetails);
 

@@ -41,7 +41,6 @@ class App extends React.Component { //Maybe func Component?
                                    const {page} = match.params;
                                    return < FavoriteMoviePage page={Number(page)}/>
                                }}/>
-
                         <Route component={Page404}/>
                     </Switch>
 
@@ -51,13 +50,6 @@ class App extends React.Component { //Maybe func Component?
         );
     }
 }
-
-let mapStateToProps = state => {
-    return {
-        genres: state.genres,
-    }
-};
-
-export default connect(mapStateToProps, {getsGenres})(App);
+export default connect(null, {getsGenres})(App);
 
 

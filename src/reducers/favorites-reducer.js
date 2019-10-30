@@ -1,3 +1,4 @@
+const initialState= [];
 export default (state =
                     [
                         {
@@ -1583,14 +1584,15 @@ export default (state =
     switch (type) {
         case "DELETE_FAVORITE":
             return state.filter(items => items.id !== payload);
-
         case "ADD_FAVORITE":
             return [
                 payload,
                 ...state
             ];
+        case "CHECK_FAVORITE":
+            const isFavorite = state.filter(item => item.id === Number(payload.id));
+            return isFavorite.length !== 0;
 
-        case"SELECT_FAVORITE":
 
         default:
             return state

@@ -27,12 +27,13 @@ export const removeFavorites = (film) => {
             })
     }
 };
-/*export const checkFavorites = (id) => {
+export const checkF = (id) => {
+    console.log("CHECKED",id);
     return (dispatch) => {
         dispatch(
             {
                 type: "CHECK_FAVORITE",
-                payload: id
+               payload: id,
             })
     }
-};*/
+};

@@ -8,9 +8,8 @@ import cn from 'classnames'
 import './app-header.css';
 
 
-const AppHeader = ({match, location, history}) => {
-    console.log("match", match)
-    console.log("location", location)
+const AppHeader = ({location}) => {
+
     let isFavorite = false;
     if (location.pathname.indexOf('favorites') === 1) {
         isFavorite = true;
