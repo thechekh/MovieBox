@@ -6,9 +6,9 @@ import PropTypes from "prop-types";
 import {createSelector} from 'reselect';
 
 import './movie-details.css'
-import {getFilm, addFavorites, removeFavorites} from "./movie-details-actions";
+import {getFilm, addFavorite, removeFavorite} from "./movie-details-actions";
 import default_img from "../movie-card/default_img.png";
-import Spinner from "../spinner/spinner";
+import Spinner from "../spinner";
 
 
 const isFavorite = (state, props) =>
@@ -25,7 +25,7 @@ const makeMapStateToProps = () => {
             isFavorite: isFavorite(state, props)
         }
     }
-}
+};
 
 class MovieDetails extends React.Component {
     constructor(props) {
@@ -47,23 +47,19 @@ class MovieDetails extends React.Component {
             });
     }
 
-    checkFavorite = () => {
-        const isFavorite = this.props.favorites.filter(item => item.id === Number(this.props.id));
-
-    };
     addFavoriteHandler = () => {
         this.setState(
             this.setState({
                 favorite: true
             })
         );
-        this.props.addFavorites(this.state.film);
+        this.props.addFavorite(this.state.film);
     };
     removeFavoriteHandler = () => {
         this.setState({
             favorite: false
         });
-        this.props.removeFavorites(this.state.film.id);
+        this.props.removeFavorite(this.state.film.id);
     };
 
     getCategoryFilmString = (genres) => {
@@ -87,7 +83,6 @@ class MovieDetails extends React.Component {
             return <Spinner/>
         }
         return (
-
             <div>
                 {
                     film &&
@@ -120,7 +115,7 @@ class MovieDetails extends React.Component {
                                     {
                                         this.state.favorite ?
                                             (<button onClick={this.removeFavoriteHandler}
-                                                     className="favorite remove__favorite">removes from
+                                                     className="favorite remove__favorite">Removes from
                                                     favorites <FontAwesomeIcon
                                                         icon={faStar}/>
                                                 </button>
@@ -155,5 +150,5 @@ MovieDetails.propTypes = {
 };
 
 
-export default connect(makeMapStateToProps, {addFavorites, removeFavorites})(MovieDetails);
+export default connect(makeMapStateToProps, {addFavorite, removeFavorite})(MovieDetails);
 

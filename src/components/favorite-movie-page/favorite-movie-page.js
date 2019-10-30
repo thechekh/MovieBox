@@ -7,15 +7,15 @@ import './favorite-movie-page.css';
 import MovieGrid from "../movie-grid";
 
 const FavoriteMoviePage = (props) => {
-    const {page} = props;
+    const {page,favorites} = props;
     return (
         <>
             <div className="d-flex justify-content-center align-items-center">
                 <h2 className="favorite__page__header">favorite page</h2>
             </div>
-            {props.favorites.length !== 0 ?
+            {favorites.length !== 0 ?
                 (
-                    <MovieGrid favoriteFilms={props.favorites} page={page}/>
+                    <MovieGrid favoriteFilms={favorites} page={page}/>
                 )
                 :
                 (

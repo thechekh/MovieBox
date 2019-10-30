@@ -12,10 +12,9 @@ export const getsGenres = () => {
                     type: "SET_GENRES",
                     payload: genres,
                 });
-            console.log(genres.genres, "GENRES");
             return genres
-        } catch (error) {
-            console.log(error);
+        } catch (e) {
+            console.error(e);
         }
     }
 };
@@ -32,8 +31,8 @@ export const getFilms = (page = 1) => {
                     type: "SET_FILMS",
                     payload: films,
                 });
-        } catch (error) {
-            console.log(error);
+        } catch (e) {
+            console.error(e);
         }
     }
 };

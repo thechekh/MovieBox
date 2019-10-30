@@ -9,7 +9,6 @@ import './app-header.css';
 
 
 const AppHeader = ({location}) => {
-
     let isFavorite = false;
     if (location.pathname.indexOf('favorites') === 1) {
         isFavorite = true;
