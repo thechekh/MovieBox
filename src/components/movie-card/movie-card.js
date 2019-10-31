@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import './movie-card.css';
 import default_img from "./default_img.png"
 
+{/** REVIEW: не делай 2 компонента в одном файле */}
 const MovieCardImage = (props) => {
     return (
         <div className="movie__img">
@@ -26,16 +27,21 @@ const MovieCardImage = (props) => {
         </div>
     )
 };
+
 const MovieCard = (props) => {
     const {poster, id, title, rate, type} = props;
+    {/** REVIEW: что за это проверка регуляркой???? */}
     const year = props.year.match(/..../);
     const type_name_array = [];
+    {/** REVIEW: неправильно используешь map */}
     props.genres.map((item) => {
         if (type.includes(item.id)) {
             type_name_array.push(item.name)
         }
     });
+    {/** REVIEW: никогда так больше не делай, не присваивай длину массива да и еще непонятно почему именно 3 */}
     type_name_array.length = 3;
+    {/** REVIEW: что и зачем ты тут фильтруешь? */}
     let genres = type_name_array.filter(item => {
         if (item)
             return item;

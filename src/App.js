@@ -26,16 +26,22 @@ class App extends React.Component { //Maybe func Component?
                     <Switch>
                         <Route exact path="/" component={MovieGrid}/>
                         <Route path="/page/:page"
+                               {/** REVIEW: зачем делать так, если в кмопонент и так все проспы передадуться, в случае */}
+                               {/** REVIEW: если напишешь просто component={MovieGrid} */}
+                               {/** REVIEW: в идеале ты должен ссылаться на страницу в таком случае, а не на */}
+                               {/** REVIEW: переиспользуемый компонент*/}
                                component={({match}) => {
                                    const {page} = match.params;
                                    return <MovieGrid page={Number(page)}/>
                                }}
                         />
+                        {/** REVIEW: аналоично */}
                         <Route path="/movie/:id" component={({match}) => {
                             const {id} = match.params;
                             return < MovieDetails id={Number(id)}/>
                         }}/>
                         <Route path="/favorites/" exact component={FavoriteMoviePage}/>
+                        {/** REVIEW: аналоично */}
                         <Route path="/favorites/:page"
                                component={({match}) => {
                                    const {page} = match.params;

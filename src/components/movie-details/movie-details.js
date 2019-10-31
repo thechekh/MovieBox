@@ -10,7 +10,7 @@ import {getFilm, addFavorite, removeFavorite} from "./movie-details-actions";
 import default_img from "../movie-card/default_img.png";
 import Spinner from "../spinner";
 
-
+{/** REVIEW: нельзя такое писать в компоненте. Должна быть отдельная папка по примеру как с редюсерами */}
 const isFavorite = (state, props) =>
     state.favorites.some(item => item.id === props.id);
 
@@ -18,6 +18,7 @@ export const getFavoritesState = () => createSelector(
     [isFavorite],
     (isFav) => isFav
 );
+
 const makeMapStateToProps = () => {
     const isFavorite = getFavoritesState();
     return (state, props) => {
@@ -28,6 +29,7 @@ const makeMapStateToProps = () => {
 };
 
 class MovieDetails extends React.Component {
+    /** REVIEW: getderivedstatefromprops **/
     constructor(props) {
         super(props);
         this.state = {
@@ -37,6 +39,8 @@ class MovieDetails extends React.Component {
         };
     }
 
+    /** REVIEW: из компонента ты должен вызвать только экшен. Экшен передаст данные в редюсер. Редюсер передаст данные в */
+    /** компонен. тут ты в принципе должен избавиться от setState */
     componentDidMount() {
         getFilm(this.props.id)
             .then((film) => {
@@ -48,6 +52,7 @@ class MovieDetails extends React.Component {
     }
 
     addFavoriteHandler = () => {
+        {/** REVIEW: как и зачем ты это сделал? */}
         this.setState(
             this.setState({
                 favorite: true
@@ -63,14 +68,17 @@ class MovieDetails extends React.Component {
     };
 
     getCategoryFilmString = (genres) => {
+        {/** REVIEW: зачем делать тут интерполяцию строки? Если у тебя итак тут item.name строка */}
         const genresNames = genres.map((item) => `${item.name}`);
         return genresNames.join(', ');
     };
 
     render() {
         const {film} = this.state;
+        {/** REVIEW: подумай как можно уменьшить тернарку */}
         let back__poster = '';
         film ? back__poster = film.backdrop_path : back__poster = null;
+        {/** REVIEW: перенеси стили в класс. Оставь инлайново только background-image */}
         const bg_poster = {
             background: ` linear-gradient(to bottom, rgba(255, 255, 255,0.1), rgba(0, 0, 0,0.9) 95% )
             ,url(http://image.tmdb.org/t/p/w500${back__poster}`,
@@ -82,9 +90,11 @@ class MovieDetails extends React.Component {
         if (this.state.loading) {
             return <Spinner/>
         }
+
         return (
             <div>
                 {
+                    /** REVIEW: зачем тут эта проверка? */
                     film &&
                     <>
                         <div className="container-fluid back__poster
@@ -92,6 +102,7 @@ class MovieDetails extends React.Component {
 
                             <h1>{film.title}</h1>
                             <div className="about">
+                                {/** REVIEW: магическая регулярка? */}
                                 <span>{film.release_date.match(/..../)} </span>
                                 <span>
 

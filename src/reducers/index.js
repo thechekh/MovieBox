@@ -8,5 +8,4 @@ export default combineReducers({
     favorites: favoritesReducer,
     genres: genresReducer,
     films: filmsReducer,
-
 })

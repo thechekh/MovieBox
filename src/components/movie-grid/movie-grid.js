@@ -10,7 +10,7 @@ import MovieCart from '../movie-card';
 import Spinner from "../spinner";
 
 class MovieGrid extends React.Component {
-
+    /** REVIEW: getDerivedStateFromProps */
     constructor(props) {
         super(props);
         this.state = {
@@ -31,6 +31,7 @@ class MovieGrid extends React.Component {
     }
 
     componentDidMount() {
+        /** REVIEW: каким фильмы тут показывать ты должен прокидывать пропсой в компонент */
         if (this.props.favoriteFilms) {
             this.setState({
                 favFilms: this.getFavorites(this.props.page || 1),
@@ -45,6 +46,7 @@ class MovieGrid extends React.Component {
     }
 
     getFavorites(pageNumber) {
+        /** REVIEW: эту декомпозицию можно сделать в одной строке */
         const {favoriteFilms} = this.state;
         const {page_size} = this.state;
         const filmsStartCount = pageNumber * page_size - page_size;
@@ -54,6 +56,7 @@ class MovieGrid extends React.Component {
                 newFavoriteFilms.push(favoriteFilms[i])
             }
         }
+        /** REVIEW: loading должен лежать в редюсере */
         this.setState({
             loading: false,
         });
@@ -83,6 +86,7 @@ class MovieGrid extends React.Component {
         }
     };
 
+    /** REVIEW: подумай как это можно сделать в случае если мы хотим в рендере написать просто films.map(this.displayFilms) */
     displayFilms(films) {
         return films.map((movie) => {
             const {title, vote_average, poster_path, id, genres = [], release_date, genre_ids = 0} = movie;
@@ -144,6 +148,7 @@ class MovieGrid extends React.Component {
     }
 }
 
+/** REVIEW: не оставляй лишних комментариев */
 /*MovieGrid.defaultProps = {
     page: 1,
 }*/

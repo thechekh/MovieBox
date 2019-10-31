@@ -1,3 +1,4 @@
+/** REVIEW: выровняй нормально код */
 const initialState = [];
 export default (state = initialState
     , action) => {
