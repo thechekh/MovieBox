@@ -3,12 +3,15 @@
     background: #fff;
     box-shadow: 0 2px 35px rgba(0, 0, 0, 0.1);
 }
+
 .movie__img img, .movie__desc {
     width: 100%;
 }
+
 .movie__about {
     width: 70%;
 }
+
 .movie__name {
     font-family: Source Sans Pro, sans-serif;
     font-size: 1.25rem;
@@ -28,6 +31,8 @@
 
 .movie__rate {
     border: 2px solid #ff0079;
+    font-family: Source Sans Pro, sans-serif;
+    font-weight: 600;
     padding: 4px 8px;
     border-radius: 5px;
     font-size: 0.75rem;
@@ -72,9 +77,10 @@
         left: 25px
     }
 }
+
 @media (max-width: 575px) {
     .movie__year {
-       display: none;
+        display: none;
     }
 }
 

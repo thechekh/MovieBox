@@ -45,7 +45,7 @@ class MovieGrid extends React.Component {
     }
 
     getFavorites(pageNumber) {
-        const {favoriteFilms} = this.props;
+        const {favoriteFilms} = this.state;
         const {page_size} = this.state;
         const filmsStartCount = pageNumber * page_size - page_size;
         const newFavoriteFilms = [];

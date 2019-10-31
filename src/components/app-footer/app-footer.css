@@ -3,6 +3,7 @@
     background-color: #fff;
     height: 180px;
     margin-top: 50px;
+    margin-bottom: 100px;
 }
 
 .footer__menu, .footer_icons {
@@ -14,7 +15,7 @@
 }
 
 .footer__menu a:not(:last-child) {
-    margin-right: 50px;
+    margin-right: 40px;
 }
 
 .footer__box {
@@ -33,6 +34,10 @@
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
     border-radius: 50px;
+}
+
+.footer__icons ul li:not(:last-child) {
+    margin-right: 10px;
 }
 
 .footer__icons svg {
