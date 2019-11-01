@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 
 import './favorite-movie-page.css';
-import MovieGrid from "../movie-grid";
+import MovieGrid from "../../movie-grid";
 
 const FavoriteMoviePage = (props) => {
     const {page,favorites} = props;

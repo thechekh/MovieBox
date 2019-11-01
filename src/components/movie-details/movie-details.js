@@ -63,17 +63,16 @@ class MovieDetails extends React.Component {
     };
 
     getCategoryFilmString = (genres) => {
-        const genresNames = genres.map((item) => `${item.name}`);
+        console.log('genres',genres)
+        const genresNames = genres.map(item => item.name);
         return genresNames.join(', ');
     };
 
     render() {
         const {film} = this.state;
-        let back__poster = '';
-        film ? back__poster = film.backdrop_path : back__poster = null;
         const bg_poster = {
             background: ` linear-gradient(to bottom, rgba(255, 255, 255,0.1), rgba(0, 0, 0,0.9) 95% )
-            ,url(http://image.tmdb.org/t/p/w500${back__poster}`,
+            ,url(http://image.tmdb.org/t/p/w500${film && film.backdrop_path}`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover',

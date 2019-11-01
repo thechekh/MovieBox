@@ -8,6 +8,26 @@ import './movie-grid.css'
 import {getFilms} from "./movie-grid-actions";
 import MovieCart from '../movie-card';
 import Spinner from "../spinner";
+import {createSelector} from "reselect";
+
+const getFilmsFromState = (state) =>
+    state.films.results;
+
+export const getFilmsFromStateSelector = () => createSelector(
+    [getFilmsFromState],
+    (films) => films
+);
+const makeMapStateToProps = () => {
+    const Films = getFilmsFromStateSelector();
+    return (state) => {
+        return {
+            films: Films(state),
+            genres: state.genres,
+            totalFavoriteFilms: state.favorites.length,
+            total_pages: state.films.total_pages
+        }
+    };
+}
 
 class MovieGrid extends React.Component {
 
@@ -16,7 +36,6 @@ class MovieGrid extends React.Component {
         this.state = {
             page_size: 20,
             favFilms: null,
-            loading: true,
             favoriteFilms: this.props.favoriteFilms,
         };
     }
@@ -35,12 +54,6 @@ class MovieGrid extends React.Component {
             this.setState({
                 favFilms: this.getFavorites(this.props.page || 1),
             });
-        } else {
-            this.props.getFilms(this.props.page).then(() => this.setState({
-                    loading: false,
-                })
-            )
-
         }
     }
 
@@ -160,7 +173,7 @@ const
         }
     };
 
-export default withRouter(connect(mapStateToProps, {getFilms})(MovieGrid));
+export default withRouter(connect(makeMapStateToProps, {getFilms})(MovieGrid));
 
 
 

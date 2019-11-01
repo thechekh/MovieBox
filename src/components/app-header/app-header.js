@@ -8,9 +8,9 @@ import cn from 'classnames'
 import './app-header.css';
 
 
-const AppHeader = ({location}) => {
+const AppHeader = (props) => {
     let isFavorite = false;
-    if (location.pathname.indexOf('favorites') === 1) {
+    if (props.location.pathname.indexOf('favorites') === 1) {
         isFavorite = true;
     }
     let btnClass = cn({

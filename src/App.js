@@ -7,9 +7,10 @@ import {getsGenres} from "./components/movie-grid/movie-grid-actions";
 import AppHeader from "./components/app-header";
 import AppFooter from "./components/app-footer";
 import MovieGrid from "./components/movie-grid";
+import NowPlayingPage from "./components/pages/now-playing-page";
 import MovieDetails from "./components/movie-details";
-import FavoriteMoviePage from "./components/favorite-movie-page"
-import Page404 from "./components/page-404";
+import FavoriteMoviePage from "./components/pages/favorite-movie-page"
+import Page404 from "./components/pages/page-404";
 
 
 class App extends React.Component { //Maybe func Component?
@@ -24,12 +25,9 @@ class App extends React.Component { //Maybe func Component?
                 <div className="app">
                     <AppHeader/>
                     <Switch>
-                        <Route exact path="/" component={MovieGrid}/>
-                        <Route path="/page/:page"
-                               component={({match}) => {
-                                   const {page} = match.params;
-                                   return <MovieGrid page={Number(page)}/>
-                               }}
+                        <Route exact path="/" component={NowPlayingPage}/>
+                        <Route path="/page/:page" component={NowPlayingPage}/>
+                        }}
                         />
                         <Route path="/movie/:id" component={({match}) => {
                             const {id} = match.params;
@@ -50,6 +48,7 @@ class App extends React.Component { //Maybe func Component?
         );
     }
 }
+
 export default connect(null, {getsGenres})(App);
 
 

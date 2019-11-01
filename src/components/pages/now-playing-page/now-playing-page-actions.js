@@ -1,23 +1,7 @@
 import axios from "axios";
 
+
 const key = process.env.REACT_APP_API_KEY;
-
-export const getsGenres = () => {
-    return async (dispatch) => {
-        try {
-            const genres = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${key}`)
-
-            dispatch(
-                {
-                    type: "SET_GENRES",
-                    payload: genres.data,
-                });
-            return genres
-        } catch (e) {
-            console.error(e);
-        }
-    }
-};
 
 export const getFilms = (page = 1) => {
     return async (dispatch) => {
@@ -36,10 +20,3 @@ export const getFilms = (page = 1) => {
         }
     }
 };
-
-
-
-
-
-
-
