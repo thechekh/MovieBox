@@ -1,34 +1,15 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
 import './movie-card.css';
-import default_img from "./default_img.png"
+import MovieCardImage from "./movie-card-image";
 
-const MovieCardImage = (props) => {
-    return (
-        <div className="movie__img">
-            <Link to={`/movie/${props.id}`}>
-                {
-                    props.path ?
-                        (
-                            <img src={`http://image.tmdb.org/t/p/w500${props.path}`}
-                                 alt={'movie_image'}/>
-                        )
-                        :
-                        (
-                            <img src={default_img} width={500} alt='image_not_found'/>
-                        )
-                }
-            </Link>
-            <span className='movie__year'>{props.year}</span>
-        </div>
-    )
-};
+
 const MovieCard = (props) => {
     const {poster, id, title, rate, type} = props;
     const year = props.year.match(/..../);
+
     const type_name_array = [];
     props.genres.map((item) => {
         if (type.includes(item.id)) {

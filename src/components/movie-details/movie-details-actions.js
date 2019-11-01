@@ -1,12 +1,10 @@
-import axios from 'axios'
-
-const key = process.env.REACT_APP_API_KEY;
+import instance from "../../utils/axios-config";
 
 export const getFilm = async (id) => {
     try {
-        const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${key}`;
-        let res = await axios.get(url);
-        let {data} = res;
+        const url = `movie/${id}?`;
+      const res = await instance.get(url);
+        const {data} = res;
         return data;
     } catch (e) {
         console.error(e);

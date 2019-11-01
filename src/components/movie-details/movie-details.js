@@ -3,29 +3,12 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faStar} from '@fortawesome/free-solid-svg-icons'
 import {connect} from 'react-redux'
 import PropTypes from "prop-types";
-import {createSelector} from 'reselect';
 
+import {makeMapStateToProps} from "../../selectors/movie-details-selectors"
 import './movie-details.css'
 import {getFilm, addFavorite, removeFavorite} from "./movie-details-actions";
 import default_img from "../movie-card/default_img.png";
 import Spinner from "../spinner";
-
-
-const isFavorite = (state, props) =>
-    state.favorites.some(item => item.id === props.id);
-
-export const getFavoritesState = () => createSelector(
-    [isFavorite],
-    (isFav) => isFav
-);
-const makeMapStateToProps = () => {
-    const isFavorite = getFavoritesState();
-    return (state, props) => {
-        return {
-            isFavorite: isFavorite(state, props)
-        }
-    }
-};
 
 class MovieDetails extends React.Component {
     constructor(props) {
@@ -36,7 +19,6 @@ class MovieDetails extends React.Component {
             favorite: this.props.isFavorite,
         };
     }
-
     componentDidMount() {
         getFilm(this.props.id)
             .then((film) => {
@@ -46,7 +28,6 @@ class MovieDetails extends React.Component {
                 });
             });
     }
-
     addFavoriteHandler = () => {
         this.setState(
             this.setState({
@@ -63,7 +44,7 @@ class MovieDetails extends React.Component {
     };
 
     getCategoryFilmString = (genres) => {
-        console.log('genres',genres)
+        console.log('genres', genres)
         const genresNames = genres.map(item => item.name);
         return genresNames.join(', ');
     };
