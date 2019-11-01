@@ -8,15 +8,10 @@ import Spinner from "../../spinner";
 import Pagination from "../../pagination";
 
 class NowPlayingPage extends React.Component {
-    state = {
-        loading: true,
-    };
 
     componentDidMount() {
         const {page} = this.props.match.params;
-        this.props.getFilms(page).then(() => this.setState({
-            loading: false,
-        }))
+        this.props.getFilms(page);
     }
 
     changePage = e => {
@@ -30,7 +25,8 @@ class NowPlayingPage extends React.Component {
 
     render() {
         const {page} = this.props.match.params;
-        if (this.state.loading) {
+        console.log(this.props.loading);
+        if (this.props.loading) {
             return <Spinner/>
         }
         return (
@@ -50,6 +46,7 @@ const
     mapStateToProps = state => {
         return {
             films: state.films.results,
+            loading: state.films.loading,
             pages: state.films.total_pages,
         }
     };

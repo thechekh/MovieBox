@@ -1,12 +1,9 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom'
-import PropTypes from "prop-types";
 
-import Pagination from "../pagination";
 import './movie-grid.css'
 import MovieCard from '../movie-card';
-import Spinner from "../spinner";
 
 class MovieGrid extends React.Component {
 
@@ -27,7 +24,6 @@ class MovieGrid extends React.Component {
     }
 
     render() {
-        console.log('mgfilms', this.props);
         const {films} = this.props;
         return (
             <div className='movie__grid'>
@@ -44,16 +40,9 @@ class MovieGrid extends React.Component {
     }
 }
 
-/*MovieGrid.defaultProps = {
-    page: 1,
-}*/
-MovieGrid.propTypes = {
-    page: PropTypes.number,
-};
 const mapStateToProps = state => {
     return {
         genres: state.genres,
-        totalFavoriteFilms: state.favorites.length,
     }
 };
 
