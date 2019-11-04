@@ -6,16 +6,15 @@ import moment from "moment";
 import "./movie-card.css";
 import MovieCardImage from "./movie-card-image";
 
-const MovieCard = props => {
-  const { poster, id, title, rate, type } = props;
-  const year = moment(props.year, "YYYY/MM/DD").year();
-  const genres = props.genres.filter(item => type.includes(item.id));
-  const genresNames = genres.map(item => item.name);
+const MovieCard = ({ poster, id, title, rate, type, year, genres }) => {
+  const movieYear = moment(year, "YYYY/MM/DD").year();
+  const movieGenres = genres.filter(item => type.includes(item.id));
+  const genresNames = movieGenres.map(item => item.name);
   const genresString = genresNames.join(", ");
 
   return (
     <div className=" col-6 col-lg-3 d-flex flex-column justify-content-end align-items-center">
-      <MovieCardImage path={poster} year={year} id={id} />
+      <MovieCardImage path={poster} year={movieYear} id={id} />
       <div className="movie__desc d-flex align-items-center justify-content-around">
         <div className="movie__about">
           <h2 className="movie__name">{title}</h2>
@@ -27,13 +26,27 @@ const MovieCard = props => {
   );
 };
 MovieCard.propTypes = {
-  id: PropTypes.number,
-  title: PropTypes.string,
-  year: PropTypes.string,
-  poster: PropTypes.string,
-  rate: PropTypes.number
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
+  rate: PropTypes.number.isRequired,
+
+  type: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string
+    })
+  ).isRequired,
+  genres: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string
+    })
+  ).isRequired
 };
-let mapStateToProps = state => {
+
+const mapStateToProps = state => {
   return {
     genres: state.genres
   };

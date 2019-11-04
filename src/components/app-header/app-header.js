@@ -1,40 +1,40 @@
-import React from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {Link} from "react-router-dom";
-import {withRouter} from 'react-router-dom'
-import {faStar} from '@fortawesome/free-regular-svg-icons'
-import cn from 'classnames'
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link, withRouter } from "react-router-dom";
 
-import './app-header.css';
+import { faStar } from "@fortawesome/free-regular-svg-icons";
+import cn from "classnames";
 
+import "./app-header.css";
 
-const AppHeader = (props) => {
-    let isFavorite = false;
-    if (props.match.path.indexOf('favorites') === 1) {
-        isFavorite = true;
-    }
-    let btnClass = cn({
-        'header__button__toggled': isFavorite,
-        'header__button': !isFavorite
-    });
-    return (
-        <div className='header'>
-            <div className='container header__container'>
-                <Link to='/'>
-                    <h1 className='header__text'>themovie<span className='header__box'>box</span></h1>
-                </Link>
+const AppHeader = ({ match }) => {
+  let isFavorite = false;
+  if (match.path.indexOf("favorites") === 1) {
+    isFavorite = true;
+  }
+  const btnClass = cn({
+    header__button__toggled: isFavorite,
+    header__button: !isFavorite
+  });
+  return (
+    <div className="header">
+      <div className="container header__container">
+        <Link to="/">
+          <h1 className="header__text">
+            themovie<span className="header__box">box</span>
+          </h1>
+        </Link>
 
-                <Link to="/favorites">
-                    <button className={btnClass}>
-                                <span className="favorites__text">
-                                Show Favorites <FontAwesomeIcon icon={faStar}/>
-                                </span>
-                    </button>
-                </Link>
-
-            </div>
-        </div>
-    )
+        <Link to="/favorites">
+          <button type="button" className={btnClass}>
+            <span className="favorites__text">
+              Show Favorites <FontAwesomeIcon icon={faStar} />
+            </span>
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
 };
 
 export default withRouter(AppHeader);

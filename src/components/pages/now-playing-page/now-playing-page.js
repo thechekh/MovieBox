@@ -1,17 +1,19 @@
 import React from "react";
 
 import "./now-playing-page.css";
-import MovieGrid from "../../movie-grid/movie-grid";
 import { connect } from "react-redux";
+import MovieGrid from "../../movie-grid/movie-grid";
 import { getFilms } from "./now-playing-page-actions";
 import Spinner from "../../spinner";
 import Pagination from "../../pagination";
 import AppHeader from "../../app-header";
+
 class NowPlayingPage extends React.Component {
   componentDidMount() {
     const { page } = this.props.match.params;
     this.props.getFilms(page);
   }
+
   changePage = e => {
     let { selected } = e;
     selected++;
@@ -20,18 +22,21 @@ class NowPlayingPage extends React.Component {
       this.props.getFilms(selected);
     }
   };
+
   render() {
     const { page } = this.props.match.params;
-    if (this.props.loading) {
+    const { loading, films, pages } = this.props;
+
+    if (loading) {
       return <Spinner />;
     }
     return (
       <>
         <AppHeader />
-        <MovieGrid films={this.props.films} />
+        <MovieGrid films={films} />
         <Pagination
           initialPage={page || 1}
-          pageCount={this.props.pages}
+          pageCount={pages}
           changePage={this.changePage}
         />
       </>

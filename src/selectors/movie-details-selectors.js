@@ -1,19 +1,20 @@
-import {createSelector} from "reselect";
+import { createSelector } from "reselect";
 
 const isFavorite = (state, props) =>
-    state.films.favorites.some(item => item.id === props.id);
+  state.films.favorites.some(item => item.id === props.id);
 
-const getFavoritesState = () => createSelector(
+const getFavoritesState = () =>
+  createSelector(
     [isFavorite],
-    (isFav) => isFav
-);
+    isFav => isFav
+  );
 export const makeMapStateToProps = () => {
-    const isFavorite = getFavoritesState();
-    return (state, props) => {
-        return {
-            isFavorite: isFavorite(state, props),
-            loading: state.films.loading,
-            movie: state.films.payload,
-        }
-    }
+  const isFavoriteMovie = getFavoritesState();
+  return (state, props) => {
+    return {
+      isFavorite: isFavoriteMovie(state, props),
+      loading: state.films.loading,
+      movie: state.films.payload
+    };
+  };
 };

@@ -1,27 +1,23 @@
-import {Link} from "react-router-dom";
-import React from 'react';
-import default_img from "./default_img.png";
+import { Link } from "react-router-dom";
+import React from "react";
+import defaultImg from "./default_img.png";
 
-const MovieCardImage = (props) => {
-    return (
-        <div className="movie__img">
-            <Link to={`/movie/${props.id}`}>
-                {
-                    props.path ?
-                        (
-                            <img src={`http://image.tmdb.org/t/p/w500${props.path}`}
-                                 alt={'movie_image'}/>
-                        )
-                        :
-                        (
-                            <img src={default_img} width={500} alt='image_not_found'/>
-                        )
-                }
-            </Link>
-            <span className='movie__year'>{props.year}</span>
-        </div>
-    )
+const MovieCardImage = ({ id, path, year }) => {
+  return (
+    <div className="movie__img">
+      <Link to={`/movie/${id}`}>
+        {path ? (
+          <img
+            src={`http://image.tmdb.org/t/p/w500${path}`}
+            alt={"movie_image"}
+          />
+        ) : (
+          <img src={defaultImg} width={500} alt="image_not_found" />
+        )}
+      </Link>
+      <span className="movie__year">{year}</span>
+    </div>
+  );
 };
 
 export default MovieCardImage;
-
