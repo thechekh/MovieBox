@@ -32,12 +32,7 @@ MovieCard.propTypes = {
   poster: PropTypes.string.isRequired,
   rate: PropTypes.number.isRequired,
 
-  type: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string
-    })
-  ).isRequired,
+  type: PropTypes.array.isRequired,
   genres: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
