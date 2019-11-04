@@ -1,17 +1,33 @@
-import axios from 'axios'
+import instance from "../../utils/axios-config";
 
-const key = process.env.REACT_APP_API_KEY;
+export const getFilm = (id) => {
 
-export const getFilm = async (id) => {
-    try {
-        const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${key}`;
-        let res = await axios.get(url);
-        let {data} = res;
-        return data;
-    } catch (e) {
-        console.error(e);
+    return async (dispatch) => {
+        dispatch(
+            {
+                type: "GET_MOVIE_REQUEST",
+            });
+        try {
+            const url = `movie/${id}?`;
+            const res = await instance.get(url);
+            const {data} = res;
+            dispatch(
+                {
+                    type: "GET_MOVIE_SUCCESS",
+                    payload: data,
+                });
+
+        } catch (e) {
+            console.error(e);
+            dispatch(
+                {
+                    type: "GET_MOVIE_FAILURE",
+                    payload:e,
+                });
+        }
     }
 };
+
 export const addFavorite = (film) => {
     return (dispatch) => {
         dispatch(

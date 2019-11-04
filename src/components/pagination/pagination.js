@@ -14,6 +14,7 @@ const Pagination = (props) => {
                 initialPage={props.initialPage - 1}
                 pageCount={props.pageCount}
                 onPageChange={props.changePage}
+                disableInitialCallback={ true }
             />
         </div>
     );
