@@ -9,7 +9,7 @@ import Pagination from "../../pagination";
 import AppHeader from "../../app-header";
 
 class FavoriteMoviePage extends React.Component {
-
+    /** зачем тут стейт, если фильмы можно так же доставать из редакса? */
     constructor(props) {
         super(props);
         this.state = {

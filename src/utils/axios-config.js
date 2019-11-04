@@ -7,6 +7,7 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(function (config) {
+    {/** REVIEW: подумай как это можно сделать без модификации строчки напрямую. axios позволяет это сделать */}
     config.url = `${config.url}&api_key=${key}`;
     return config;
 });

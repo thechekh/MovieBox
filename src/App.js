@@ -23,11 +23,14 @@ class App extends React.Component { //Maybe func Component?
                     <Switch>
                         <Route exact path="/" component={NowPlayingPage}/>
                         <Route path="/page/:page" component={NowPlayingPage}/>
+                        {/** REVIEW: что за артефакт на следующей строчке? */}
                         }}
                         />
                         <Route path="/movie/:id" component={MoviePage}/>
+                        {/** REVIEW: что за артефакт на следующей строчке? */}
                         }}/>
                         <Route path="/favorites/:page?" component={FavoriteMoviePage}/>
+                        {/** REVIEW: что за артефакт на следующей строчке? */}
                         }}/>
                         <Route component={Page404}/>
                     </Switch>

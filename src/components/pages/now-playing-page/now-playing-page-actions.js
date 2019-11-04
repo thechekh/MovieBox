@@ -13,6 +13,7 @@ export const getFilms = (page = 1) => {
             const films = await instance.get(url, {
                 params: {
                     page: page,
+                    /** language - статический параметр. Его можно добавить там же, где и api_key */
                     language: 'ru-RU',
                 }
             })

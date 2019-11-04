@@ -9,7 +9,10 @@ import MovieCardImage from "./movie-card-image";
 const MovieCard = (props) => {
     const {poster, id, title, rate, type} = props;
 
+    {/** REVIEW: для дат используй библиотеку moment.js */}
     const year = props.year.split('-')[0];
+    {/** REVIEW: почитай про filter, посмотри какое значние в коллбеке ты должен ему возвращать. Подумай как можно */}
+    {/** REVIEW: оптимизировать код в колбеке */}
     const genres = props.genres.filter((item) => {
         if (type.includes(item.id)) {
             return item
