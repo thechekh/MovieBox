@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {getFilms} from "./now-playing-page-actions"
 import Spinner from "../../spinner";
 import Pagination from "../../pagination";
-
+import AppHeader from '../../app-header'
 class NowPlayingPage extends React.Component {
 
     componentDidMount() {
@@ -25,16 +25,17 @@ class NowPlayingPage extends React.Component {
 
     render() {
         const {page} = this.props.match.params;
-        console.log(this.props.loading);
         if (this.props.loading) {
             return <Spinner/>
         }
         return (
             <>
+                <AppHeader/>
                 <MovieGrid films={this.props.films}/>
                 <Pagination initialPage={page || 1}
                             pageCount={this.props.pages}
                             changePage={this.changePage}
+
                 />
             </>
 

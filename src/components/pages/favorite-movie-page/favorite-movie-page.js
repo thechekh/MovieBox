@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import './favorite-movie-page.css';
 import MovieGrid from "../../movie-grid";
 import Pagination from "../../pagination";
+import AppHeader from "../../app-header";
 
 class FavoriteMoviePage extends React.Component {
 
@@ -21,7 +22,8 @@ class FavoriteMoviePage extends React.Component {
             films: this.getFavorites(this.props.match.params.page || 1),
         });
     }
-        changeFavoritePage = e => {
+
+    changeFavoritePage = e => {
         let {selected} = e;
         selected++;
         if (selected) {
@@ -52,18 +54,23 @@ class FavoriteMoviePage extends React.Component {
     render() {
         const {page} = this.props.match.params;
         const {films} = this.state;
+        const {favorites} = this.props;
         return (
             <>
+                <AppHeader/>
                 <div className="d-flex justify-content-center align-items-center">
                     <h2 className="favorite__page__header">favorite page</h2>
                 </div>
                 {films && films.length !== 0 ?
                     (<>
                             <MovieGrid films={films}/>
+
+                            {favorites.length > 20 &&
                             <Pagination initialPage={page || 1}
                                         pageCount={Math.ceil(this.props.favorites.length / 20)}
                                         changePage={this.changeFavoritePage}
                             />
+                            }
                         </>
                     )
                     :

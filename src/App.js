@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 
 import './App.css';
 import {getsGenres} from "./components/movie-grid/movie-grid-actions";
-import AppHeader from "./components/app-header";
 import AppFooter from "./components/app-footer";
 import NowPlayingPage from "./components/pages/now-playing-page";
 import MoviePage from "./components/pages/movie-page";
@@ -21,7 +20,6 @@ class App extends React.Component { //Maybe func Component?
         return (
             <Router>
                 <div className="app">
-                    <AppHeader/>
                     <Switch>
                         <Route exact path="/" component={NowPlayingPage}/>
                         <Route path="/page/:page" component={NowPlayingPage}/>

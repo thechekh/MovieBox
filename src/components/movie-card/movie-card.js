@@ -8,21 +8,16 @@ import MovieCardImage from "./movie-card-image";
 
 const MovieCard = (props) => {
     const {poster, id, title, rate, type} = props;
-    const year = props.year.match(/..../);
 
-    const type_name_array = [];
-    props.genres.map((item) => {
+    const year = props.year.split('-')[0];
+    const genres = props.genres.filter((item) => {
         if (type.includes(item.id)) {
-            type_name_array.push(item.name)
+            return item
         }
+        return false;
     });
-    type_name_array.length = 3;
-    let genres = type_name_array.filter(item => {
-        if (item)
-            return item;
-    });
-    genres = genres.join(", ");
-
+    const genresNames = genres.slice(0, 3).map(item => item.name);
+    const genresString = genresNames.join(', ');
     return (
         <div className=' col-6 col-lg-3 d-flex flex-column justify-content-end align-items-center'>
             <MovieCardImage path={poster} year={year} id={id}/>
@@ -31,7 +26,7 @@ const MovieCard = (props) => {
                     <h2 className="movie__name">{title}</h2>
                     <span className="movie__type">
                             {
-                                genres
+                                genresString
                             }
                         </span>
                 </div>
@@ -48,7 +43,6 @@ MovieCard.propTypes = {
     rate: PropTypes.number,
 };
 let mapStateToProps = state => {
-
     return {
         genres: state.genres,
     }

@@ -11,113 +11,90 @@ import default_img from "../movie-card/default_img.png";
 import Spinner from "../spinner";
 
 class MovieDetails extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            film: null,
-            loading: true,
-            favorite: this.props.isFavorite,
-        };
-    }
+
     componentDidMount() {
-        getFilm(this.props.id)
-            .then((film) => {
-                this.setState({
-                    film: film,
-                    loading: false,
-                });
-            });
+        this.props.getFilm(this.props.id)
     }
+
     addFavoriteHandler = () => {
-        this.setState(
-            this.setState({
-                favorite: true
-            })
-        );
-        this.props.addFavorite(this.state.film);
+        this.props.addFavorite(this.props.movie);
     };
     removeFavoriteHandler = () => {
-        this.setState({
-            favorite: false
-        });
-        this.props.removeFavorite(this.state.film.id);
+        this.props.removeFavorite(this.props.movie.id);
     };
 
     getCategoryFilmString = (genres) => {
-        console.log('genres', genres)
         const genresNames = genres.map(item => item.name);
         return genresNames.join(', ');
     };
 
     render() {
-        const {film} = this.state;
+        const {movie, loading} = this.props;
         const bg_poster = {
-            background: ` linear-gradient(to bottom, rgba(255, 255, 255,0.1), rgba(0, 0, 0,0.9) 95% )
-            ,url(http://image.tmdb.org/t/p/w500${film && film.backdrop_path}`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
+            backgroundImage: ` linear-gradient(to bottom, rgba(255, 255, 255,0.1), rgba(0, 0, 0,0.9) 95% )
+            ,url(http://image.tmdb.org/t/p/w500${movie && movie.backdrop_path}`,
         };
 
-        if (this.state.loading) {
+        if (loading) {
             return <Spinner/>
         }
+
         return (
             <div>
-                {
-                    film &&
-                    <>
-                        <div className="container-fluid back__poster
+
+                {movie &&
+                <>
+                    <div className="container-fluid back__poster
                          d-flex justify-content-end flex-column" style={bg_poster}>
 
-                            <h1>{film.title}</h1>
-                            <div className="about">
-                                <span>{film.release_date.match(/..../)} </span>
-                                <span>
+                        <h1>{movie.title}</h1>
+                        <div className="about">
+                            <span>{movie.release_date.split('-')[0]} </span>
+                            <span>
 
                                     {
-                                        this.getCategoryFilmString(film.genres)
+                                        this.getCategoryFilmString(movie.genres)
 
                                     }
                                         </span>
 
-                            </div>
                         </div>
-                        <div className="container">
-                            <div className="row movie__overview">
+                    </div>
+                    <div className="container">
+                        <div className="row movie__overview">
 
-                                <div className="col-sm-12 col-md-6 col-lg-3 d-flex justify-content-center flex-column">
-                                    {film.poster_path ? (
-                                        <img src={`http://image.tmdb.org/t/p/w300${film.poster_path}`}
-                                             alt={film.title}/>
-                                    ) : (<img src={default_img} alt={'image not found'}/>)
-                                    }
-                                    {
-                                        this.state.favorite ?
-                                            (<button onClick={this.removeFavoriteHandler}
-                                                     className="favorite remove__favorite">Removes from
-                                                    favorites <FontAwesomeIcon
-                                                        icon={faStar}/>
-                                                </button>
+                            <div className="col-sm-12 col-md-6 col-lg-3 d-flex justify-content-center flex-column">
+                                {movie.poster_path ? (
+                                    <img src={`http://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                                         alt={movie.title}/>
+                                ) : (<img src={default_img} alt={'default img'}/>)
+                                }
+                                {
+                                    this.props.isFavorite ?
+                                        (<button onClick={this.removeFavoriteHandler}
+                                                 className="favorite remove__favorite">Removes from
+                                                favorites <FontAwesomeIcon
+                                                    icon={faStar}/>
+                                            </button>
 
-                                            ) :
-                                            (<button
-                                                    onClick={this.addFavoriteHandler}
-                                                    className=" favorite add__favorite">Add to
-                                                    favorites <FontAwesomeIcon
-                                                        icon={faStar}/>
-                                                </button>
-                                            )
-                                    }
-                                </div>
-                                <div className="col-sm-12 col-md-6 col-lg-9 ">
-                                    <h2>Overview</h2>
-                                    <span>{film.overview}</span>
-                                </div>
-
+                                        ) :
+                                        (<button
+                                                onClick={this.addFavoriteHandler}
+                                                className=" favorite add__favorite">Add to
+                                                favorites <FontAwesomeIcon
+                                                    icon={faStar}/>
+                                            </button>
+                                        )
+                                }
                             </div>
+                            <div className="col-sm-12 col-md-6 col-lg-9 ">
+                                <h2>Overview</h2>
+                                <span>{movie.overview}</span>
+                            </div>
+
                         </div>
-                    </>
+                    </div>
+                </>
                 }
             </div>
         );
@@ -130,5 +107,5 @@ MovieDetails.propTypes = {
 };
 
 
-export default connect(makeMapStateToProps, {addFavorite, removeFavorite})(MovieDetails);
+export default connect(makeMapStateToProps, {addFavorite, removeFavorite, getFilm})(MovieDetails);
 

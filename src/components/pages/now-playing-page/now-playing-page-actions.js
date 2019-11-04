@@ -3,7 +3,10 @@ import instance from "../../../utils/axios-config";
 export const getFilms = (page = 1) => {
 
     return async (dispatch) => {
-
+        dispatch(
+            {
+                type: "GET_FILMS_REQUEST",
+            });
         try {
 
             const url = `movie/now_playing?`;
@@ -19,8 +22,14 @@ export const getFilms = (page = 1) => {
                     type: "GET_FILMS_SUCCESS",
                     payload: films,
                 });
+
         } catch (e) {
             console.error(e);
+            dispatch(
+                {
+                    type: "GET_FILMS_FAILURE",
+                    payload:e,
+                });
         }
     }
 };
