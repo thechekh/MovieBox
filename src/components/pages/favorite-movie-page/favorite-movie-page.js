@@ -94,7 +94,7 @@ FavoriteMoviePage.propTypes = {
 };
 const mapStateToProps = state => {
     return {
-        favorites: state.favorites,
+        favorites: state.films.favorites,
     }
 }
 export default connect(mapStateToProps)(FavoriteMoviePage);

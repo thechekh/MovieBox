@@ -8,8 +8,11 @@ export const getFilm = (id) => {
                 type: "GET_MOVIE_REQUEST",
             });
         try {
-            const url = `movie/${id}?`;
+
+            const url = `movie/${id}`;
+            console.log('url',url)
             const res = await instance.get(url);
+
             const {data} = res;
             dispatch(
                 {

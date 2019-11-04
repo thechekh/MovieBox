@@ -7,7 +7,12 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(function (config) {
-    config.url = `${config.url}&api_key=${key}`;
+    config.params = {
+        ...config.params,
+        api_key: key,
+        language: 'ru-RU',
+
+    };
     return config;
 });
 

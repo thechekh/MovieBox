@@ -16,6 +16,7 @@ class App extends React.Component { //Maybe func Component?
     componentDidMount() {
         this.props.getsGenres();
     }
+
     render() {
         return (
             <Router>
@@ -23,12 +24,10 @@ class App extends React.Component { //Maybe func Component?
                     <Switch>
                         <Route exact path="/" component={NowPlayingPage}/>
                         <Route path="/page/:page" component={NowPlayingPage}/>
-                        }}
                         />
-                        <Route path="/movie/:id" component={MoviePage}/>
-                        }}/>
+                        <Route path="/movie/:id" component={MoviePage}/>/>
                         <Route path="/favorites/:page?" component={FavoriteMoviePage}/>
-                        }}/>
+                        />
                         <Route component={Page404}/>
                     </Switch>
 

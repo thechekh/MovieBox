@@ -7,6 +7,7 @@ import {getFilms} from "./now-playing-page-actions"
 import Spinner from "../../spinner";
 import Pagination from "../../pagination";
 import AppHeader from '../../app-header'
+
 class NowPlayingPage extends React.Component {
 
     componentDidMount() {

@@ -10,17 +10,16 @@ export const getFilms = (page = 1) => {
         try {
 
             const url = `movie/now_playing?`;
-            const films = await instance.get(url, {
+            const res = await instance.get(url, {
                 params: {
                     page: page,
-                    language: 'ru-RU',
                 }
-            })
-                .then(res => res.data);
+            });
+            const {data} = res;
             dispatch(
                 {
                     type: "GET_FILMS_SUCCESS",
-                    payload: films,
+                    payload: data,
                 });
 
         } catch (e) {
@@ -28,7 +27,7 @@ export const getFilms = (page = 1) => {
             dispatch(
                 {
                     type: "GET_FILMS_FAILURE",
-                    payload:e,
+                    payload: e,
                 });
         }
     }
