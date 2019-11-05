@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import PropTypes from "prop-types";
 import defaultImg from "./default_img.png";
 
 const MovieCardImage = ({ id, path, year }) => {
@@ -18,6 +19,11 @@ const MovieCardImage = ({ id, path, year }) => {
       <span className="movie__year">{year}</span>
     </div>
   );
+};
+MovieCardImage.propTypes = {
+  id: PropTypes.number.isRequired,
+  path: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired
 };
 
 export default MovieCardImage;

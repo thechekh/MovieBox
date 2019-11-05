@@ -2,8 +2,10 @@ import React from "react";
 
 import "./now-playing-page.css";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
 import MovieGrid from "../../movie-grid/movie-grid";
-import { getFilms } from "./now-playing-page-actions";
+import getFilms from "./now-playing-page-actions";
 import Spinner from "../../spinner";
 import Pagination from "../../pagination";
 import AppHeader from "../../app-header";
@@ -35,7 +37,7 @@ class NowPlayingPage extends React.Component {
         <AppHeader />
         <MovieGrid films={films} />
         <Pagination
-          initialPage={page || 1}
+          initialPage={Number(page) || 1}
           pageCount={pages}
           changePage={this.changePage}
         />
@@ -50,6 +52,18 @@ const mapStateToProps = state => {
     loading: state.films.loading,
     pages: state.films.total_pages
   };
+};
+
+NowPlayingPage.propTypes = {
+  getFilms: PropTypes.func.isRequired,
+  films: PropTypes.array,
+  pages: PropTypes.number,
+  loading: PropTypes.bool
+};
+NowPlayingPage.defaultProps = {
+  loading: true,
+  pages: 1,
+  films: []
 };
 export default connect(
   mapStateToProps,

@@ -1,11 +1,13 @@
 import instance from "../../utils/axios-config";
+import Constants from "../../utils/constants";
 
-export const getsGenres = () => {
+const { SET_GENRES } = Constants;
+const getsGenres = () => {
   return async dispatch => {
     try {
       const genres = await instance.get(`genre/movie/list?`);
       dispatch({
-        type: "SET_GENRES",
+        type: SET_GENRES,
         payload: genres.data
       });
       return genres;
@@ -14,3 +16,5 @@ export const getsGenres = () => {
     }
   };
 };
+
+export default getsGenres;

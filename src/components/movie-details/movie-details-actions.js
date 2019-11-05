@@ -1,9 +1,18 @@
 import instance from "../../utils/axios-config";
+import Constants from "../../utils/constants";
+
+const {
+  DELETE_FAVORITE,
+  ADD_FAVORITE,
+  GET_MOVIE_REQUEST,
+  GET_MOVIE_SUCCESS,
+  GET_MOVIE_FAILURE
+} = Constants;
 
 export const getFilm = id => {
   return async dispatch => {
     dispatch({
-      type: "GET_MOVIE_REQUEST"
+      type: GET_MOVIE_REQUEST
     });
     try {
       const url = `movie/${id}`;
@@ -11,13 +20,13 @@ export const getFilm = id => {
 
       const { data } = res;
       dispatch({
-        type: "GET_MOVIE_SUCCESS",
+        type: GET_MOVIE_SUCCESS,
         payload: data
       });
     } catch (e) {
       console.error(e);
       dispatch({
-        type: "GET_MOVIE_FAILURE",
+        type: GET_MOVIE_FAILURE,
         payload: e
       });
     }
@@ -27,7 +36,7 @@ export const getFilm = id => {
 export const addFavorite = film => {
   return dispatch => {
     dispatch({
-      type: "ADD_FAVORITE",
+      type: ADD_FAVORITE,
       payload: film
     });
   };
@@ -35,7 +44,7 @@ export const addFavorite = film => {
 export const removeFavorite = film => {
   return dispatch => {
     dispatch({
-      type: "DELETE_FAVORITE",
+      type: DELETE_FAVORITE,
       payload: film
     });
   };

@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import "./movie-grid.css";
 import MovieCard from "../movie-card";
 
 class MovieGrid extends React.Component {
-  displayFilms(movie) {
+  displayFilms = movie => {
     const {
       title,
       vote_average,
@@ -16,6 +17,7 @@ class MovieGrid extends React.Component {
       release_date,
       genre_ids = 0
     } = movie;
+
     return (
       <MovieCard
         title={title}
@@ -27,7 +29,7 @@ class MovieGrid extends React.Component {
         key={id}
       />
     );
-  }
+  };
 
   render() {
     const { films } = this.props;
@@ -42,6 +44,13 @@ class MovieGrid extends React.Component {
     );
   }
 }
+
+MovieGrid.propTypes = {
+  films: PropTypes.array
+};
+MovieGrid.defaultProps = {
+  films: []
+};
 const mapStateToProps = state => {
   return {
     genres: state.genres

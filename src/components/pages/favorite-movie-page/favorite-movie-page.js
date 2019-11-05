@@ -8,19 +8,6 @@ import Pagination from "../../pagination";
 import AppHeader from "../../app-header";
 
 class FavoriteMoviePage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      films: null
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
-      films: this.getFavorites(this.props.match.params.page || 1)
-    });
-  }
-
   getFavorites(pageNumber) {
     const { favorites } = this.props;
     const pageSize = 20;
@@ -39,19 +26,12 @@ class FavoriteMoviePage extends React.Component {
     selected++;
     if (selected) {
       this.props.history.push(`/favorites/${selected}`);
-      this.updateFavorites(selected);
     }
   };
 
-  updateFavorites(pageNumber) {
-    this.setState({
-      films: this.getFavorites(pageNumber)
-    });
-  }
-
   render() {
     const { page } = this.props.match.params;
-    const { films } = this.state;
+    const films = this.getFavorites(page || 1);
     const { favorites } = this.props;
     return (
       <>
@@ -85,7 +65,7 @@ FavoriteMoviePage.defaultProps = {
   favorites: []
 };
 FavoriteMoviePage.propTypes = {
-  page: PropTypes.number.isRequired,
+  page: PropTypes.number,
   favorites: PropTypes.array
 };
 const mapStateToProps = state => {

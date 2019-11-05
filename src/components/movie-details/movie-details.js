@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import moment from "moment";
 
-import { makeMapStateToProps } from "../../selectors/movie-details-selectors";
 import "./movie-details.css";
+import makeMapStateToProps from "../../selectors/movie-details-selectors";
 import { getFilm, addFavorite, removeFavorite } from "./movie-details-actions";
 import defaultImg from "../movie-card/default_img.png";
 import Spinner from "../spinner";
@@ -31,7 +32,7 @@ class MovieDetails extends React.Component {
   };
 
   render() {
-    const { movie, loading } = this.props;
+    const { movie, loading, isFavorite } = this.props;
     const bgPoster = {
       backgroundImage: ` linear-gradient(to bottom, rgba(255, 255, 255,0.1), rgba(0, 0, 0,0.9) 95% )
             ,url(http://image.tmdb.org/t/p/w500${movie && movie.backdrop_path}`
@@ -52,7 +53,7 @@ class MovieDetails extends React.Component {
             >
               <h1>{movie.title}</h1>
               <div className="about">
-                <span>{movie.release_date.split("-")[0]} </span>
+                <span>{moment(movie.release_date, "YYYY/MM/DD").year()} </span>
                 <span>{this.getCategoryFilmString(movie.genres)}</span>
               </div>
             </div>
@@ -67,7 +68,7 @@ class MovieDetails extends React.Component {
                   ) : (
                     <img src={defaultImg} alt={"default img"} />
                   )}
-                  {this.props.isFavorite ? (
+                  {isFavorite ? (
                     <button
                       type="button"
                       onClick={this.removeFavoriteHandler}
@@ -99,7 +100,17 @@ class MovieDetails extends React.Component {
 }
 
 MovieDetails.propTypes = {
-  id: PropTypes.number.isRequired
+  id: PropTypes.number.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  getFilm: PropTypes.func.isRequired,
+  addFavorite: PropTypes.func.isRequired,
+  removeFavorite: PropTypes.func.isRequired,
+  movie: PropTypes.object,
+  loading: PropTypes.bool
+};
+MovieDetails.defaultProps = {
+  loading: true,
+  movie: null
 };
 
 export default connect(

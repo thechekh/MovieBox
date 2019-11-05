@@ -8,7 +8,7 @@ const getFavoritesState = () =>
     [isFavorite],
     isFav => isFav
   );
-export const makeMapStateToProps = () => {
+const makeMapStateToProps = () => {
   const isFavoriteMovie = getFavoritesState();
   return (state, props) => {
     return {
@@ -18,3 +18,5 @@ export const makeMapStateToProps = () => {
     };
   };
 };
+
+export default makeMapStateToProps;

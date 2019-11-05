@@ -12,9 +12,14 @@
   ],
   "rules": {
     "semi": 0,
-    "no-plusplus": "off",
-/*    "react/prop-types": "off",
-    "react/destructuring-assignment": "off",*/
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ]
   }
 }
