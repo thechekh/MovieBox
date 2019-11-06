@@ -23,13 +23,16 @@ class FavoriteMoviePage extends React.Component {
 
   changeFavoritePage = e => {
     let { selected } = e;
+    /** Review: не используй ++. Лучше сделать const page = selected + 1; **/
     selected++;
     if (selected) {
+      /** Review: деструктуризируй + опиши **/
       this.props.history.push(`/favorites/${selected}`);
     }
   };
 
   render() {
+    /** Review: деструктуризация + опись **/
     const { page } = this.props.match.params;
     const films = this.getFavorites(page || 1);
     const { favorites } = this.props;
@@ -65,7 +68,9 @@ FavoriteMoviePage.defaultProps = {
   favorites: []
 };
 FavoriteMoviePage.propTypes = {
+  /** Review: либо добавь isRequired, либо defaultProps **/
   page: PropTypes.number,
+  /** Review: опиши правильно **/
   favorites: PropTypes.array
 };
 const mapStateToProps = state => {

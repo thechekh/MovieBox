@@ -12,20 +12,24 @@ import AppHeader from "../../app-header";
 
 class NowPlayingPage extends React.Component {
   componentDidMount() {
+    /** Review: деструктуризация **/
     const { page } = this.props.match.params;
     this.props.getFilms(page);
   }
 
   changePage = e => {
     let { selected } = e;
+    /** Review: ++ убери, писал в другом фале причину **/
     selected++;
     if (selected) {
+      /** Review: деструктуризация + опись **/
       this.props.history.push(`/page/${selected}`);
       this.props.getFilms(selected);
     }
   };
 
   render() {
+    /** Review: деструктуризация + опись **/
     const { page } = this.props.match.params;
     const { loading, films, pages } = this.props;
 
@@ -56,6 +60,7 @@ const mapStateToProps = state => {
 
 NowPlayingPage.propTypes = {
   getFilms: PropTypes.func.isRequired,
+  /** Review: опиши правильно **/
   films: PropTypes.array,
   pages: PropTypes.number,
   loading: PropTypes.bool

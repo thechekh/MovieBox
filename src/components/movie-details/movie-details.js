@@ -13,14 +13,17 @@ import Spinner from "../spinner";
 
 class MovieDetails extends React.Component {
   componentDidMount() {
+    /** Review: деструктуризация (eslint как бы намекнул) **/
     this.props.getFilm(this.props.id);
   }
 
   addFavoriteHandler = () => {
+    /** Review: деструктуризация (eslint как бы намекнул) **/
     this.props.addFavorite(this.props.movie);
   };
 
   removeFavoriteHandler = () => {
+    /** Review: деструктуризация (eslint как бы намекнул) **/
     this.props.removeFavorite(this.props.movie.id);
   };
 

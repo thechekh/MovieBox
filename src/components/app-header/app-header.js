@@ -6,6 +6,7 @@ import cn from "classnames";
 
 import "./app-header.css";
 
+/** Review: Опиши match через propTypes **/
 const AppHeader = ({ match }) => {
   let isFavorite = false;
   if (match.path.indexOf("favorites") === 1) {

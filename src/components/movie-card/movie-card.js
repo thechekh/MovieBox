@@ -31,6 +31,7 @@ MovieCard.propTypes = {
   year: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
   rate: PropTypes.number.isRequired,
+  /** Review: опиши type тоже через arrayOf и shape **/
   type: PropTypes.array.isRequired,
 
   genres: PropTypes.arrayOf(

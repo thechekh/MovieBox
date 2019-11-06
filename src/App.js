@@ -13,6 +13,7 @@ import Page404 from "./components/pages/page-404";
 
 class App extends React.Component {
   componentDidMount() {
+    /** Review: деструктуризация **/
     this.props.getsGenres();
   }
 

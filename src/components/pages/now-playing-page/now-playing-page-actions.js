@@ -2,6 +2,8 @@ import instance from "../../../utils/axios-config";
 import Constants from "../../../utils/constants";
 
 const { GET_FILMS_REQUEST, GET_FILMS_SUCCESS, GET_FILMS_FAILURE } = Constants;
+
+/** Review: тоже упрости **/
 const getFilms = (page = 1) => {
   return async dispatch => {
     dispatch({

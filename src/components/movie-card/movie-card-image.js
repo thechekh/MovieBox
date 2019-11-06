@@ -10,6 +10,7 @@ const MovieCardImage = ({ id, path, year }) => {
         {path ? (
           <img
             src={`http://image.tmdb.org/t/p/w500${path}`}
+            /** Review: если это не шаблонная строка - делай просто строку в пропсах, без скобочек **/
             alt={"movie_image"}
           />
         ) : (

@@ -10,6 +10,7 @@ class MovieGrid extends React.Component {
   displayFilms = movie => {
     const {
       title,
+      /** Review: используй camelCase. Преобразовние можно сделать в экшене **/
       vote_average,
       poster_path,
       id,
@@ -46,6 +47,7 @@ class MovieGrid extends React.Component {
 }
 
 MovieGrid.propTypes = {
+  /** Review: опиши через arrayOf и shape **/
   films: PropTypes.array
 };
 MovieGrid.defaultProps = {
