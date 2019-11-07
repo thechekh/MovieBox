@@ -30,8 +30,9 @@ class FavoriteMoviePage extends React.Component {
   };
 
   render() {
-    const { page, favorites } = this.props;
-    const films = this.getFavorites(page);
+    const { favorites, match } = this.props;
+    const { page } = match.params;
+    const films = this.getFavorites(page || 1);
     return (
       <>
         <AppHeader />
@@ -44,7 +45,7 @@ class FavoriteMoviePage extends React.Component {
 
             {favorites.length > 20 && (
               <Pagination
-                initialPage={page || 1}
+                initialPage={page}
                 pageCount={Math.ceil(favorites.length / 20)}
                 changePage={this.changeFavoritePage}
               />
@@ -61,11 +62,9 @@ class FavoriteMoviePage extends React.Component {
 }
 
 FavoriteMoviePage.defaultProps = {
-  favorites: [],
-  page: 1
+  favorites: []
 };
 FavoriteMoviePage.propTypes = {
-  page: PropTypes.number,
   favorites: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -77,7 +76,8 @@ FavoriteMoviePage.propTypes = {
     })
   ),
 
-  history: ReactRouterPropTypes.history.isRequired
+  history: ReactRouterPropTypes.history.isRequired,
+  match: ReactRouterPropTypes.match.isRequired
 };
 const mapStateToProps = state => {
   return {
