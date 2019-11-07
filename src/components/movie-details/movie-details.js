@@ -112,14 +112,12 @@ MovieDetails.propTypes = {
   film: PropTypes.func.isRequired,
   addFav: PropTypes.func.isRequired,
   removeFav: PropTypes.func.isRequired,
-  movie: PropTypes.objectOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
-      overview: PropTypes.string.isRequired,
-      releaseDate: PropTypes.string.isRequired
-    })
-  ),
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    overview: PropTypes.string.isRequired,
+    releaseDate: PropTypes.string.isRequired
+  }),
   loading: PropTypes.bool
 };
 MovieDetails.defaultProps = {
