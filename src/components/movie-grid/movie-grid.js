@@ -10,22 +10,22 @@ class MovieGrid extends React.Component {
   displayFilms = movie => {
     const {
       title,
-      vote_average,
-      poster_path,
+      voteAverage,
+      posterPath,
       id,
       genres = [],
-      release_date,
-      genre_ids = 0
+      releaseDate,
+      genreIds = 0
     } = movie;
 
     return (
       <MovieCard
         title={title}
-        rate={vote_average}
-        poster={poster_path}
+        rate={voteAverage}
+        poster={posterPath}
         id={id}
-        type={genre_ids || genres.map(genre => genre.id)}
-        year={release_date}
+        type={genreIds || genres.map(genre => genre.id)}
+        year={releaseDate}
         key={id}
       />
     );
@@ -46,7 +46,14 @@ class MovieGrid extends React.Component {
 }
 
 MovieGrid.propTypes = {
-  films: PropTypes.array
+  films: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      overview: PropTypes.string.isRequired,
+      releaseDate: PropTypes.string.isRequired
+    })
+  )
 };
 MovieGrid.defaultProps = {
   films: []

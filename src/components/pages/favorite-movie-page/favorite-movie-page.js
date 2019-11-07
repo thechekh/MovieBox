@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import ReactRouterPropTypes from "react-router-prop-types";
 
 import "./favorite-movie-page.css";
 import MovieGrid from "../../movie-grid";
@@ -22,17 +23,15 @@ class FavoriteMoviePage extends React.Component {
   }
 
   changeFavoritePage = e => {
-    let { selected } = e;
-    selected++;
-    if (selected) {
-      this.props.history.push(`/favorites/${selected}`);
-    }
+    const { history } = this.props;
+    const { selected } = e;
+    const page = selected + 1;
+    history.push(`/favorites/${page}`);
   };
 
   render() {
-    const { page } = this.props.match.params;
-    const films = this.getFavorites(page || 1);
-    const { favorites } = this.props;
+    const { page, favorites } = this.props;
+    const films = this.getFavorites(page);
     return (
       <>
         <AppHeader />
@@ -46,7 +45,7 @@ class FavoriteMoviePage extends React.Component {
             {favorites.length > 20 && (
               <Pagination
                 initialPage={page || 1}
-                pageCount={Math.ceil(this.props.favorites.length / 20)}
+                pageCount={Math.ceil(favorites.length / 20)}
                 changePage={this.changeFavoritePage}
               />
             )}
@@ -62,11 +61,23 @@ class FavoriteMoviePage extends React.Component {
 }
 
 FavoriteMoviePage.defaultProps = {
-  favorites: []
+  favorites: [],
+  page: 1
 };
 FavoriteMoviePage.propTypes = {
   page: PropTypes.number,
-  favorites: PropTypes.array
+  favorites: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      backdropPath: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      overview: PropTypes.string.isRequired,
+      posterPath: PropTypes.string.isRequired,
+      releaseDate: PropTypes.string.isRequired
+    })
+  ),
+
+  history: ReactRouterPropTypes.history.isRequired
 };
 const mapStateToProps = state => {
   return {

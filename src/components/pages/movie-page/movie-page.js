@@ -1,11 +1,15 @@
 import React from "react";
 
 import "./movie-page.css";
+import ReactRouterPropTypes from "react-router-prop-types";
 import MovieDetails from "../../movie-details";
 import AppHeader from "../../app-header";
 
-const MoviePage = props => {
-  const { id } = props.match.params;
+const MoviePage = ({
+  match: {
+    params: { id }
+  }
+}) => {
   return (
     <>
       <AppHeader />
@@ -13,5 +17,7 @@ const MoviePage = props => {
     </>
   );
 };
-
+MoviePage.propTypes = {
+  match: ReactRouterPropTypes.match.isRequired
+};
 export default MoviePage;

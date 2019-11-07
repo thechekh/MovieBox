@@ -10,7 +10,7 @@ const MovieCardImage = ({ id, path, year }) => {
         {path ? (
           <img
             src={`http://image.tmdb.org/t/p/w500${path}`}
-            alt={"movie_image"}
+            alt="movie_image"
           />
         ) : (
           <img src={defaultImg} width={500} alt="image_not_found" />
@@ -22,8 +22,11 @@ const MovieCardImage = ({ id, path, year }) => {
 };
 MovieCardImage.propTypes = {
   id: PropTypes.number.isRequired,
-  path: PropTypes.string.isRequired,
+  path: PropTypes.string,
   year: PropTypes.number.isRequired
+};
+MovieCardImage.defaultProps = {
+  path: null
 };
 
 export default MovieCardImage;

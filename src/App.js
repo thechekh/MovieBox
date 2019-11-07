@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import "./App.css";
-import getsGenres from "./components/movie-grid/movie-grid-actions";
+import getsGenres from "./actions/genres-actions";
 import AppFooter from "./components/app-footer";
 import NowPlayingPage from "./components/pages/now-playing-page";
 import MoviePage from "./components/pages/movie-page";
@@ -13,7 +13,8 @@ import Page404 from "./components/pages/page-404";
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.getsGenres();
+    const { genres } = this.props;
+    genres();
   }
 
   render() {
@@ -35,9 +36,9 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  getsGenres: PropTypes.func.isRequired
+  genres: PropTypes.func.isRequired
 };
 export default connect(
   null,
-  { getsGenres }
+  { genres: getsGenres }
 )(App);

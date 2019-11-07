@@ -3,32 +3,32 @@ import React from "react";
 import "./now-playing-page.css";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import ReactRouterPropTypes from "react-router-prop-types";
 
 import MovieGrid from "../../movie-grid/movie-grid";
-import getFilms from "./now-playing-page-actions";
+import getFilms from "../../../actions/now-playing-page-actions";
 import Spinner from "../../spinner";
 import Pagination from "../../pagination";
 import AppHeader from "../../app-header";
 
 class NowPlayingPage extends React.Component {
   componentDidMount() {
-    const { page } = this.props.match.params;
-    this.props.getFilms(page);
+    const { setFilms, match } = this.props;
+    const { page } = match.params;
+    setFilms(page);
   }
 
   changePage = e => {
-    let { selected } = e;
-    selected++;
-    if (selected) {
-      this.props.history.push(`/page/${selected}`);
-      this.props.getFilms(selected);
-    }
+    const { history, setFilms } = this.props;
+    const { selected } = e;
+    const page = selected + 1;
+    history.push(`/page/${page}`);
+    setFilms(page);
   };
 
   render() {
-    const { page } = this.props.match.params;
-    const { loading, films, pages } = this.props;
-
+    const { loading, films, pages, match } = this.props;
+    const { page } = match.params;
     if (loading) {
       return <Spinner />;
     }
@@ -55,9 +55,18 @@ const mapStateToProps = state => {
 };
 
 NowPlayingPage.propTypes = {
-  getFilms: PropTypes.func.isRequired,
-  films: PropTypes.array,
+  setFilms: PropTypes.func.isRequired,
+  films: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      overview: PropTypes.string.isRequired,
+      releaseDate: PropTypes.string.isRequired
+    })
+  ),
   pages: PropTypes.number,
+  match: ReactRouterPropTypes.match.isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
   loading: PropTypes.bool
 };
 NowPlayingPage.defaultProps = {
@@ -67,5 +76,5 @@ NowPlayingPage.defaultProps = {
 };
 export default connect(
   mapStateToProps,
-  { getFilms }
+  { setFilms: getFilms }
 )(NowPlayingPage);

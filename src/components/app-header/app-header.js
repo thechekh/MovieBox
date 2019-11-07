@@ -5,6 +5,7 @@ import { faStar } from "@fortawesome/free-regular-svg-icons";
 import cn from "classnames";
 
 import "./app-header.css";
+import ReactRouterPropTypes from "react-router-prop-types";
 
 const AppHeader = ({ match }) => {
   let isFavorite = false;
@@ -34,6 +35,9 @@ const AppHeader = ({ match }) => {
       </div>
     </div>
   );
+};
+AppHeader.propTypes = {
+  match: ReactRouterPropTypes.match.isRequired
 };
 
 export default withRouter(AppHeader);

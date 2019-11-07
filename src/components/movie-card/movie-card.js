@@ -29,16 +29,18 @@ MovieCard.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired,
   rate: PropTypes.number.isRequired,
-  type: PropTypes.array.isRequired,
-
+  poster: PropTypes.string,
+  type: PropTypes.arrayOf(PropTypes.number).isRequired,
   genres: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
       name: PropTypes.string
     })
   ).isRequired
+};
+MovieCard.defaultProps = {
+  poster: null
 };
 
 const mapStateToProps = state => {

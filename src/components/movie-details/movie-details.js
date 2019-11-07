@@ -7,21 +7,28 @@ import moment from "moment";
 
 import "./movie-details.css";
 import makeMapStateToProps from "../../selectors/movie-details-selectors";
-import { getFilm, addFavorite, removeFavorite } from "./movie-details-actions";
+import {
+  getFilm,
+  addFavorite,
+  removeFavorite
+} from "../../actions/movie-details-actions";
 import defaultImg from "../movie-card/default_img.png";
 import Spinner from "../spinner";
 
 class MovieDetails extends React.Component {
   componentDidMount() {
-    this.props.getFilm(this.props.id);
+    const { film, id } = this.props;
+    film(id);
   }
 
   addFavoriteHandler = () => {
-    this.props.addFavorite(this.props.movie);
+    const { addFav, movie } = this.props;
+    addFav(movie);
   };
 
   removeFavoriteHandler = () => {
-    this.props.removeFavorite(this.props.movie.id);
+    const { removeFav, movie } = this.props;
+    removeFav(movie.id);
   };
 
   getCategoryFilmString = genres => {
@@ -35,7 +42,7 @@ class MovieDetails extends React.Component {
     const { movie, loading, isFavorite } = this.props;
     const bgPoster = {
       backgroundImage: ` linear-gradient(to bottom, rgba(255, 255, 255,0.1), rgba(0, 0, 0,0.9) 95% )
-            ,url(http://image.tmdb.org/t/p/w500${movie && movie.backdrop_path}`
+            ,url(http://image.tmdb.org/t/p/w500${movie && movie.backdropPath}`
     };
 
     if (loading) {
@@ -53,16 +60,16 @@ class MovieDetails extends React.Component {
             >
               <h1>{movie.title}</h1>
               <div className="about">
-                <span>{moment(movie.release_date, "YYYY/MM/DD").year()} </span>
+                <span>{moment(movie.releaseDate, "YYYY/MM/DD").year()} </span>
                 <span>{this.getCategoryFilmString(movie.genres)}</span>
               </div>
             </div>
             <div className="container">
               <div className="row movie__overview">
                 <div className="col-sm-12 col-md-6 col-lg-3 d-flex justify-content-center flex-column">
-                  {movie.poster_path ? (
+                  {movie.posterPath ? (
                     <img
-                      src={`http://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                      src={`http://image.tmdb.org/t/p/w300${movie.posterPath}`}
                       alt={movie.title}
                     />
                   ) : (
@@ -102,10 +109,17 @@ class MovieDetails extends React.Component {
 MovieDetails.propTypes = {
   id: PropTypes.number.isRequired,
   isFavorite: PropTypes.bool.isRequired,
-  getFilm: PropTypes.func.isRequired,
-  addFavorite: PropTypes.func.isRequired,
-  removeFavorite: PropTypes.func.isRequired,
-  movie: PropTypes.object,
+  film: PropTypes.func.isRequired,
+  addFav: PropTypes.func.isRequired,
+  removeFav: PropTypes.func.isRequired,
+  movie: PropTypes.objectOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      overview: PropTypes.string.isRequired,
+      releaseDate: PropTypes.string.isRequired
+    })
+  ),
   loading: PropTypes.bool
 };
 MovieDetails.defaultProps = {
@@ -115,5 +129,5 @@ MovieDetails.defaultProps = {
 
 export default connect(
   makeMapStateToProps,
-  { addFavorite, removeFavorite, getFilm }
+  { addFav: addFavorite, removeFav: removeFavorite, film: getFilm }
 )(MovieDetails);

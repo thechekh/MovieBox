@@ -7,12 +7,14 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(config => {
-  config.params = {
-    ...config.params,
-    api_key: key,
-    language: "ru-RU"
+  return {
+    ...config,
+    params: {
+      ...config.params,
+      api_key: key,
+      language: "ru-RU"
+    }
   };
-  return config;
 });
 
 export default instance;
