@@ -10,6 +10,7 @@ import reducer from "../reducers/index";
 
 import watchFetchGenresSaga from "../sagas/genres-saga";
 import watchFetchMovieSaga from "../sagas/movie-details-saga";
+import watchFetchFilmsSaga from "../sagas/now-playing-page-saga";
 
 const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
@@ -30,5 +31,6 @@ const store = createStore(
 );
 sagaMiddleware.run(watchFetchGenresSaga);
 sagaMiddleware.run(watchFetchMovieSaga);
+sagaMiddleware.run(watchFetchFilmsSaga);
 const persistor = persistStore(store);
 export { store, persistor };

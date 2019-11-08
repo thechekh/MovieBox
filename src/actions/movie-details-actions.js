@@ -1,5 +1,4 @@
 import camelcaseKeys from "camelcase-keys";
-import instance from "../utils/axios-config";
 import Constants from "../utils/constants";
 
 const {
