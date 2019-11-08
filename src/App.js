@@ -2,19 +2,21 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { createStructuredSelector } from "reselect";
+import { bindActionCreators } from "redux";
 
 import "./App.css";
-import getsGenres from "./actions/genres-actions";
 import AppFooter from "./components/app-footer";
 import NowPlayingPage from "./components/pages/now-playing-page";
 import MoviePage from "./components/pages/movie-page";
 import FavoriteMoviePage from "./components/pages/favorite-movie-page";
 import Page404 from "./components/pages/page-404";
+import { makeSelectGenres } from "./selectors/genres-selector";
+import { fetchGenres } from "./actions/genres-actions";
 
 class App extends React.Component {
   componentDidMount() {
-    const { genres } = this.props;
-    genres();
+    this.props.fetchGenres();
   }
 
   render() {
@@ -35,10 +37,17 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = {
-  genres: PropTypes.func.isRequired
-};
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      fetchGenres
+    },
+    dispatch
+  );
+const mapStateToProps = createStructuredSelector({
+  genres: makeSelectGenres()
+});
 export default connect(
-  null,
-  { genres: getsGenres }
+  mapStateToProps,
+  mapDispatchToProps
 )(App);

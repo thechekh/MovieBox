@@ -3,8 +3,14 @@ import thunkMiddleware from "redux-thunk";
 import { createLogger } from "redux-logger";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+
+import createSagaMiddleware from "redux-saga";
+
 import reducer from "../reducers/index";
 
+import watchFetchGenresSaga from "../sagas/genres-saga";
+
+const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
   key: "root",
   storage
@@ -19,7 +25,8 @@ const composeEnhancers =
     : compose;
 const store = createStore(
   persistedReducer,
-  composeEnhancers(applyMiddleware(loggerMiddleware, thunkMiddleware))
+  composeEnhancers(applyMiddleware(loggerMiddleware, sagaMiddleware))
 );
+sagaMiddleware.run(watchFetchGenresSaga);
 const persistor = persistStore(store);
 export { store, persistor };
