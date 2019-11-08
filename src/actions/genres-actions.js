@@ -8,19 +8,6 @@ const {
   GENRES_FAILURE,
   GENRES_FETCH
 } = Constants;
-const getsGenres = () => async dispatch => {
-  try {
-    const genres = await instance.get(`genre/movie/list`);
-    dispatch({
-      type: SET_GENRES,
-      payload: genres.data
-    });
-    return genres;
-  } catch (e) {
-    return e;
-  }
-};
-
 export const fetchGenresRequest = () => ({
   type: GENRES_REQUEST
 });

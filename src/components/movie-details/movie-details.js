@@ -7,18 +7,16 @@ import moment from "moment";
 
 import "./movie-details.css";
 import makeMapStateToProps from "../../selectors/movie-details-selectors";
-import {
-  getFilm,
-  addFavorite,
-  removeFavorite
-} from "../../actions/movie-details-actions";
+import { fetchMovie } from "../../actions/movie-details-actions";
+
 import defaultImg from "../movie-card/default_img.png";
 import Spinner from "../spinner";
+import { bindActionCreators } from "redux";
 
 class MovieDetails extends React.Component {
   componentDidMount() {
-    const { film, id } = this.props;
-    film(id);
+    const { id } = this.props;
+    this.props.fetchMovie(id);
   }
 
   addFavoriteHandler = () => {
@@ -124,8 +122,14 @@ MovieDetails.defaultProps = {
   loading: true,
   movie: null
 };
-
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      fetchMovie
+    },
+    dispatch
+  );
 export default connect(
   makeMapStateToProps,
-  { addFav: addFavorite, removeFav: removeFavorite, film: getFilm }
+  mapDispatchToProps
 )(MovieDetails);

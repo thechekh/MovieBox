@@ -4,24 +4,24 @@ const initialState = {
   favorites: []
 };
 const {
-  GET_FILMS_REQUEST,
-  GET_FILMS_SUCCESS,
-  GET_FILMS_FAILURE,
+  FILMS_REQUEST,
+  FILMS_SUCCESS,
+  FILMS_FAILURE,
   DELETE_FAVORITE,
   ADD_FAVORITE,
-  GET_MOVIE_REQUEST,
-  GET_MOVIE_SUCCESS,
-  GET_MOVIE_FAILURE
+  MOVIE_REQUEST,
+  MOVIE_SUCCESS,
+  MOVIE_FAILURE
 } = Constants;
 
 export default (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case GET_FILMS_REQUEST:
+    case FILMS_REQUEST:
       return { ...state, loading: true };
-    case GET_FILMS_SUCCESS:
+    case FILMS_SUCCESS:
       return { ...state, ...payload, loading: false };
-    case GET_FILMS_FAILURE:
+    case FILMS_FAILURE:
       return { ...state, loading: false, errorMessage: payload };
     case DELETE_FAVORITE:
       return {
@@ -30,11 +30,11 @@ export default (state = initialState, action) => {
       };
     case ADD_FAVORITE:
       return { ...state, favorites: [payload, ...state.favorites] };
-    case GET_MOVIE_REQUEST:
+    case MOVIE_REQUEST:
       return { ...state, loading: true };
-    case GET_MOVIE_SUCCESS:
+    case MOVIE_SUCCESS:
       return { ...state, payload, loading: false };
-    case GET_MOVIE_FAILURE:
+    case MOVIE_FAILURE:
       return { ...state, loading: false, errorMessage: payload };
 
     default:

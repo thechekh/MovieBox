@@ -5,30 +5,28 @@ import Constants from "../utils/constants";
 const {
   DELETE_FAVORITE,
   ADD_FAVORITE,
-  GET_MOVIE_REQUEST,
-  GET_MOVIE_SUCCESS,
-  GET_MOVIE_FAILURE
+  MOVIE_REQUEST,
+  MOVIE_SUCCESS,
+  MOVIE_FAILURE,
+  MOVIE_FETCH
 } = Constants;
 
-export const getFilm = id => async dispatch => {
-  dispatch({
-    type: GET_MOVIE_REQUEST
-  });
-  try {
-    const url = `movie/${id}`;
-    const res = await instance.get(url);
-    const { data } = res;
-    dispatch({
-      type: GET_MOVIE_SUCCESS,
-      payload: camelcaseKeys(data)
-    });
-  } catch (e) {
-    dispatch({
-      type: GET_MOVIE_FAILURE,
-      payload: e
-    });
-  }
-};
+export const fetchMovieRequest = id => ({
+  type: MOVIE_REQUEST,
+  payload: id
+});
+export const fetchMovieSuccess = movie => ({
+  type: MOVIE_SUCCESS,
+  payload: camelcaseKeys(movie)
+});
+export const fetchMovieFailure = err => ({
+  type: MOVIE_FAILURE,
+  payload: err
+});
+export const fetchMovie = id => ({
+  type: MOVIE_FETCH,
+  payload: id
+});
 
 export const addFavorite = film => dispatch => {
   dispatch({

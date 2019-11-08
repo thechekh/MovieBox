@@ -9,6 +9,7 @@ import createSagaMiddleware from "redux-saga";
 import reducer from "../reducers/index";
 
 import watchFetchGenresSaga from "../sagas/genres-saga";
+import watchFetchMovieSaga from "../sagas/movie-details-saga";
 
 const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
@@ -28,5 +29,6 @@ const store = createStore(
   composeEnhancers(applyMiddleware(loggerMiddleware, sagaMiddleware))
 );
 sagaMiddleware.run(watchFetchGenresSaga);
+sagaMiddleware.run(watchFetchMovieSaga);
 const persistor = persistStore(store);
 export { store, persistor };
