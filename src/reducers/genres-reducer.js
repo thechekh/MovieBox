@@ -8,11 +8,9 @@ export default (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case GENRES_SUCCESS:
-      return {
-        ...payload.genres
-      };
+      return [...payload.genres];
     case GENRES_FAILURE:
-      return payload.msg;
+      return payload;
     default:
       return state;
   }

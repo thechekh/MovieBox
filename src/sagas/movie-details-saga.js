@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import camelcaseKeys from "camelcase-keys";
+
 import instance from "../utils/axios-config";
 import Constants from "../utils/constants";
 import {
@@ -27,17 +27,3 @@ function* watchFetchMovieSaga() {
 }
 
 export default watchFetchMovieSaga;
-
-/*export const addFavorite = film => dispatch => {
-    dispatch({
-        type: ADD_FAVORITE,
-        payload: camelcaseKeys(film)
-    });
-};
-
-export const removeFavorite = id => dispatch => {
-    dispatch({
-        type: DELETE_FAVORITE,
-        payload: id
-    });
-};*/

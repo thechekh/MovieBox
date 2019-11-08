@@ -1,4 +1,4 @@
-import { put, takeEvery, takeLatest, call } from "redux-saga/effects";
+import { put, call, takeLatest } from "redux-saga/effects";
 import instance from "../utils/axios-config";
 import Constants from "../utils/constants";
 import {
@@ -10,11 +10,9 @@ import {
 function* fetchGenres() {
   try {
     yield put(fetchGenresRequest());
-
     const genres = yield call(() => {
       return instance.get("genre/movie/list").then(res => res.data);
     });
-    console.log("GENRES", genres);
     yield put(fetchGenresSuccess(genres));
   } catch (err) {
     const msg = "Failed Load Genres";

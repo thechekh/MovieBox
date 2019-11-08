@@ -1,5 +1,5 @@
-import instance from "../utils/axios-config";
 import Constants from "../utils/constants";
+
 const { FILMS_REQUEST, FILMS_SUCCESS, FILMS_FAILURE, FILMS_FETCH } = Constants;
 
 export const fetchFilmsRequest = () => ({

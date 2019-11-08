@@ -1,12 +1,10 @@
-import instance from "../utils/axios-config";
 import Constants from "../utils/constants";
 
 const {
-  SET_GENRES,
+  GENRES_FETCH,
   GENRES_REQUEST,
   GENRES_SUCCESS,
-  GENRES_FAILURE,
-  GENRES_FETCH
+  GENRES_FAILURE
 } = Constants;
 export const fetchGenresRequest = () => ({
   type: GENRES_REQUEST

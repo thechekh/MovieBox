@@ -2,12 +2,12 @@ import camelcaseKeys from "camelcase-keys";
 import Constants from "../utils/constants";
 
 const {
-  DELETE_FAVORITE,
+  REMOVE_FAVORITE,
   ADD_FAVORITE,
+  MOVIE_FETCH,
   MOVIE_REQUEST,
   MOVIE_SUCCESS,
-  MOVIE_FAILURE,
-  MOVIE_FETCH
+  MOVIE_FAILURE
 } = Constants;
 
 export const fetchMovieRequest = id => ({
@@ -27,16 +27,12 @@ export const fetchMovie = id => ({
   payload: id
 });
 
-export const addFavorite = film => dispatch => {
-  dispatch({
-    type: ADD_FAVORITE,
-    payload: camelcaseKeys(film)
-  });
-};
+export const addFavorite = film => ({
+  type: ADD_FAVORITE,
+  payload: camelcaseKeys(film)
+});
 
-export const removeFavorite = id => dispatch => {
-  dispatch({
-    type: DELETE_FAVORITE,
-    payload: id
-  });
-};
+export const removeFavorite = id => ({
+  type: REMOVE_FAVORITE,
+  payload: id
+});

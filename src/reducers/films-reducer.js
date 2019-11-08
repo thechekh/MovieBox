@@ -7,7 +7,7 @@ const {
   FILMS_REQUEST,
   FILMS_SUCCESS,
   FILMS_FAILURE,
-  DELETE_FAVORITE,
+  REMOVE_FAVORITE,
   ADD_FAVORITE,
   MOVIE_REQUEST,
   MOVIE_SUCCESS,
@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
       return { ...state, ...payload, loading: false };
     case FILMS_FAILURE:
       return { ...state, loading: false, errorMessage: payload };
-    case DELETE_FAVORITE:
+    case REMOVE_FAVORITE:
       return {
         ...state,
         favorites: state.favorites.filter(item => item.id !== payload)

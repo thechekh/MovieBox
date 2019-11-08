@@ -4,19 +4,22 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import moment from "moment";
+import { bindActionCreators } from "redux";
 
 import "./movie-details.css";
 import makeMapStateToProps from "../../selectors/movie-details-selectors";
-import { fetchMovie } from "../../actions/movie-details-actions";
-
+import {
+  fetchMovie,
+  addFavorite,
+  removeFavorite
+} from "../../actions/movie-details-actions";
 import defaultImg from "../movie-card/default_img.png";
 import Spinner from "../spinner";
-import { bindActionCreators } from "redux";
 
 class MovieDetails extends React.Component {
   componentDidMount() {
-    const { id } = this.props;
-    this.props.fetchMovie(id);
+    const { id, getMovie } = this.props;
+    getMovie(id);
   }
 
   addFavoriteHandler = () => {
@@ -107,7 +110,7 @@ class MovieDetails extends React.Component {
 MovieDetails.propTypes = {
   id: PropTypes.number.isRequired,
   isFavorite: PropTypes.bool.isRequired,
-  film: PropTypes.func.isRequired,
+  getMovie: PropTypes.func.isRequired,
   addFav: PropTypes.func.isRequired,
   removeFav: PropTypes.func.isRequired,
   movie: PropTypes.shape({
@@ -125,7 +128,9 @@ MovieDetails.defaultProps = {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchMovie
+      getMovie: fetchMovie,
+      addFav: addFavorite,
+      removeFav: removeFavorite
     },
     dispatch
   );

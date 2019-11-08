@@ -16,7 +16,8 @@ import { fetchGenres } from "./actions/genres-actions";
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.fetchGenres();
+    const { getGenres } = this.props;
+    getGenres();
   }
 
   render() {
@@ -36,11 +37,13 @@ class App extends React.Component {
     );
   }
 }
-
+App.propTypes = {
+  getGenres: PropTypes.func.isRequired
+};
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchGenres
+      getGenres: fetchGenres
     },
     dispatch
   );

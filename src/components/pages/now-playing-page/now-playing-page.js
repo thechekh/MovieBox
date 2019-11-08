@@ -14,17 +14,17 @@ import AppHeader from "../../app-header";
 
 class NowPlayingPage extends React.Component {
   componentDidMount() {
-    const { fetchFilms, match } = this.props;
+    const { getFilms, match } = this.props;
     const { page } = match.params;
-    fetchFilms(page);
+    getFilms(page);
   }
 
   changePage = e => {
-    const { history, fetchFilms } = this.props;
+    const { history, getFilms } = this.props;
     const { selected } = e;
     const page = selected + 1;
     history.push(`/page/${page}`);
-    fetchFilms(page);
+    getFilms(page);
   };
 
   render() {
@@ -56,7 +56,7 @@ const mapStateToProps = state => {
 };
 
 NowPlayingPage.propTypes = {
-  setFilms: PropTypes.func.isRequired,
+  getFilms: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -78,7 +78,7 @@ NowPlayingPage.defaultProps = {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchFilms
+      getFilms: fetchFilms
     },
     dispatch
   );
