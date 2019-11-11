@@ -74,7 +74,7 @@ class MovieDetails extends React.Component {
                       alt={movie.title}
                     />
                   ) : (
-                    <img src={defaultImg} alt={"default img"} />
+                    <img src={defaultImg} alt="default img" />
                   )}
                   {isFavorite ? (
                     <button
@@ -117,7 +117,10 @@ MovieDetails.propTypes = {
     title: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
     overview: PropTypes.string.isRequired,
-    releaseDate: PropTypes.string.isRequired
+    releaseDate: PropTypes.string.isRequired,
+    posterPath: PropTypes.string.isRequired,
+    genres: PropTypes.array.isRequired,
+    backdropPath: PropTypes.string.isRequired
   }),
   loading: PropTypes.bool
 };
