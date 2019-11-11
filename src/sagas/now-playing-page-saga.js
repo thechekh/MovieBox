@@ -13,14 +13,13 @@ function* fetchFilms(action) {
     const page = action.payload;
     yield put(fetchFilmsRequest());
     const url = `movie/now_playing`;
-    const films = yield call(() => {
-      return instance
-        .get(url, {
-          params: {
-            page
-          }
-        })
-        .then(res => res.data);
+    const films = yield call(async () => {
+      const res = await instance.get(url, {
+        params: {
+          page
+        }
+      });
+      return res.data;
     });
     films.results = camelcaseKeys(films.results);
     yield put(fetchFilmsSuccess(films));
