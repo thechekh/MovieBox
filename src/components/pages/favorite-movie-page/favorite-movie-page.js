@@ -14,7 +14,7 @@ class FavoriteMoviePage extends React.Component {
     const pageSize = 20;
     const filmsStartCount = pageNumber * pageSize - pageSize;
     const newFavoriteFilms = [];
-    for (let i = filmsStartCount; i < filmsStartCount + pageSize; i++) {
+    for (let i = filmsStartCount; i < filmsStartCount + pageSize; i + 1) {
       if (favorites[i]) {
         newFavoriteFilms.push(favorites[i]);
       }
@@ -60,7 +60,6 @@ class FavoriteMoviePage extends React.Component {
     );
   }
 }
-
 FavoriteMoviePage.defaultProps = {
   favorites: []
 };
