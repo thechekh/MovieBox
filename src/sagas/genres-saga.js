@@ -17,7 +17,6 @@ function* fetchGenres() {
     yield put(fetchGenresFailure(msg));
   }
 }
-
 function* watchFetchGenresSaga() {
   yield takeLatest(Constants.GENRES_FETCH, fetchGenres);
 }

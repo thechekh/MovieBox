@@ -14,6 +14,7 @@ import Page404 from "./components/pages/page-404";
 import { makeSelectGenres } from "./selectors/genres-selector";
 import { fetchGenres } from "./actions/genres-actions";
 
+// ?@decorator
 class App extends React.Component {
   componentDidMount() {
     const { getGenres } = this.props;
