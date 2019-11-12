@@ -13,6 +13,7 @@ function* fetchFilms(action) {
     const page = action.payload;
     yield put(fetchFilmsRequest());
     const url = `movie/now_playing`;
+    /** Review: писал в другом файлике */
     const films = yield call(async () => {
       const res = await instance.get(url, {
         params: {

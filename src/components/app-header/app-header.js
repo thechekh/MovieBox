@@ -5,6 +5,7 @@ import { faStar } from "@fortawesome/free-regular-svg-icons";
 import cn from "classnames";
 
 import "./app-header.css";
+/** Review: мешаешь импорты */
 import ReactRouterPropTypes from "react-router-prop-types";
 
 const AppHeader = ({ match }) => {

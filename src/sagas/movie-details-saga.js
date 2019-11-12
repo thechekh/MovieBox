@@ -12,6 +12,7 @@ function* fetchMovie(action) {
   try {
     yield put(fetchMovieRequest());
     const url = `movie/${action.payload}`;
+    /** Review: выше писал */
     const movie = yield call(async () => {
       const res = await instance.get(url);
       return res.data;

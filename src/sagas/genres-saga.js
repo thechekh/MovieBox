@@ -10,6 +10,7 @@ import {
 function* fetchGenres() {
   try {
     yield put(fetchGenresRequest());
+    /** Review: нененне, так делать нельзя. Нужно yield call(instance.get, 'endpoint') */
     const genres = yield call(async () => {
       const res = await instance.get("genre/movie/list");
       return res.data;
