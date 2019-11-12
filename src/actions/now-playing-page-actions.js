@@ -13,6 +13,7 @@ export const fetchFilmsFailure = err => ({
   type: FILMS_FAILURE,
   payload: err
 });
-export const fetchFilms = () => ({
-  type: FILMS_FETCH
+export const fetchFilms = page => ({
+  type: FILMS_FETCH,
+  payload: page
 });

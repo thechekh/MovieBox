@@ -12,17 +12,10 @@ function* fetchFilms(action) {
   try {
     const page = action.payload;
     yield put(fetchFilmsRequest());
-    const url = `movie/now_playing`;
-    const films = yield call(async () => {
-      const res = await instance.get(url, {
-        params: {
-          page
-        }
-      });
-      return res.data;
-    });
-    films.results = camelcaseKeys(films.results);
-    yield put(fetchFilmsSuccess(films));
+    const url = `movie/now_playing?page=${page}`;
+    const films = yield call(instance.get, url);
+    films.data.results = camelcaseKeys(films.data.results);
+    yield put(fetchFilmsSuccess(films.data));
   } catch (err) {
     const msg = "Failed Load Films";
     yield put(fetchFilmsFailure(msg));

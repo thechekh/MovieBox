@@ -12,11 +12,8 @@ function* fetchMovie(action) {
   try {
     yield put(fetchMovieRequest());
     const url = `movie/${action.payload}`;
-    const movie = yield call(async () => {
-      const res = await instance.get(url);
-      return res.data;
-    });
-    yield put(fetchMovieSuccess(movie));
+    const movie = yield call(instance.get, url);
+    yield put(fetchMovieSuccess(movie.data));
   } catch (err) {
     const msg = "Failed Load Movie";
     yield put(fetchMovieFailure(msg));

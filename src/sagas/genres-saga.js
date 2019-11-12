@@ -10,11 +10,8 @@ import {
 function* fetchGenres() {
   try {
     yield put(fetchGenresRequest());
-    const genres = yield call(async () => {
-      const res = await instance.get("genre/movie/list");
-      return res.data;
-    });
-    yield put(fetchGenresSuccess(genres));
+    const genres = yield call(instance.get, "genre/movie/list");
+    yield put(fetchGenresSuccess(genres.data));
   } catch (err) {
     const msg = "Failed Load Genres";
     yield put(fetchGenresFailure(msg));
