@@ -1,6 +1,5 @@
 import React from "react";
-import ReactRouterPropTypes from "react-router-prop-types";
-import PropTypes from "prop-types";
+
 import { observer, inject } from "mobx-react";
 import "./favorite-movie-page.css";
 import MovieGrid from "../../movie-grid";

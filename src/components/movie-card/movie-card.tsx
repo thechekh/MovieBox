@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import moment from "moment";
 import { inject, observer } from "mobx-react";
 
@@ -14,15 +13,19 @@ interface IProps {
   poster: string;
   type: any;
   genresStore?: {
-    genres: Array<object>;
+    genres: Array<{
+      id: number;
+      name: string;
+    }>;
     loading: boolean;
-    fetchGenres: (id: number) => void;
+    fetchGenres: () => void;
   };
 }
 
 const MovieCard: React.FunctionComponent<IProps> = inject("genresStore")(
   observer(({ poster, id, title, rate, type, year, genresStore }) => {
     const movieYear = moment(year, "YYYY/MM/DD").year();
+
     // @ts-ignore
     const { genres } = genresStore;
     const movieGenres = genres.filter((item: any) => type.includes(item.id));

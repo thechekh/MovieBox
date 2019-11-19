@@ -11,7 +11,18 @@ import Spinner from "../spinner";
 interface IProps {
   id: number;
   movieStore: {
-    movie: any;
+    movie: {
+      backdropPath: string;
+      posterPath: string;
+      overview: string;
+      title: string;
+      id: number;
+      releaseDate: string;
+      genres: Array<{
+        id: number;
+        name: string;
+      }>;
+    };
     favorites: Array<object>;
     isFavorite: (id: number) => boolean;
     loading: boolean;
@@ -41,7 +52,12 @@ class MovieDetails extends React.Component<IProps> {
     removeFavorite(id);
   };
 
-  getCategoryFilmString = (genres: any): string => {
+  getCategoryFilmString = (
+    genres: Array<{
+      id: number;
+      name: string;
+    }>
+  ): string => {
     const genresNames = genres.map(
       (item: any) => item.name.charAt(0).toUpperCase() + item.name.slice(1)
     );

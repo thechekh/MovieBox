@@ -41,7 +41,6 @@ class NowPlayingPage extends React.Component<IProps> {
   };
 
   render() {
-    console.log("history", this.props.history);
     const { match, filmsStore } = this.props;
     const { loading, films } = filmsStore;
     const { page } = match.params;

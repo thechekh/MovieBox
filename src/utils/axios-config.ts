@@ -18,6 +18,7 @@ instance.interceptors.request.use(
     };
   },
   error => {
+    // eslint-disable-next-line no-console
     console.log("error while receiving data", error);
   }
 );

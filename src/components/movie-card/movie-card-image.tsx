@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import React from "react";
-import PropTypes from "prop-types";
 import defaultImg from "./default_img.png";
 
 interface IProps {
@@ -9,11 +8,8 @@ interface IProps {
   year: number;
 }
 
-const MovieCardImage: React.FunctionComponent<IProps> = ({
-  id,
-  path,
-  year
-}) => {
+function MovieCardImage(props: IProps) {
+  const { id, path, year } = props;
   return (
     <div className="movie__img">
       <Link to={`/movie/${id}`}>
@@ -29,6 +25,6 @@ const MovieCardImage: React.FunctionComponent<IProps> = ({
       <span className="movie__year">{year}</span>
     </div>
   );
-};
+}
 
 export default MovieCardImage;

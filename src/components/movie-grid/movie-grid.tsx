@@ -26,7 +26,10 @@ class MovieGrid extends React.Component<IProps> {
       id: number;
       releaseDate: string;
       genreIds?: number;
-      genres?: Array<object>;
+      genres?: Array<{
+        id: number;
+        name: string;
+      }>;
     } = movie;
 
     return (
@@ -35,7 +38,7 @@ class MovieGrid extends React.Component<IProps> {
         rate={voteAverage}
         poster={posterPath}
         id={id}
-        type={genreIds || genres.map((genre: any) => genre.id)}
+        type={genreIds || genres.map((genre: any): number => genre.id)}
         year={releaseDate}
         key={id}
       />

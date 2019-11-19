@@ -11,7 +11,7 @@ ReactDOM.render(
     movieStore={rootStore.movieStore}
     filmsStore={rootStore.filmsStore}
   >
-    <App genresStore={rootStore.genresStore} />
+    <App />
   </Provider>,
   document.getElementById("root")
 );

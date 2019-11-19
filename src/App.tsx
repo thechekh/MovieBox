@@ -11,22 +11,23 @@ import Page404 from "./components/pages/page-404";
 import Spinner from "./components/spinner";
 
 interface IProps {
-  genresStore: {
+  genresStore?: {
     genres: any;
     loading: boolean;
     fetchGenres: () => void;
   };
 }
 
-@observer
 class App extends React.Component<IProps> {
   componentDidMount() {
     const { genresStore } = this.props;
+    // @ts-ignore
     genresStore.fetchGenres();
   }
 
   render() {
     const { genresStore } = this.props;
+    // @ts-ignore
     if (genresStore.loading) {
       return <Spinner />;
     }
@@ -46,5 +47,4 @@ class App extends React.Component<IProps> {
     );
   }
 }
-
-export default App;
+export default inject("genresStore")(observer(App));

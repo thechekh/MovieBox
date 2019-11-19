@@ -4,10 +4,15 @@ import instance from "../utils/axios-config";
 
 class GenresStore {
   @observable
-  genres = null;
+  genres:
+    | Array<{
+        id: number;
+        name: string;
+      }>
+    | undefined;
 
   @observable
-  loading = true;
+  loading: boolean = true;
 
   @action
   fetchGenres = async () => {

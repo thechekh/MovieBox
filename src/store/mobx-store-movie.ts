@@ -7,10 +7,10 @@ class MovieStore {
   movie: object | undefined;
 
   @observable
-  favorites = [];
+  favorites: Array<object> = [];
 
   @observable
-  loading = true;
+  loading: boolean = true;
 
   @action
   fetchMovie = async (id: number) => {
