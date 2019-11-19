@@ -3,7 +3,7 @@ import React from "react";
 
 import "./spinner.css";
 
-const Spinner = () => {
+const Spinner: React.FunctionComponent<{}> = () => {
   return (
     <div className="container movie__spinner">
       <div className="lds-double-ring">

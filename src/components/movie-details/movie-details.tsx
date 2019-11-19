@@ -9,9 +9,22 @@ import { observer, inject } from "mobx-react";
 import defaultImg from "../movie-card/default_img.png";
 import Spinner from "../spinner";
 
+interface IProps {
+  id: number;
+  movieStore: {
+    movie: any;
+    favorites: Array<object>;
+    isFavorite: (id: number) => boolean;
+    loading: boolean;
+    fetchMovie: (id: number) => void;
+    addFavorite: (movie: object) => void;
+    removeFavorite: (id: number) => void;
+  };
+}
+
 @inject("movieStore")
 @observer
-class MovieDetails extends React.Component {
+class MovieDetails extends React.Component<IProps> {
   componentDidMount() {
     const { id, movieStore } = this.props;
     movieStore.loading = true;
@@ -30,9 +43,9 @@ class MovieDetails extends React.Component {
     removeFavorite(id);
   };
 
-  getCategoryFilmString = genres => {
+  getCategoryFilmString = (genres: any): string => {
     const genresNames = genres.map(
-      item => item.name.charAt(0).toUpperCase() + item.name.slice(1)
+      (item: any) => item.name.charAt(0).toUpperCase() + item.name.slice(1)
     );
     return genresNames.join(", ");
   };
@@ -107,18 +120,5 @@ class MovieDetails extends React.Component {
     );
   }
 }
-
-MovieDetails.wrappedComponent.propTypes = {
-  id: PropTypes.number.isRequired,
-  movieStore: PropTypes.shape({
-    movie: PropTypes.object,
-    favorites: PropTypes.array.isRequired,
-    isFavorite: PropTypes.func.isRequired,
-    loading: PropTypes.bool.isRequired,
-    fetchMovie: PropTypes.func.isRequired,
-    addFavorite: PropTypes.func.isRequired,
-    removeFavorite: PropTypes.func.isRequired
-  }).isRequired
-};
 
 export default MovieDetails;

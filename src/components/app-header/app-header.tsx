@@ -1,15 +1,19 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { Link, withRouter } from "react-router-dom";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import cn from "classnames";
 
 import "./app-header.css";
-import ReactRouterPropTypes from "react-router-prop-types";
 
-const AppHeader = ({ match }) => {
-  let isFavorite = false;
+export interface Imatch {
+  isExact: boolean;
+  path: string;
+  url: string;
+}
+
+const AppHeader = ({ match }: { match: Imatch }) => {
+  let isFavorite: boolean = false;
   if (match.path.indexOf("favorites") === 1) {
     isFavorite = true;
   }
@@ -36,9 +40,6 @@ const AppHeader = ({ match }) => {
       </div>
     </div>
   );
-};
-AppHeader.propTypes = {
-  match: ReactRouterPropTypes.match.isRequired
 };
 
 export default withRouter(AppHeader);

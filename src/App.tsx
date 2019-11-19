@@ -21,7 +21,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { genresStore } = this.props;
+    const { genresStore }: any = this.props;
     if (genresStore.loading) {
       return <Spinner />;
     }
@@ -41,12 +41,5 @@ class App extends React.Component {
     );
   }
 }
-App.wrappedComponent.propTypes = {
-  genresStore: PropTypes.shape({
-    genres: PropTypes.array,
-    loading: PropTypes.bool.isRequired,
-    fetchGenres: PropTypes.func.isRequired
-  }).isRequired
-};
 
 export default App;
