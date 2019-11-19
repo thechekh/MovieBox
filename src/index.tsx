@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "mobx-react";
 
 import App from "./App";
-import rootStore from "./store/index";
+import rootStore from "./store";
 
 ReactDOM.render(
   <Provider
@@ -11,7 +11,7 @@ ReactDOM.render(
     movieStore={rootStore.movieStore}
     filmsStore={rootStore.filmsStore}
   >
-    <App />
+    <App genresStore={rootStore.genresStore} />
   </Provider>,
   document.getElementById("root")
 );

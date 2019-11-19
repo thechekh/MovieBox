@@ -1,6 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 import { observer } from "mobx-react";
 
 import "./movie-grid.css";
@@ -58,5 +56,4 @@ class MovieGrid extends React.Component<IProps> {
   }
 }
 
-// @ts-ignore
-export default withRouter(MovieGrid);
+export default MovieGrid;

@@ -10,17 +10,23 @@ import FavoriteMoviePage from "./components/pages/favorite-movie-page";
 import Page404 from "./components/pages/page-404";
 import Spinner from "./components/spinner";
 
-@inject("genresStore")
+interface IProps {
+  genresStore: {
+    genres: any;
+    loading: boolean;
+    fetchGenres: () => void;
+  };
+}
+
 @observer
-class App extends React.Component {
+class App extends React.Component<IProps> {
   componentDidMount() {
-    // @ts-ignore
     const { genresStore } = this.props;
     genresStore.fetchGenres();
   }
 
   render() {
-    const { genresStore }: any = this.props;
+    const { genresStore } = this.props;
     if (genresStore.loading) {
       return <Spinner />;
     }

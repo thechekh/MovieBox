@@ -6,12 +6,26 @@ import "./favorite-movie-page.css";
 import MovieGrid from "../../movie-grid";
 import AppHeader from "../../app-header";
 
+interface IProps {
+  history: any;
+  movieStore: {
+    movie: any;
+    favorites: Array<object>;
+    isFavorite: (id: number) => boolean;
+    loading: boolean;
+    fetchMovie: (id: number) => void;
+    addFavorite: (movie: object) => void;
+    removeFavorite: (id: number) => void;
+  };
+}
+
 @inject("movieStore")
 @observer
-class FavoriteMoviePage extends React.Component {
-  changeFavoritePage = e => {
+class FavoriteMoviePage extends React.Component<IProps> {
+  changeFavoritePage = (e: object) => {
     const { history } = this.props;
-    const { selected } = e;
+    // @ts-ignore
+    const { selected }: { selected: number } = e;
     const page = selected + 1;
     history.push(`/favorites/${page}`);
   };
@@ -38,18 +52,4 @@ class FavoriteMoviePage extends React.Component {
     );
   }
 }
-
-FavoriteMoviePage.wrappedComponent.propTypes = {
-  history: ReactRouterPropTypes.history.isRequired,
-  movieStore: PropTypes.shape({
-    movie: PropTypes.object,
-    favorites: PropTypes.array.isRequired,
-    isFavorite: PropTypes.func.isRequired,
-    loading: PropTypes.bool.isRequired,
-    fetchMovie: PropTypes.func.isRequired,
-    addFavorite: PropTypes.func.isRequired,
-    removeFavorite: PropTypes.func.isRequired
-  }).isRequired
-};
-
 export default FavoriteMoviePage;

@@ -13,7 +13,7 @@ class FilmsStore {
   loading = true;
 
   @action
-  fetchFilms = async page => {
+  fetchFilms = async (page: number) => {
     try {
       const url = "movie/now_playing";
       const films = await instance.get(url, {

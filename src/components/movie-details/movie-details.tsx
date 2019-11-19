@@ -1,11 +1,10 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import PropTypes from "prop-types";
 import moment from "moment";
+import { observer } from "mobx-react";
 
 import "./movie-details.css";
-import { observer, inject } from "mobx-react";
 import defaultImg from "../movie-card/default_img.png";
 import Spinner from "../spinner";
 
@@ -22,7 +21,6 @@ interface IProps {
   };
 }
 
-@inject("movieStore")
 @observer
 class MovieDetails extends React.Component<IProps> {
   componentDidMount() {

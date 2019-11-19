@@ -3,6 +3,12 @@ import GenresStore from "./mobx-store-genres";
 import MovieStore from "./mobx-store-movie";
 
 class RootStore {
+  filmsStore: FilmsStore;
+
+  genresStore: GenresStore;
+
+  movieStore: MovieStore;
+
   constructor() {
     this.filmsStore = new FilmsStore();
     this.genresStore = new GenresStore();

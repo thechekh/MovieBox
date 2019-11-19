@@ -4,7 +4,7 @@ import instance from "../utils/axios-config";
 
 class MovieStore {
   @observable
-  movie = null;
+  movie: object | undefined;
 
   @observable
   favorites = [];
@@ -13,25 +13,28 @@ class MovieStore {
   loading = true;
 
   @action
-  fetchMovie = async id => {
+  fetchMovie = async (id: number) => {
     try {
       const movie = await instance.get(`movie/${id}`);
+
       this.movie = camelcaseKeys(movie.data);
     } finally {
       this.loading = false;
     }
   };
 
-  isFavorite = id => this.favorites.some(item => item.id === id);
+  isFavorite = (id: number) =>
+    this.favorites.some((item: any) => item.id === id);
 
   @action
-  addFavorite = movie => {
+  addFavorite = (movie: any) => {
+    // @ts-ignore
     this.favorites.unshift(movie);
   };
 
   @action
-  removeFavorite = id => {
-    this.favorites = this.favorites.filter(item => item.id !== id);
+  removeFavorite = (id: number) => {
+    this.favorites = this.favorites.filter((item: any) => item.id !== id);
   };
 }
 
