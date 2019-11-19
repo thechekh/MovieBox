@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { observer, inject } from "mobx-react";
-import PropTypes from "prop-types";
 
 import "./App.css";
 import AppFooter from "./components/app-footer";

@@ -3,7 +3,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import defaultImg from "./default_img.png";
 
-const MovieCardImage = ({ id, path, year }) => {
+interface IProps {
+  id: number;
+  path: string;
+  year: number;
+}
+
+const MovieCardImage: React.FunctionComponent<IProps> = ({
+  id,
+  path,
+  year
+}) => {
   return (
     <div className="movie__img">
       <Link to={`/movie/${id}`}>
@@ -19,14 +29,6 @@ const MovieCardImage = ({ id, path, year }) => {
       <span className="movie__year">{year}</span>
     </div>
   );
-};
-MovieCardImage.propTypes = {
-  id: PropTypes.number.isRequired,
-  path: PropTypes.string,
-  year: PropTypes.number.isRequired
-};
-MovieCardImage.defaultProps = {
-  path: null
 };
 
 export default MovieCardImage;

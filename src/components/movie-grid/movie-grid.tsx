@@ -6,9 +6,13 @@ import { observer } from "mobx-react";
 import "./movie-grid.css";
 import MovieCard from "../movie-card";
 
+interface IProps {
+  films: any;
+}
+
 @observer
-class MovieGrid extends React.Component {
-  displayFilms = movie => {
+class MovieGrid extends React.Component<IProps> {
+  displayFilms = (movie: any) => {
     const {
       title,
       voteAverage,
@@ -17,6 +21,14 @@ class MovieGrid extends React.Component {
       releaseDate,
       genreIds = 0,
       genres = []
+    }: {
+      title: string;
+      voteAverage: string;
+      posterPath: string;
+      id: number;
+      releaseDate: string;
+      genreIds?: number;
+      genres?: Array<object>;
     } = movie;
 
     return (
@@ -25,7 +37,7 @@ class MovieGrid extends React.Component {
         rate={voteAverage}
         poster={posterPath}
         id={id}
-        type={genreIds || genres.map(genre => genre.id)}
+        type={genreIds || genres.map((genre: any) => genre.id)}
         year={releaseDate}
         key={id}
       />
@@ -46,18 +58,5 @@ class MovieGrid extends React.Component {
   }
 }
 
-MovieGrid.propTypes = {
-  films: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
-      overview: PropTypes.string.isRequired,
-      releaseDate: PropTypes.string.isRequired
-    })
-  )
-};
-MovieGrid.defaultProps = {
-  films: []
-};
-
+// @ts-ignore
 export default withRouter(MovieGrid);

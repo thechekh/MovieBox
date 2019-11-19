@@ -4,14 +4,29 @@ import moment from "moment";
 import { inject, observer } from "mobx-react";
 
 import "./movie-card.css";
-import MovieCardImage from "./movie-card-image.js";
+import MovieCardImage from "./movie-card-image";
 
-const MovieCard = inject("genresStore")(
+interface IProps {
+  id: number;
+  title: string;
+  year: string;
+  rate: string;
+  poster: string;
+  type: any;
+  genresStore?: {
+    genres: Array<object>;
+    loading: boolean;
+    fetchGenres: (id: number) => void;
+  };
+}
+
+const MovieCard: React.FunctionComponent<IProps> = inject("genresStore")(
   observer(({ poster, id, title, rate, type, year, genresStore }) => {
     const movieYear = moment(year, "YYYY/MM/DD").year();
+    // @ts-ignore
     const { genres } = genresStore;
-    const movieGenres = genres.filter(item => type.includes(item.id));
-    const genresNames = movieGenres.map(item => item.name);
+    const movieGenres = genres.filter((item: any) => type.includes(item.id));
+    const genresNames = movieGenres.map((item: any) => item.name);
     const genresString = genresNames.join(", ");
 
     return (
@@ -28,16 +43,5 @@ const MovieCard = inject("genresStore")(
     );
   })
 );
-MovieCard.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
-  rate: PropTypes.number.isRequired,
-  poster: PropTypes.string,
-  type: PropTypes.arrayOf(PropTypes.number).isRequired
-};
-MovieCard.defaultProps = {
-  poster: null
-};
 
 export default MovieCard;
