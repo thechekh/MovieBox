@@ -1,0 +1,7 @@
+.movie__grid {
+  margin-top: 100px;
+}
+
+.movie__block > div {
+  margin-bottom: 20px;
+}

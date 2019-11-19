@@ -1,19 +1,40 @@
 {
-  "name": "movieboxts",
+  "name": "my-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/jest": "24.0.23",
-    "@types/node": "12.12.9",
-    "@types/react": "16.9.11",
-    "@types/react-dom": "16.9.4",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-brands-svg-icons": "^5.11.2",
+    "@fortawesome/free-regular-svg-icons": "^5.11.2",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.6",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.9",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.4",
+    "@types/react-router-dom": "^5.1.2",
+    "axios": "^0.19.0",
+    "camelcase-keys": "^6.1.0",
+    "classnames": "^2.2.6",
+    "customize-cra": "^0.8.0",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
+    "mobx": "^5.15.0",
+    "mobx-react": "^6.1.4",
+    "moment": "^2.24.0",
+    "node-sass": "^4.13.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "react-app-rewired": "^2.1.5",
+    "react-dom": "^16.10.2",
+    "react-paginate": "^6.3.0",
+    "react-router-dom": "^5.1.2",
+    "react-router-prop-types": "^1.0.4",
     "react-scripts": "3.2.0",
-    "typescript": "3.7.2"
+    "typescript": "^3.7.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-app-rewired start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -32,5 +53,24 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-only-warn": "^1.0.1",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.18.2"
   }
 }

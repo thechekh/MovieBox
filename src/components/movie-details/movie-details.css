@@ -1,0 +1,68 @@
+.movie__overview {
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+.back__poster {
+  height: 300px;
+  color: white;
+  font-family: "Source Sans Pro", sans-serif;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: cover !important;
+}
+
+.back__poster h1 {
+  font-size: 3rem;
+}
+
+.back__poster span {
+  font-size: 1.5rem;
+}
+
+.movie__details__year {
+  margin-right: 10px;
+}
+
+.favorite {
+  height: 50px;
+  margin-top: 20px;
+  display: inline-block;
+  border: 2px solid;
+  text-decoration: none;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.favorite:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+.favorite:active {
+  transform: scale(0.97);
+}
+
+.favorite:focus {
+  outline: none;
+}
+
+.add__favorite {
+  color: #ff0079;
+  background-color: white;
+  border-color: #ff0079;
+}
+
+.remove__favorite {
+  color: white;
+  background-color: #ff0079;
+}
+
+.movie__overview img {
+  width: 100%;
+}

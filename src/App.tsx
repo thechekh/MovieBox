@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { observer, inject } from "mobx-react";
+import PropTypes from "prop-types";
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+import AppFooter from "./components/app-footer";
+import NowPlayingPage from "./components/pages/now-playing-page";
+import MoviePage from "./components/pages/movie-page";
+import FavoriteMoviePage from "./components/pages/favorite-movie-page";
+import Page404 from "./components/pages/page-404";
+import Spinner from "./components/spinner";
+
+@inject("genresStore")
+@observer
+class App extends React.Component {
+  componentDidMount() {
+    // @ts-ignore
+    const { genresStore } = this.props;
+    genresStore.fetchGenres();
+  }
+
+  render() {
+    const { genresStore } = this.props;
+    if (genresStore.loading) {
+      return <Spinner />;
+    }
+    return (
+      <Router>
+        <div className="app">
+          <Switch>
+            <Route exact path="/" component={NowPlayingPage} />
+            <Route path="/page/:page" component={NowPlayingPage} />
+            <Route path="/movie/:id" component={MoviePage} />
+            <Route path="/favorites/:page?" component={FavoriteMoviePage} />
+            <Route component={Page404} />
+          </Switch>
+        </div>
+        <AppFooter />
+      </Router>
+    );
+  }
 }
+App.wrappedComponent.propTypes = {
+  genresStore: PropTypes.shape({
+    genres: PropTypes.array,
+    loading: PropTypes.bool.isRequired,
+    fetchGenres: PropTypes.func.isRequired
+  }).isRequired
+};
 
 export default App;
