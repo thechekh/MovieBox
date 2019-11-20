@@ -6,7 +6,7 @@ import MovieGrid from "../../movie-grid/movie-grid";
 import Spinner from "../../spinner";
 import Pagination from "../../pagination";
 import AppHeader from "../../app-header";
-import { TFilms, TResults } from "../../../store/mobx-store-films";
+import { TFilms } from "../../../store/mobx-store-films";
 
 interface MatchParams {
   page: string;
@@ -15,7 +15,6 @@ interface MatchParams {
 interface MatchProps extends RouteComponentProps<MatchParams> {
   filmsStore: {
     films: TFilms;
-    results: TResults;
     loading: boolean;
     fetchFilms: (page: number) => void;
   };
@@ -41,25 +40,22 @@ class NowPlayingPage extends React.Component<MatchProps> {
 
   render() {
     const { match, filmsStore } = this.props;
-    const { loading, films }: { loading: boolean; films: any } = filmsStore;
-    console.log(typeof films);
+    const { loading, films } = filmsStore;
     const { page } = match.params;
     if (loading) {
       return <Spinner />;
-    } else {
-      console.log(films.totalPages);
-      return (
-        <>
-          <AppHeader />
-          <MovieGrid films={films.results} />
-          <Pagination
-            initialPage={Number(page) || 1}
-            pageCount={films.totalPages}
-            changePage={this.changePage}
-          />
-        </>
-      );
     }
+    return (
+      <>
+        <AppHeader />
+        <MovieGrid films={films.results} />
+        <Pagination
+          initialPage={Number(page) || 1}
+          pageCount={films.totalPages}
+          changePage={this.changePage}
+        />
+      </>
+    );
   }
 }
 

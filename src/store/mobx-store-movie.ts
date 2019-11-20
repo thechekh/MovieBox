@@ -1,18 +1,21 @@
 import { observable, action } from "mobx";
 import camelcaseKeys from "camelcase-keys";
 import instance from "../utils/axios-config";
+import TGenres from "./mobx-store-genres";
 
-type TMovie = {
+export type TMovie = {
+  voteAverage: string;
   backdropPath: string;
   posterPath: string;
   overview: string;
   title: string;
   id: number;
   releaseDate: string;
-  genresIds: Array<number>;
+  genresIds: Array<number> | null;
+  genres: Array<TGenres>;
 };
 
-class MovieStore {
+class MovieStore2 {
   @observable
   movie: TMovie | null = null;
 
@@ -48,4 +51,4 @@ class MovieStore {
   };
 }
 
-export default MovieStore;
+export default MovieStore2;

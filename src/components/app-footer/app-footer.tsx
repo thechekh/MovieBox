@@ -46,4 +46,5 @@ const AppFooter: React.FunctionComponent<{}> = () => {
     </div>
   );
 };
+
 export default AppFooter;

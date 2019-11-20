@@ -3,8 +3,8 @@ import { observer } from "mobx-react";
 
 import "./movie-grid.css";
 import MovieCard from "../movie-card";
-import TMovie from "../../store/mobx-store-movie";
-import TGenres from "../../store/mobx-store-genres";
+import { TMovie } from "../../store/mobx-store-movie";
+import { TGenres } from "../../store/mobx-store-genres";
 
 interface IProps {
   films: Array<TMovie>;
@@ -12,23 +12,15 @@ interface IProps {
 
 @observer
 class MovieGrid extends React.Component<IProps> {
-  displayFilms = (movie: any) => {
+  displayFilms = (movie: TMovie) => {
     const {
       title,
       voteAverage,
       posterPath,
       id,
       releaseDate,
-      genreIds = 0,
+      genresIds = [],
       genres = []
-    }: {
-      title: string;
-      voteAverage: string;
-      posterPath: string;
-      id: number;
-      releaseDate: string;
-      genreIds?: number;
-      genres?: Array<TGenres>;
     } = movie;
 
     return (
@@ -37,7 +29,7 @@ class MovieGrid extends React.Component<IProps> {
         rate={voteAverage}
         poster={posterPath}
         id={id}
-        type={genreIds || genres.map((genre: any): number => genre.id)}
+        type={genresIds || genres.map((genre: any) => genre.id)}
         year={releaseDate}
         key={id}
       />
@@ -46,6 +38,7 @@ class MovieGrid extends React.Component<IProps> {
 
   render() {
     const { films } = this.props;
+    console.log("films", films);
     return (
       <div className="movie__grid">
         <div className="container">

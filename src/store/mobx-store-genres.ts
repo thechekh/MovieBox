@@ -2,7 +2,7 @@ import { observable, action } from "mobx";
 
 import instance from "../utils/axios-config";
 
-type TGenres = {
+export type TGenres = {
   id: number;
   name: string;
 };

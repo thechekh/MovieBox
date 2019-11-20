@@ -23,8 +23,9 @@ interface IProps {
 const MovieCard: React.FunctionComponent<IProps> = inject("genresStore")(
   observer(({ poster, id, title, rate, type, year, genresStore }) => {
     const movieYear: number = moment(year, "YYYY/MM/DD").year();
-
     const { genres } = genresStore!;
+    console.log("TYPE", type);
+    console.log("TYPE", typeof type);
     const movieGenres = genres.filter((item: any) => type.includes(item.id));
     const genresNames = movieGenres.map((item: any) => item.name);
     const genresString = genresNames.join(", ");

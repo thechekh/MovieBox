@@ -4,7 +4,7 @@ import { observer, inject } from "mobx-react";
 import "./favorite-movie-page.css";
 import MovieGrid from "../../movie-grid";
 import AppHeader from "../../app-header";
-import TMovie from "../../../store/mobx-store-movie";
+import { TMovie } from "../../../store/mobx-store-movie";
 
 interface IProps {
   movieStore: {
