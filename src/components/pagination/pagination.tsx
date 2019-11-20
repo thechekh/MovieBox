@@ -6,11 +6,10 @@ import "./pagination.css";
 interface IProps {
   initialPage: number;
   pageCount: number;
-  changePage: (selected: any) => void;
+  changePage: (e: { selected: number }) => void;
 }
 
-const Pagination: React.FunctionComponent<IProps> = props => {
-  // eslint-disable-next-line react/prop-types
+const Pagination: React.FunctionComponent<IProps> = (props: IProps) => {
   const { initialPage, pageCount, changePage } = props;
   return (
     <div className="pagination d-flex justify-content-center">

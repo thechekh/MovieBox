@@ -31,10 +31,10 @@ class NowPlayingPage extends React.Component<IProps> {
     filmsStore.fetchFilms(page);
   }
 
-  changePage = (e: any) => {
+  changePage = (e: { selected: number }) => {
     const { history, filmsStore } = this.props;
-    const { selected } = e;
-    const page = selected + 1;
+    const { selected }: { selected: number } = e;
+    const page: number = selected + 1;
 
     history.push(`/page/${page}`);
     filmsStore.fetchFilms(page);
@@ -42,8 +42,8 @@ class NowPlayingPage extends React.Component<IProps> {
 
   render() {
     const { match, filmsStore } = this.props;
-    const { loading, films } = filmsStore;
-    const { page } = match.params;
+    const { loading, films }: { loading: boolean; films: any } = filmsStore;
+    const { page }: { page: number } = match.params;
     if (loading) {
       return <Spinner />;
     }

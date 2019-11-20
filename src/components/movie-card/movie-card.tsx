@@ -3,7 +3,7 @@ import moment from "moment";
 import { inject, observer } from "mobx-react";
 
 import "./movie-card.css";
-import MovieCardImage from "./movie-card-image";
+import MovieCardImage from "../movie-card-image";
 
 interface IProps {
   id: number;
@@ -26,8 +26,7 @@ const MovieCard: React.FunctionComponent<IProps> = inject("genresStore")(
   observer(({ poster, id, title, rate, type, year, genresStore }) => {
     const movieYear = moment(year, "YYYY/MM/DD").year();
 
-    // @ts-ignore
-    const { genres } = genresStore;
+    const { genres } = genresStore!;
     const movieGenres = genres.filter((item: any) => type.includes(item.id));
     const genresNames = movieGenres.map((item: any) => item.name);
     const genresString = genresNames.join(", ");

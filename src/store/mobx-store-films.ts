@@ -2,15 +2,32 @@ import { observable, action } from "mobx";
 import camelcaseKeys from "camelcase-keys";
 import instance from "../utils/axios-config";
 
+type TResults = {
+  backdropPath: string;
+  posterPath: string;
+  overview: string;
+  title: string;
+  id: number;
+  releaseDate: string;
+  genresIds: Array<number>;
+};
+type TFilms = {
+  dates: string;
+  page: number;
+  results: TResults;
+  totalPages: number;
+  totalResults: number;
+};
+
 class FilmsStore {
   @observable
-  films = null;
+  films: TFilms | null = null;
 
   @observable
-  results = null;
+  results: TResults | null = null;
 
   @observable
-  loading = true;
+  loading: boolean = true;
 
   @action
   fetchFilms = async (page: number) => {
@@ -23,11 +40,14 @@ class FilmsStore {
       });
 
       films.data.results = camelcaseKeys(films.data.results);
-      this.films = films.data;
+
+      // @ts-ignore
+      this.films = camelcaseKeys(films.data);
       this.results = films.data.results;
     } finally {
       this.loading = false;
     }
   };
 }
+
 export default FilmsStore;

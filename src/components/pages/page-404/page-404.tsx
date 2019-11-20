@@ -3,7 +3,7 @@ import React from "react";
 import "./page-404.css";
 import AppHeader from "../../app-header";
 
-const Page404 = () => {
+const Page404: React.FunctionComponent = () => {
   return (
     <>
       <AppHeader />

@@ -9,7 +9,7 @@ import {
 
 import "./app-footer.css";
 
-const AppFooter = () => {
+const AppFooter: React.FunctionComponent<{}> = () => {
   return (
     <div className="container-fluid footer__container ">
       <div className="container">
