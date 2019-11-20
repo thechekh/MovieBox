@@ -12,23 +12,26 @@ import Spinner from "./components/spinner";
 
 interface IProps {
   genresStore?: {
-    genres: any;
+    genres: {
+      id: number;
+      name: string;
+    };
     loading: boolean;
     fetchGenres: () => void;
   };
 }
 
+@inject("genresStore")
+@observer
 class App extends React.Component<IProps> {
   componentDidMount() {
     const { genresStore } = this.props;
-    // @ts-ignore
-    genresStore.fetchGenres();
+    genresStore!.fetchGenres();
   }
 
   render() {
     const { genresStore } = this.props;
-    // @ts-ignore
-    if (genresStore.loading) {
+    if (genresStore!.loading) {
       return <Spinner />;
     }
     return (
@@ -47,4 +50,5 @@ class App extends React.Component<IProps> {
     );
   }
 }
-export default inject("genresStore")(observer(App));
+
+export default App;

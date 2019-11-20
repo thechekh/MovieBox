@@ -6,17 +6,16 @@ import MovieGrid from "../../movie-grid/movie-grid";
 import Spinner from "../../spinner";
 import Pagination from "../../pagination";
 import AppHeader from "../../app-header";
+import { TFilms, TResults } from "../../../store/mobx-store-films";
 
-interface IProps extends RouteComponentProps {
-  match: {
-    isExact: boolean;
-    path: string;
-    url: string;
-    params: any;
-  };
+interface MatchParams {
+  page: string;
+}
+
+interface MatchProps extends RouteComponentProps<MatchParams> {
   filmsStore: {
-    films: any;
-    results: any;
+    films: TFilms;
+    results: TResults;
     loading: boolean;
     fetchFilms: (page: number) => void;
   };
@@ -24,11 +23,11 @@ interface IProps extends RouteComponentProps {
 
 @inject("filmsStore")
 @observer
-class NowPlayingPage extends React.Component<IProps> {
+class NowPlayingPage extends React.Component<MatchProps> {
   componentDidMount() {
     const { match, filmsStore } = this.props;
     const { page } = match.params;
-    filmsStore.fetchFilms(page);
+    filmsStore.fetchFilms(Number(page) || 1);
   }
 
   changePage = (e: { selected: number }) => {
@@ -43,21 +42,24 @@ class NowPlayingPage extends React.Component<IProps> {
   render() {
     const { match, filmsStore } = this.props;
     const { loading, films }: { loading: boolean; films: any } = filmsStore;
-    const { page }: { page: number } = match.params;
+    console.log(typeof films);
+    const { page } = match.params;
     if (loading) {
       return <Spinner />;
+    } else {
+      console.log(films.totalPages);
+      return (
+        <>
+          <AppHeader />
+          <MovieGrid films={films.results} />
+          <Pagination
+            initialPage={Number(page) || 1}
+            pageCount={films.totalPages}
+            changePage={this.changePage}
+          />
+        </>
+      );
     }
-    return (
-      <>
-        <AppHeader />
-        <MovieGrid films={films.results} />
-        <Pagination
-          initialPage={Number(page) || 1}
-          pageCount={films.total_pages}
-          changePage={this.changePage}
-        />
-      </>
-    );
   }
 }
 

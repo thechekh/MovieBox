@@ -2,12 +2,22 @@ import { observable, action } from "mobx";
 import camelcaseKeys from "camelcase-keys";
 import instance from "../utils/axios-config";
 
+type TMovie = {
+  backdropPath: string;
+  posterPath: string;
+  overview: string;
+  title: string;
+  id: number;
+  releaseDate: string;
+  genresIds: Array<number>;
+};
+
 class MovieStore {
   @observable
-  movie: object | undefined;
+  movie: TMovie | null = null;
 
   @observable
-  favorites: Array<object> = [];
+  favorites: Array<TMovie> = [];
 
   @observable
   loading: boolean = true;
@@ -17,6 +27,7 @@ class MovieStore {
     try {
       const movie = await instance.get(`movie/${id}`);
 
+      // @ts-ignore
       this.movie = camelcaseKeys(movie.data);
     } finally {
       this.loading = false;
@@ -28,7 +39,6 @@ class MovieStore {
 
   @action
   addFavorite = (movie: any) => {
-    // @ts-ignore
     this.favorites.unshift(movie);
   };
 

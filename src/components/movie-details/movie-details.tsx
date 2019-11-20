@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
-import { observer } from "mobx-react";
+import { inject, observer } from "mobx-react";
 
 import "./movie-details.css";
 import defaultImg from "../movie-card/default_img.png";
@@ -10,7 +10,7 @@ import Spinner from "../spinner";
 
 interface IProps {
   id: number;
-  movieStore: {
+  movieStore?: {
     movie: {
       backdropPath: string;
       posterPath: string;
@@ -32,23 +32,24 @@ interface IProps {
   };
 }
 
+@inject("movieStore")
 @observer
 class MovieDetails extends React.Component<IProps> {
   componentDidMount() {
     const { id, movieStore } = this.props;
-    movieStore.loading = true;
-    movieStore.fetchMovie(id);
+    movieStore!.loading = true;
+    movieStore!.fetchMovie(id);
   }
 
   addFavoriteHandler = () => {
     const { movieStore } = this.props;
-    const { addFavorite, movie } = movieStore;
+    const { addFavorite, movie } = movieStore!;
     addFavorite(movie);
   };
 
   removeFavoriteHandler = () => {
     const { id, movieStore } = this.props;
-    const { removeFavorite } = movieStore;
+    const { removeFavorite } = movieStore!;
     removeFavorite(id);
   };
 
@@ -66,9 +67,9 @@ class MovieDetails extends React.Component<IProps> {
 
   render() {
     const { id, movieStore } = this.props;
-    const { loading } = movieStore;
-    const isFavorite = movieStore.isFavorite(id);
-    const { movie } = movieStore;
+    const { loading } = movieStore!;
+    const isFavorite = movieStore!.isFavorite(id);
+    const { movie } = movieStore!;
     const bgPoster = {
       backgroundImage: ` linear-gradient(to bottom, rgba(255, 255, 255,0.1), rgba(0, 0, 0,0.9) 95% )
             ,url(http://image.tmdb.org/t/p/w500${movie && movie.backdropPath}`

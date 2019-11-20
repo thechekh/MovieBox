@@ -6,7 +6,7 @@ import cn from "classnames";
 
 import "./app-header.css";
 
-export interface Imatch {
+interface Imatch {
   isExact: boolean;
   path: string;
   url: string;

@@ -2,7 +2,7 @@ import { observable, action } from "mobx";
 import camelcaseKeys from "camelcase-keys";
 import instance from "../utils/axios-config";
 
-type TResults = {
+export type TResults = {
   backdropPath: string;
   posterPath: string;
   overview: string;
@@ -11,12 +11,15 @@ type TResults = {
   releaseDate: string;
   genresIds: Array<number>;
 };
-type TFilms = {
+export type TFilms = {
   dates: string;
   page: number;
   results: TResults;
   totalPages: number;
   totalResults: number;
+};
+export type IFilms = {
+  films: Array<TFilms>;
 };
 
 class FilmsStore {

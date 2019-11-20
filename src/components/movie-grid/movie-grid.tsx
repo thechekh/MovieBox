@@ -3,9 +3,11 @@ import { observer } from "mobx-react";
 
 import "./movie-grid.css";
 import MovieCard from "../movie-card";
+import TMovie from "../../store/mobx-store-movie";
+import TGenres from "../../store/mobx-store-genres";
 
 interface IProps {
-  films: any;
+  films: Array<TMovie>;
 }
 
 @observer
@@ -26,10 +28,7 @@ class MovieGrid extends React.Component<IProps> {
       id: number;
       releaseDate: string;
       genreIds?: number;
-      genres?: Array<{
-        id: number;
-        name: string;
-      }>;
+      genres?: Array<TGenres>;
     } = movie;
 
     return (

@@ -2,14 +2,14 @@ import { observable, action } from "mobx";
 
 import instance from "../utils/axios-config";
 
+type TGenres = {
+  id: number;
+  name: string;
+};
+
 class GenresStore {
   @observable
-  genres:
-    | Array<{
-        id: number;
-        name: string;
-      }>
-    | undefined;
+  genres: TGenres | null = null;
 
   @observable
   loading: boolean = true;
