@@ -15,7 +15,7 @@ export type TMovie = {
   genres: Array<TGenres>;
 };
 
-class MovieStore2 {
+class MovieStore {
   @observable
   movie: TMovie | null = null;
 
@@ -51,4 +51,4 @@ class MovieStore2 {
   };
 }
 
-export default MovieStore2;
+export default MovieStore;

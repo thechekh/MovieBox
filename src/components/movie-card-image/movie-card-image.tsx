@@ -8,8 +8,11 @@ interface IProps {
   year: number;
 }
 
-const MovieCardImage: React.FunctionComponent<IProps> = (props: IProps) => {
-  const { id, path, year } = props;
+const MovieCardImage: React.FunctionComponent<IProps> = ({
+  id,
+  path,
+  year
+}: IProps) => {
   return (
     <div className="movie__img">
       <Link to={`/movie/${id}`}>

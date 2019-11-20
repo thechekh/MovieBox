@@ -29,7 +29,7 @@ class MovieGrid extends React.Component<IProps> {
         rate={voteAverage}
         poster={posterPath}
         id={id}
-        type={genresIds || genres.map((genre: any) => genre.id)}
+        type={genresIds || genres.map((item: any) => item.id)}
         year={releaseDate}
         key={id}
       />
@@ -38,7 +38,6 @@ class MovieGrid extends React.Component<IProps> {
 
   render() {
     const { films } = this.props;
-    console.log("films", films);
     return (
       <div className="movie__grid">
         <div className="container">

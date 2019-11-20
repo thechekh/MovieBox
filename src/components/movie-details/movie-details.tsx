@@ -7,6 +7,8 @@ import { inject, observer } from "mobx-react";
 import "./movie-details.css";
 import defaultImg from "../movie-card/default_img.png";
 import Spinner from "../spinner";
+import { TMovie } from "../../store/mobx-store-movie";
+import { TGenres } from "../../store/mobx-store-genres";
 
 interface IProps {
   id: number;
@@ -18,12 +20,9 @@ interface IProps {
       title: string;
       id: number;
       releaseDate: string;
-      genres: Array<{
-        id: number;
-        name: string;
-      }>;
+      genres: Array<TGenres>;
     };
-    favorites: Array<object>;
+    favorites: Array<TMovie>;
     isFavorite: (id: number) => boolean;
     loading: boolean;
     fetchMovie: (id: number) => void;
@@ -53,14 +52,9 @@ class MovieDetails extends React.Component<IProps> {
     removeFavorite(id);
   };
 
-  getCategoryFilmString = (
-    genres: Array<{
-      id: number;
-      name: string;
-    }>
-  ): string => {
+  getCategoryFilmString = (genres: Array<TGenres>): string => {
     const genresNames = genres.map(
-      (item: any) => item.name.charAt(0).toUpperCase() + item.name.slice(1)
+      (item: TGenres) => item.name.charAt(0).toUpperCase() + item.name.slice(1)
     );
     return genresNames.join(", ");
   };
