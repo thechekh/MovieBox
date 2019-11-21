@@ -4,7 +4,7 @@ import { inject, observer } from "mobx-react";
 
 import "./movie-card.css";
 import MovieCardImage from "../movie-card-image";
-import TGenres from "../../store/mobx-store-genres";
+import { TGenres } from "../../store/mobx-store-genres";
 
 interface IProps {
   id: number;
@@ -24,9 +24,13 @@ const MovieCard: React.FunctionComponent<IProps> = inject("genresStore")(
   observer(({ poster, id, title, rate, type, year, genresStore }) => {
     const movieYear: number = moment(year, "YYYY/MM/DD").year();
     const { genres } = genresStore!;
-    const movieGenres = genres.filter((item: any) => type.includes(item.id));
-    const genresNames = movieGenres.map((item: any) => item.name);
-    const genresString = genresNames.join(", ");
+    const movieGenres: Array<TGenres> = genres.filter(
+      (item: TGenres): boolean => type.includes(item.id)
+    );
+    const genresNames: Array<string> = movieGenres.map(
+      (item: TGenres): string => item.name
+    );
+    const genresString: string = genresNames.join(", ");
 
     return (
       <div className=" col-6 col-lg-3 d-flex flex-column justify-content-end align-items-center">

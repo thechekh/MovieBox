@@ -9,13 +9,11 @@ import MoviePage from "./components/pages/movie-page";
 import FavoriteMoviePage from "./components/pages/favorite-movie-page";
 import Page404 from "./components/pages/page-404";
 import Spinner from "./components/spinner";
+import { TGenres } from "./store/mobx-store-genres";
 
 interface IProps {
   genresStore?: {
-    genres: {
-      id: number;
-      name: string;
-    };
+    genres: TGenres;
     loading: boolean;
     fetchGenres: () => void;
   };

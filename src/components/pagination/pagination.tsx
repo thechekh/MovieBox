@@ -9,8 +9,11 @@ interface IProps {
   changePage: (e: { selected: number }) => void;
 }
 
-const Pagination: React.FunctionComponent<IProps> = (props: IProps) => {
-  const { initialPage, pageCount, changePage } = props;
+const Pagination: React.FunctionComponent<IProps> = ({
+  initialPage,
+  pageCount,
+  changePage
+}: IProps) => {
   return (
     <div className="pagination d-flex justify-content-center">
       <ReactPaginate

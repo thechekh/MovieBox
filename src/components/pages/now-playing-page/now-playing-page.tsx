@@ -1,6 +1,7 @@
 import React from "react";
 import { observer, inject } from "mobx-react";
 import { RouteComponentProps } from "react-router-dom";
+
 import "./now-playing-page.css";
 import MovieGrid from "../../movie-grid/movie-grid";
 import Spinner from "../../spinner";

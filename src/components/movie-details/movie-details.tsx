@@ -13,20 +13,12 @@ import { TGenres } from "../../store/mobx-store-genres";
 interface IProps {
   id: number;
   movieStore?: {
-    movie: {
-      backdropPath: string;
-      posterPath: string;
-      overview: string;
-      title: string;
-      id: number;
-      releaseDate: string;
-      genres: Array<TGenres>;
-    };
+    movie: TMovie;
     favorites: Array<TMovie>;
     isFavorite: (id: number) => boolean;
     loading: boolean;
     fetchMovie: (id: number) => void;
-    addFavorite: (movie: object) => void;
+    addFavorite: (movie: TMovie) => void;
     removeFavorite: (id: number) => void;
   };
 }
@@ -53,7 +45,7 @@ class MovieDetails extends React.Component<IProps> {
   };
 
   getCategoryFilmString = (genres: Array<TGenres>): string => {
-    const genresNames = genres.map(
+    const genresNames: Array<string> = genres.map(
       (item: TGenres) => item.name.charAt(0).toUpperCase() + item.name.slice(1)
     );
     return genresNames.join(", ");

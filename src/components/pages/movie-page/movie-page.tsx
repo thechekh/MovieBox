@@ -11,7 +11,7 @@ interface MatchParams {
 
 interface MatchProps extends RouteComponentProps<MatchParams> {}
 
-function MoviePage(props: MatchProps) {
+const MoviePage: React.FunctionComponent<MatchProps> = (props: MatchProps) => {
   const {
     match: {
       params: { id }
@@ -23,6 +23,6 @@ function MoviePage(props: MatchProps) {
       <MovieDetails id={Number(id)} />
     </>
   );
-}
+};
 
 export default MoviePage;

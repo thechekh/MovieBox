@@ -19,17 +19,16 @@ class MovieGrid extends React.Component<IProps> {
       posterPath,
       id,
       releaseDate,
-      genresIds = [],
+      genreIds = 0,
       genres = []
     } = movie;
-
     return (
       <MovieCard
         title={title}
         rate={voteAverage}
         poster={posterPath}
         id={id}
-        type={genresIds || genres.map((item: any) => item.id)}
+        type={genreIds || genres.map((item: TGenres) => item.id)}
         year={releaseDate}
         key={id}
       />

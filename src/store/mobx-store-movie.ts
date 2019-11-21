@@ -1,7 +1,7 @@
 import { observable, action } from "mobx";
 import camelcaseKeys from "camelcase-keys";
 import instance from "../utils/axios-config";
-import TGenres from "./mobx-store-genres";
+import { TGenres } from "./mobx-store-genres";
 
 export type TMovie = {
   voteAverage: string;
@@ -11,7 +11,7 @@ export type TMovie = {
   title: string;
   id: number;
   releaseDate: string;
-  genresIds: Array<number> | null;
+  genreIds: Array<number> | null;
   genres: Array<TGenres>;
 };
 

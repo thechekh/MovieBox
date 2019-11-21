@@ -1,18 +1,14 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import cn from "classnames";
 
 import "./app-header.css";
 
-interface Imatch {
-  isExact: boolean;
-  path: string;
-  url: string;
-}
-
-const AppHeader = ({ match }: { match: Imatch }) => {
+const AppHeader: React.FunctionComponent<RouteComponentProps> = ({
+  match
+}: RouteComponentProps) => {
   let isFavorite: boolean = false;
   if (match.path.indexOf("favorites") === 1) {
     isFavorite = true;
