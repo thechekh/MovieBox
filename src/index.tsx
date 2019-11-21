@@ -6,11 +6,7 @@ import App from "./App";
 import rootStore from "./store";
 
 ReactDOM.render(
-  <Provider
-    genresStore={rootStore.genresStore}
-    movieStore={rootStore.movieStore}
-    filmsStore={rootStore.filmsStore}
-  >
+  <Provider {...rootStore}>
     <App />
   </Provider>,
   document.getElementById("root")

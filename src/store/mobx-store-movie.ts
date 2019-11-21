@@ -1,5 +1,6 @@
 import { observable, action } from "mobx";
 import camelcaseKeys from "camelcase-keys";
+import { create, persist } from "mobx-persist";
 import instance from "../utils/axios-config";
 import { TGenres } from "./mobx-store-genres";
 
@@ -15,15 +16,23 @@ export type TMovie = {
   genres: Array<TGenres>;
 };
 
-class MovieStore {
+export interface IMovieStore {
+  movie: TMovie | null;
+  favorites: Array<TMovie> | null;
+  loading: boolean;
+  fetchMovie: (id: number) => void;
+}
+
+class MovieStore implements IMovieStore {
   @observable
-  movie: TMovie | null = null;
+  movie = null;
+
+  @persist("list")
+  @observable
+  favorites = [] as Array<TMovie>;
 
   @observable
-  favorites: Array<TMovie> = [];
-
-  @observable
-  loading: boolean = true;
+  loading = true;
 
   @action
   fetchMovie = async (id: number) => {
@@ -32,17 +41,21 @@ class MovieStore {
 
       // @ts-ignore
       this.movie = camelcaseKeys(movie.data);
+    } catch (err) {
+      const msg = "Failed Load data, error";
+      console.log(msg, err);
     } finally {
       this.loading = false;
     }
   };
 
   isFavorite = (id: number) =>
-    this.favorites.some((item: any) => item.id === id);
+    this.favorites.some((movie: TMovie) => movie.id === id);
 
   @action
-  addFavorite = (movie: any) => {
+  addFavorite = (movie: TMovie) => {
     this.favorites.unshift(movie);
+    console.log("FAVV", this.favorites);
   };
 
   @action
@@ -51,4 +64,6 @@ class MovieStore {
   };
 }
 
-export default MovieStore;
+const movieStore = new MovieStore();
+
+export default movieStore;

@@ -11,12 +11,17 @@ export type TFilms = {
   totalResults: number;
 };
 
-class FilmsStore {
+export interface IFilmsStore {
+  films: TFilms | null;
+  loading: boolean;
+  fetchFilms: (page: number) => void;
+}
+class FilmsStore implements IFilmsStore {
   @observable
-  films: TFilms | null = null;
+  films = null;
 
   @observable
-  loading: boolean = true;
+  loading = true;
 
   @action
   fetchFilms = async (page: number) => {
@@ -31,10 +36,13 @@ class FilmsStore {
       films.data.results = camelcaseKeys(films.data.results);
       // @ts-ignore
       this.films = camelcaseKeys(films.data);
+    } catch (err) {
+      const msg = "Failed Load data, error";
+      console.log(msg, err);
     } finally {
       this.loading = false;
     }
   };
 }
-
-export default FilmsStore;
+const filmsStore = new FilmsStore();
+export default filmsStore;
