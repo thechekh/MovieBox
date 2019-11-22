@@ -17,15 +17,16 @@ export type TMovie = {
 };
 
 export interface IMovieStore {
-  movie: TMovie | null;
+  movie: TMovie | unknown;
   favorites: Array<TMovie> | null;
   loading: boolean;
+
   fetchMovie: (id: number) => void;
 }
 
 class MovieStore implements IMovieStore {
   @observable
-  movie = null;
+  movie = null as any;
 
   @persist("list")
   @observable
@@ -38,8 +39,6 @@ class MovieStore implements IMovieStore {
   fetchMovie = async (id: number) => {
     try {
       const movie = await instance.get(`movie/${id}`);
-
-      // @ts-ignore
       this.movie = camelcaseKeys(movie.data);
     } catch (err) {
       const msg = "Failed Load data, error";
@@ -65,5 +64,4 @@ class MovieStore implements IMovieStore {
 }
 
 const movieStore = new MovieStore();
-
 export default movieStore;

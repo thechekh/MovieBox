@@ -23,6 +23,7 @@ interface IProps {
 class FavoriteMoviePage extends React.Component<IProps> {
   render() {
     const { movieStore } = this.props;
+    // @ts-ignore
     const films: Array<TMovie> = movieStore.favorites;
     return (
       <>

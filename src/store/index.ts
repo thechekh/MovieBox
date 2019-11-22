@@ -7,9 +7,14 @@ const hydrate = create({
   storage: localStorage,
   jsonify: false
 });
-hydrate("fdfd", movieStore.favorites).then(() =>
-  console.log("someStore has been hydrated")
-);
+
+const result = hydrate("some", movieStore);
+result.then(() => console.log("some hydrated"));
+
+const rehydrate = result.rehydrate;
+setTimeout(() => {
+  rehydrate().then(() => console.log("rehydrated", movieStore));
+}, 3000);
 
 const rootStore = {
   filmsStore,

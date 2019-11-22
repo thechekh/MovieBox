@@ -12,13 +12,14 @@ export type TFilms = {
 };
 
 export interface IFilmsStore {
-  films: TFilms | null;
+  films: TFilms;
   loading: boolean;
   fetchFilms: (page: number) => void;
 }
+
 class FilmsStore implements IFilmsStore {
   @observable
-  films = null;
+  films = (undefined as unknown) as TFilms;
 
   @observable
   loading = true;
@@ -34,8 +35,10 @@ class FilmsStore implements IFilmsStore {
       });
 
       films.data.results = camelcaseKeys(films.data.results);
+
       // @ts-ignore
       this.films = camelcaseKeys(films.data);
+      console.log("FILMS", this.films);
     } catch (err) {
       const msg = "Failed Load data, error";
       console.log(msg, err);
@@ -44,5 +47,6 @@ class FilmsStore implements IFilmsStore {
     }
   };
 }
+
 const filmsStore = new FilmsStore();
 export default filmsStore;

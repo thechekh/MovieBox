@@ -25,6 +25,7 @@
     "mobx": "^5.15.0",
     "mobx-persist": "^0.4.1",
     "mobx-react": "^6.1.4",
+    "mobx-sync": "^2.1.2",
     "moment": "^2.24.0",
     "node-sass": "^4.13.0",
     "prop-types": "^15.7.2",
@@ -35,6 +36,7 @@
     "react-router-dom": "^5.1.2",
     "react-router-prop-types": "^1.0.4",
     "react-scripts": "3.2.0",
+    "serializr": "^1.5.3",
     "typescript": "^3.7.2"
   },
   "scripts": {
