@@ -24,6 +24,7 @@
     "lint-staged": "^9.4.2",
     "mobx": "^5.15.0",
     "mobx-persist": "^0.4.1",
+    "mobx-persist-store": "^0.1.5",
     "mobx-react": "^6.1.4",
     "mobx-sync": "^2.1.2",
     "moment": "^2.24.0",

@@ -32,6 +32,7 @@ class MovieStore implements IMovieStore {
   @observable
   favorites = [] as Array<TMovie>;
 
+  @persist
   @observable
   loading = true;
 
