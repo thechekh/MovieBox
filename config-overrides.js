@@ -1,5 +1,15 @@
 
 const { addDecoratorsLegacy, useEslintRc, override } = require("customize-cra");
 
-module.exports = override(addDecoratorsLegacy(), useEslintRc("./.eslintrc"));
+
+const supportMjs = () => (webpackConfig) => {
+    webpackConfig.module.rules.push({
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: "javascript/auto",
+    });
+    return webpackConfig;
+};
+
+module.exports = override(addDecoratorsLegacy(),  supportMjs(), useEslintRc("./.eslintrc"));
 

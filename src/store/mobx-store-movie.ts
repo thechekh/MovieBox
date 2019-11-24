@@ -20,8 +20,11 @@ export interface IMovieStore {
   movie: TMovie | unknown;
   favorites: Array<TMovie> | null;
   loading: boolean;
-
+  q: number;
+  isFavorite: (id: number) => boolean;
   fetchMovie: (id: number) => void;
+  addFavorite: (movie: TMovie) => void;
+  removeFavorite: (id: number) => void;
 }
 
 class MovieStore implements IMovieStore {
@@ -33,6 +36,8 @@ class MovieStore implements IMovieStore {
   favorites = [] as Array<TMovie>;
 
   @persist
+  @observable
+  q = 12;
   @observable
   loading = true;
 
@@ -65,4 +70,7 @@ class MovieStore implements IMovieStore {
 }
 
 const movieStore = new MovieStore();
+const hydrate = create();
+hydrate("movieStore", movieStore);
+
 export default movieStore;

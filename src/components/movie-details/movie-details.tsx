@@ -20,6 +20,7 @@ interface IProps {
     fetchMovie: (id: number) => void;
     addFavorite: (movie: TMovie) => void;
     removeFavorite: (id: number) => void;
+    q: any;
   };
 }
 
@@ -28,6 +29,7 @@ interface IProps {
 class MovieDetails extends React.Component<IProps> {
   componentDidMount() {
     const { id, movieStore } = this.props;
+    movieStore!.q = 13;
     movieStore!.loading = true;
     movieStore!.fetchMovie(id);
   }
