@@ -1,5 +1,6 @@
 import { observable, action } from "mobx";
 import camelcaseKeys from "camelcase-keys";
+import { create, persist } from "mobx-persist";
 import instance from "../utils/axios-config";
 import { TGenres } from "./mobx-store-genres";
 
@@ -15,33 +16,46 @@ export type TMovie = {
   genres: Array<TGenres>;
 };
 
-class MovieStore {
+export interface IMovieStore {
+  movie: TMovie;
+  favorites: Array<TMovie> | null;
+  loading: boolean;
+  isFavorite: (id: number) => boolean;
+  fetchMovie: (id: number) => void;
+  addFavorite: (movie: TMovie) => void;
+  removeFavorite: (id: number) => void;
+}
+
+class MovieStore implements IMovieStore {
   @observable
-  movie: TMovie | null = null;
+  movie = {} as any;
+
+  @persist("list")
+  @observable
+  favorites = [] as Array<TMovie>;
 
   @observable
-  favorites: Array<TMovie> = [];
-
-  @observable
-  loading: boolean = true;
+  loading = true;
 
   @action
   fetchMovie = async (id: number) => {
     try {
-      const movie = await instance.get(`movie/${id}`);
-
-      // @ts-ignore
-      this.movie = camelcaseKeys(movie.data);
+      const payload = await instance.get(`movie/${id}`);
+      this.movie = camelcaseKeys(payload.data);
+    } catch (err) {
+      const msg = "Failed Load data, error";
+      // eslint-disable-next-line no-console
+      console.log(msg, err);
     } finally {
       this.loading = false;
     }
   };
 
   isFavorite = (id: number) =>
-    this.favorites.some((item: any) => item.id === id);
+    this.favorites.some((movie: TMovie) => movie.id === id);
 
   @action
-  addFavorite = (movie: any) => {
+  addFavorite = (movie: TMovie) => {
     this.favorites.unshift(movie);
   };
 
@@ -51,4 +65,8 @@ class MovieStore {
   };
 }
 
-export default MovieStore;
+const movieStore = new MovieStore();
+const hydrate = create();
+hydrate("movieStore", movieStore);
+
+export default movieStore;

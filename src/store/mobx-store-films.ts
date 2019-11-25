@@ -11,30 +11,40 @@ export type TFilms = {
   totalResults: number;
 };
 
-class FilmsStore {
+export interface IFilmsStore {
+  films: TFilms;
+  loading: boolean;
+  fetchFilms: (page: number) => void;
+}
+
+class FilmsStore implements IFilmsStore {
   @observable
-  films: TFilms | null = null;
+  films = [] as any;
 
   @observable
-  loading: boolean = true;
+  loading = true;
 
   @action
   fetchFilms = async (page: number) => {
     try {
       const url = "movie/now_playing";
-      const films = await instance.get(url, {
+      const movies = await instance.get(url, {
         params: {
           page
         }
       });
 
-      films.data.results = camelcaseKeys(films.data.results);
-      // @ts-ignore
-      this.films = camelcaseKeys(films.data);
+      movies.data.results = camelcaseKeys(movies.data.results);
+      this.films = camelcaseKeys(movies.data);
+    } catch (err) {
+      const msg = "Failed Load data, error";
+      // eslint-disable-next-line no-console
+      console.log(msg, err);
     } finally {
       this.loading = false;
     }
   };
 }
 
-export default FilmsStore;
+const filmsStore = new FilmsStore();
+export default filmsStore;

@@ -1,20 +1,11 @@
-import FilmsStore from "./mobx-store-films";
-import GenresStore from "./mobx-store-genres";
-import MovieStore from "./mobx-store-movie";
+import filmsStore from "./mobx-store-films";
+import genresStore from "./mobx-store-genres";
+import movieStore from "./mobx-store-movie";
 
-class RootStore {
-  filmsStore: FilmsStore;
+const rootStore = {
+  filmsStore,
+  genresStore,
+  movieStore
+};
 
-  genresStore: GenresStore;
-
-  movieStore: MovieStore;
-
-  constructor() {
-    this.filmsStore = new FilmsStore();
-    this.genresStore = new GenresStore();
-    this.movieStore = new MovieStore();
-  }
-}
-
-const rootStore = new RootStore();
 export default rootStore;

@@ -4,18 +4,10 @@ import { observer, inject } from "mobx-react";
 import "./favorite-movie-page.css";
 import MovieGrid from "../../movie-grid";
 import AppHeader from "../../app-header";
-import { TMovie } from "../../../store/mobx-store-movie";
+import { IMovieStore, TMovie } from "../../../store/mobx-store-movie";
 
 interface IProps {
-  movieStore: {
-    movie: TMovie;
-    favorites: Array<TMovie>;
-    isFavorite: (id: number) => boolean;
-    loading: boolean;
-    fetchMovie: (id: number) => void;
-    addFavorite: (movie: object) => void;
-    removeFavorite: (id: number) => void;
-  };
+  movieStore: IMovieStore;
 }
 
 @inject("movieStore")
@@ -23,7 +15,8 @@ interface IProps {
 class FavoriteMoviePage extends React.Component<IProps> {
   render() {
     const { movieStore } = this.props;
-    const films: Array<TMovie> = movieStore.favorites;
+    const films: Array<TMovie> | null = movieStore.favorites;
+
     return (
       <>
         <AppHeader />

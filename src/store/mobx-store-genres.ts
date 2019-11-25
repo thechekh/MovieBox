@@ -7,22 +7,32 @@ export type TGenres = {
   name: string;
 };
 
-class GenresStore {
+export interface IGenresStore {
+  genres: Array<TGenres> | null;
+  loading: boolean;
+  fetchGenres: () => void;
+}
+
+class GenresStore implements IGenresStore {
   @observable
-  genres: TGenres | null = null;
+  genres = null;
 
   @observable
-  loading: boolean = true;
+  loading = true;
 
   @action
   fetchGenres = async () => {
     try {
       const payload = await instance.get(`genre/movie/list`);
       this.genres = payload.data.genres;
+    } catch (err) {
+      const msg = "Failed Load data, error";
+      // eslint-disable-next-line no-console
+      console.log(msg, err);
     } finally {
       this.loading = false;
     }
   };
 }
-
-export default GenresStore;
+const genresStore = new GenresStore();
+export default genresStore;
