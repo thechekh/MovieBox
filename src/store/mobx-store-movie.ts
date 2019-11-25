@@ -17,10 +17,9 @@ export type TMovie = {
 };
 
 export interface IMovieStore {
-  movie: TMovie | unknown;
+  movie: TMovie;
   favorites: Array<TMovie> | null;
   loading: boolean;
-  q: number;
   isFavorite: (id: number) => boolean;
   fetchMovie: (id: number) => void;
   addFavorite: (movie: TMovie) => void;
@@ -29,25 +28,23 @@ export interface IMovieStore {
 
 class MovieStore implements IMovieStore {
   @observable
-  movie = null as any;
+  movie = {} as any;
 
   @persist("list")
   @observable
   favorites = [] as Array<TMovie>;
 
-  @persist
-  @observable
-  q = 12;
   @observable
   loading = true;
 
   @action
   fetchMovie = async (id: number) => {
     try {
-      const movie = await instance.get(`movie/${id}`);
-      this.movie = camelcaseKeys(movie.data);
+      const payload = await instance.get(`movie/${id}`);
+      this.movie = camelcaseKeys(payload.data);
     } catch (err) {
       const msg = "Failed Load data, error";
+      // eslint-disable-next-line no-console
       console.log(msg, err);
     } finally {
       this.loading = false;
@@ -60,7 +57,6 @@ class MovieStore implements IMovieStore {
   @action
   addFavorite = (movie: TMovie) => {
     this.favorites.unshift(movie);
-    console.log("FAVV", this.favorites);
   };
 
   @action

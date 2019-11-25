@@ -19,7 +19,7 @@ export interface IFilmsStore {
 
 class FilmsStore implements IFilmsStore {
   @observable
-  films = (undefined as unknown) as TFilms;
+  films = [] as any;
 
   @observable
   loading = true;
@@ -28,19 +28,17 @@ class FilmsStore implements IFilmsStore {
   fetchFilms = async (page: number) => {
     try {
       const url = "movie/now_playing";
-      const films = await instance.get(url, {
+      const movies = await instance.get(url, {
         params: {
           page
         }
       });
 
-      films.data.results = camelcaseKeys(films.data.results);
-
-      // @ts-ignore
-      this.films = camelcaseKeys(films.data);
-      console.log("FILMS", this.films);
+      movies.data.results = camelcaseKeys(movies.data.results);
+      this.films = camelcaseKeys(movies.data);
     } catch (err) {
       const msg = "Failed Load data, error";
+      // eslint-disable-next-line no-console
       console.log(msg, err);
     } finally {
       this.loading = false;

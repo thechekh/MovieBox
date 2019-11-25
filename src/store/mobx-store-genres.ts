@@ -8,7 +8,7 @@ export type TGenres = {
 };
 
 export interface IGenresStore {
-  genres: TGenres | null;
+  genres: Array<TGenres> | null;
   loading: boolean;
   fetchGenres: () => void;
 }
@@ -27,6 +27,7 @@ class GenresStore implements IGenresStore {
       this.genres = payload.data.genres;
     } catch (err) {
       const msg = "Failed Load data, error";
+      // eslint-disable-next-line no-console
       console.log(msg, err);
     } finally {
       this.loading = false;

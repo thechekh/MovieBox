@@ -7,21 +7,12 @@ import { inject, observer } from "mobx-react";
 import "./movie-details.css";
 import defaultImg from "../movie-card/default_img.png";
 import Spinner from "../spinner";
-import { TMovie } from "../../store/mobx-store-movie";
 import { TGenres } from "../../store/mobx-store-genres";
+import { IMovieStore } from "../../store/mobx-store-movie";
 
 interface IProps {
   id: number;
-  movieStore?: {
-    movie: TMovie;
-    favorites: Array<TMovie>;
-    isFavorite: (id: number) => boolean;
-    loading: boolean;
-    fetchMovie: (id: number) => void;
-    addFavorite: (movie: TMovie) => void;
-    removeFavorite: (id: number) => void;
-    q: any;
-  };
+  movieStore?: IMovieStore;
 }
 
 @inject("movieStore")
@@ -29,7 +20,6 @@ interface IProps {
 class MovieDetails extends React.Component<IProps> {
   componentDidMount() {
     const { id, movieStore } = this.props;
-    movieStore!.q = 13;
     movieStore!.loading = true;
     movieStore!.fetchMovie(id);
   }
