@@ -13,7 +13,10 @@ interface MatchParams {
   page: string;
 }
 
+/** Review: лучше назови IProps */
 interface MatchProps extends RouteComponentProps<MatchParams> {
+  /** Review: По поводу опциональной сторы - был вопрос с подвохом) Пока известные только костыльные решения для данной
+   * ситуации, поэтому использовать стору как не required - можно. Собственно это и есть одно из костыльных решений */
   filmsStore: IFilmsStore;
 }
 
