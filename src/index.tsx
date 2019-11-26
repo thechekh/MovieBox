@@ -7,6 +7,7 @@ import rootStore from "./store";
 
 ReactDOM.render(
   <ToastProvider>
+    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
     <Provider {...rootStore}>
       <App />
     </Provider>

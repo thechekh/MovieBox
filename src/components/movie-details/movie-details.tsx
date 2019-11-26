@@ -3,14 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
 import { inject, observer } from "mobx-react";
+import { toast } from "react-toastify";
 
 import "./movie-details.css";
 import defaultImg from "../movie-card/default_img.png";
 import Spinner from "../spinner";
 import { TGenres } from "../../store/mobx-store-genres";
 import { IMovieStore } from "../../store/mobx-store-movie";
-import { toast } from "react-toastify";
-import AppHeader from "../app-header";
 
 interface IProps {
   id: number;
@@ -25,11 +24,6 @@ class MovieDetails extends React.Component<IProps> {
     movieStore!.loading = true;
     movieStore!.fetchMovie(id);
   }
-
-  /*   componentDidUpdate() {
-           const {movieStore} = this.props;
-           movieStore!.toggleErrorFalse();
-       }*/
 
   addFavoriteHandler = () => {
     const { movieStore } = this.props;

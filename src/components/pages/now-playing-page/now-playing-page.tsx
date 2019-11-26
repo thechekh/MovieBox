@@ -1,6 +1,7 @@
 import React from "react";
 import { observer, inject } from "mobx-react";
 import { RouteComponentProps } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import "./now-playing-page.css";
 import MovieGrid from "../../movie-grid/movie-grid";
@@ -8,7 +9,6 @@ import Spinner from "../../spinner";
 import Pagination from "../../pagination";
 import AppHeader from "../../app-header";
 import { IFilmsStore } from "../../../store/mobx-store-films";
-import { toast } from "react-toastify";
 
 interface MatchParams {
   page: string;
