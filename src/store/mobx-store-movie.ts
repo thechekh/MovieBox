@@ -68,7 +68,7 @@ class MovieStore implements IMovieStore {
 
   @action
   removeFavorite = (id: number) => {
-    this.favorites = this.favorites.filter((item: any) => item.id !== id);
+    this.favorites = this.favorites.filter((item: TMovie) => item.id !== id);
   };
 }
 
