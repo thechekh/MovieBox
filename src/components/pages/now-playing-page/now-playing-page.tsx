@@ -13,13 +13,13 @@ interface MatchParams {
   page: string;
 }
 
-interface MatchProps extends RouteComponentProps<MatchParams> {
+interface Iprops extends RouteComponentProps<MatchParams> {
   filmsStore: IFilmsStore;
 }
 
 @inject("filmsStore")
 @observer
-class NowPlayingPage extends React.Component<MatchProps> {
+class NowPlayingPage extends React.Component<Iprops> {
   componentDidMount() {
     const { match, filmsStore } = this.props;
     const { page } = match.params;

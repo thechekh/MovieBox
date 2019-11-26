@@ -27,7 +27,7 @@ class MovieDetails extends React.Component<IProps> {
   addFavoriteHandler = () => {
     const { movieStore } = this.props;
     const { addFavorite, movie } = movieStore!;
-    addFavorite(movie);
+    addFavorite(movie!);
   };
 
   removeFavoriteHandler = () => {
