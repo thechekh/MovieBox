@@ -3,6 +3,11 @@
   margin-bottom: 50px;
 }
 
+.error_text {
+  text-align: center;
+  margin-top: 40px;
+}
+
 .back__poster {
   height: 300px;
   color: white;

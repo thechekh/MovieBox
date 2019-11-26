@@ -10,6 +10,7 @@ import Spinner from "../spinner";
 import { TGenres } from "../../store/mobx-store-genres";
 import { IMovieStore } from "../../store/mobx-store-movie";
 import { toast } from "react-toastify";
+import AppHeader from "../app-header";
 
 interface IProps {
   id: number;
@@ -25,10 +26,10 @@ class MovieDetails extends React.Component<IProps> {
     movieStore!.fetchMovie(id);
   }
 
-  componentDidUpdate() {
-    const { movieStore } = this.props;
-    movieStore!.noErr();
-  }
+  /*   componentDidUpdate() {
+           const {movieStore} = this.props;
+           movieStore!.toggleErrorFalse();
+       }*/
 
   addFavoriteHandler = () => {
     const { movieStore } = this.props;
@@ -52,7 +53,6 @@ class MovieDetails extends React.Component<IProps> {
   render() {
     const { id, movieStore } = this.props;
     const { movie, error, loading } = movieStore!;
-    console.log("errr", error);
     const isFavorite = movieStore!.isFavorite(id);
     const bgPoster = {
       backgroundImage: ` linear-gradient(to bottom, rgba(255, 255, 255,0.1), rgba(0, 0, 0,0.9) 95% )
@@ -64,6 +64,12 @@ class MovieDetails extends React.Component<IProps> {
     }
     if (error) {
       toast.error("Cannot load Movie", { position: "bottom-right" });
+      movieStore!.toggleErrorFalse();
+      return (
+        <>
+          <h1 className="error_text">Error while load movie</h1>
+        </>
+      );
     }
     return (
       <div>

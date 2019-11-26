@@ -25,7 +25,7 @@ export interface IMovieStore {
   fetchMovie: (id: number) => void;
   addFavorite: (movie: TMovie) => void;
   removeFavorite: (id: number) => void;
-  noErr: () => void;
+  toggleErrorFalse: () => void;
 }
 
 class MovieStore implements IMovieStore {
@@ -39,13 +39,11 @@ class MovieStore implements IMovieStore {
   @observable
   loading = true;
 
-  @observable
   error = false;
 
   @action
   fetchMovie = async (id: number) => {
     try {
-      throw "Error";
       const movie = await instance.get(`movie/${id}`);
       movie.data = camelcaseKeys(movie.data);
       this.movie = movie.data;
@@ -55,8 +53,8 @@ class MovieStore implements IMovieStore {
       this.loading = false;
     }
   };
-  @action
-  noErr = () => {
+
+  toggleErrorFalse = () => {
     this.error = false;
   };
 

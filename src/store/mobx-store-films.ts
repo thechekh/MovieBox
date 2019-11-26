@@ -28,13 +28,11 @@ class FilmsStore implements IFilmsStore {
   @observable
   loading = true;
 
-  @observable
   error = false;
 
   @action
   fetchFilms = async (page: number) => {
     try {
-      //throw "Error"
       const url = "movie/now_playing";
       const movies = await instance.get(url, {
         params: {

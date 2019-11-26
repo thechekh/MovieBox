@@ -38,13 +38,19 @@ class NowPlayingPage extends React.Component<Iprops> {
 
   render() {
     const { match, filmsStore } = this.props;
-    const { loading, error, films } = filmsStore;
+    const { films, loading, error } = filmsStore;
     const { page } = match.params;
     if (loading) {
       return <Spinner />;
     }
     if (error) {
-      toast.error("Cannot load Films", { position: "bottom-left" });
+      toast.error("Cannot load Films", { position: "bottom-right" });
+      return (
+        <>
+          <AppHeader />
+          <h1 className="error_text">Error while load films</h1>
+        </>
+      );
     }
     return (
       <>

@@ -21,13 +21,11 @@ class GenresStore implements IGenresStore {
   @observable
   loading = true;
 
-  @observable
   error = false;
 
   @action
   fetchGenres = async () => {
     try {
-      //throw "Error"
       const payload = await instance.get(`genre/movie/list`);
       this.genres = payload.data.genres;
     } catch (err) {

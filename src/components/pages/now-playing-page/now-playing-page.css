@@ -2,3 +2,7 @@
   margin-top: 70px;
   font-family: Source Sans Pro, sans-serif;
 }
+.error_text {
+  text-align: center;
+  margin-top: 40px;
+}

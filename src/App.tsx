@@ -31,8 +31,8 @@ class App extends React.Component<IProps> {
 
   render() {
     const { genresStore } = this.props;
-    const { error } = genresStore!;
-    if (genresStore!.loading) {
+    const { error, loading } = genresStore!;
+    if (loading) {
       return <Spinner />;
     }
     if (error) {
