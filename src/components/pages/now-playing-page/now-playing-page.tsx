@@ -8,6 +8,7 @@ import Spinner from "../../spinner";
 import Pagination from "../../pagination";
 import AppHeader from "../../app-header";
 import { IFilmsStore } from "../../../store/mobx-store-films";
+import { toast } from "react-toastify";
 
 interface MatchParams {
   page: string;
@@ -37,10 +38,13 @@ class NowPlayingPage extends React.Component<Iprops> {
 
   render() {
     const { match, filmsStore } = this.props;
-    const { loading, films } = filmsStore;
+    const { loading, error, films } = filmsStore;
     const { page } = match.params;
     if (loading) {
       return <Spinner />;
+    }
+    if (error) {
+      toast.error("Cannot load Films", { position: "bottom-left" });
     }
     return (
       <>

@@ -15,21 +15,26 @@ export type TFilms = {
 };
 
 export interface IFilmsStore {
-  films: TFilms | null;
+  films: TFilms;
   loading: boolean;
+  error: boolean;
   fetchFilms: (page: number) => void;
 }
 
 class FilmsStore implements IFilmsStore {
   @observable
-  films = null;
+  films = {} as TFilms;
 
   @observable
   loading = true;
 
+  @observable
+  error = false;
+
   @action
   fetchFilms = async (page: number) => {
     try {
+      //throw "Error"
       const url = "movie/now_playing";
       const movies = await instance.get(url, {
         params: {
@@ -40,9 +45,7 @@ class FilmsStore implements IFilmsStore {
       movies.data = camelcaseKeys(movies.data);
       this.films = movies.data;
     } catch (err) {
-      const msg = "Failed Load data, error";
-      // eslint-disable-next-line no-console
-      console.log(msg, err);
+      this.error = true;
     } finally {
       this.loading = false;
     }

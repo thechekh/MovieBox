@@ -8,31 +8,35 @@ export type TGenres = {
 };
 
 export interface IGenresStore {
-  genres: Array<TGenres> | null;
+  genres: Array<TGenres>;
   loading: boolean;
+  error: boolean;
   fetchGenres: () => void;
 }
 
 class GenresStore implements IGenresStore {
   @observable
-  genres = null;
+  genres = [];
 
   @observable
   loading = true;
 
+  @observable
+  error = false;
+
   @action
   fetchGenres = async () => {
     try {
+      //throw "Error"
       const payload = await instance.get(`genre/movie/list`);
       this.genres = payload.data.genres;
     } catch (err) {
-      const msg = "Failed Load data, error";
-      // eslint-disable-next-line no-console
-      console.log(msg, err);
+      this.error = true;
     } finally {
       this.loading = false;
     }
   };
 }
+
 const genresStore = new GenresStore();
 export default genresStore;

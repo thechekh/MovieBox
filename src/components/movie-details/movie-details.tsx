@@ -9,6 +9,7 @@ import defaultImg from "../movie-card/default_img.png";
 import Spinner from "../spinner";
 import { TGenres } from "../../store/mobx-store-genres";
 import { IMovieStore } from "../../store/mobx-store-movie";
+import { toast } from "react-toastify";
 
 interface IProps {
   id: number;
@@ -22,6 +23,11 @@ class MovieDetails extends React.Component<IProps> {
     const { id, movieStore } = this.props;
     movieStore!.loading = true;
     movieStore!.fetchMovie(id);
+  }
+
+  componentDidUpdate() {
+    const { movieStore } = this.props;
+    movieStore!.noErr();
   }
 
   addFavoriteHandler = () => {
@@ -45,9 +51,9 @@ class MovieDetails extends React.Component<IProps> {
 
   render() {
     const { id, movieStore } = this.props;
-    const { loading } = movieStore!;
+    const { movie, error, loading } = movieStore!;
+    console.log("errr", error);
     const isFavorite = movieStore!.isFavorite(id);
-    const { movie } = movieStore!;
     const bgPoster = {
       backgroundImage: ` linear-gradient(to bottom, rgba(255, 255, 255,0.1), rgba(0, 0, 0,0.9) 95% )
             ,url(http://image.tmdb.org/t/p/w500${movie && movie.backdropPath}`
@@ -56,7 +62,9 @@ class MovieDetails extends React.Component<IProps> {
     if (loading) {
       return <Spinner />;
     }
-
+    if (error) {
+      toast.error("Cannot load Movie", { position: "bottom-right" });
+    }
     return (
       <div>
         {movie && (

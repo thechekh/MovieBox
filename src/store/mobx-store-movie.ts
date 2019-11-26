@@ -1,7 +1,6 @@
 import { observable, action } from "mobx";
 import camelcaseKeys from "camelcase-keys";
 import { create, persist } from "mobx-persist";
-import { useToasts } from "react-toast-notifications";
 import instance from "../utils/axios-config";
 import { TGenres } from "./mobx-store-genres";
 
@@ -21,10 +20,12 @@ export interface IMovieStore {
   movie: TMovie | null;
   favorites: Array<TMovie> | null;
   loading: boolean;
+  error: boolean;
   isFavorite: (id: number) => boolean;
   fetchMovie: (id: number) => void;
   addFavorite: (movie: TMovie) => void;
   removeFavorite: (id: number) => void;
+  noErr: () => void;
 }
 
 class MovieStore implements IMovieStore {
@@ -38,16 +39,25 @@ class MovieStore implements IMovieStore {
   @observable
   loading = true;
 
+  @observable
+  error = false;
+
   @action
   fetchMovie = async (id: number) => {
     try {
+      throw "Error";
       const movie = await instance.get(`movie/${id}`);
       movie.data = camelcaseKeys(movie.data);
       this.movie = movie.data;
     } catch (err) {
+      this.error = true;
     } finally {
       this.loading = false;
     }
+  };
+  @action
+  noErr = () => {
+    this.error = false;
   };
 
   isFavorite = (id: number) =>

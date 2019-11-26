@@ -39,6 +39,7 @@
     "react-router-prop-types": "^1.0.4",
     "react-scripts": "3.2.0",
     "react-toast-notifications": "^2.4.0",
+    "react-toastify": "^5.4.1",
     "serializr": "^1.5.3",
     "typescript": "^3.7.2"
   },
